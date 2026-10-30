@@ -8,7 +8,8 @@ import styles from "./models.module.css";
 
 export const FUND_STOPS = [10, 20, 50, 100, 200, 300, 500, 1000];
 export const SHARE_STOPS = [0.02, 0.05, 1 / 15, 0.08, 0.1, 0.15, 0.2, 0.25];
-const CHEQUE = 1;
+/** Model 2's fund: ten equal cheques. */
+const CHEQUES = 10;
 
 const RULER_MAX = 100_000;
 
@@ -34,7 +35,8 @@ export function M3Napkin() {
   const [fund, setFund] = useState(10);
   const [share, setShare] = useState(0.1);
   const needed = exitNeeded(fund, share);
-  const today = CHEQUE / share;
+  const cheque = fund / CHEQUES;
+  const today = cheque / share;
   return (
     <Section n={3} title="The napkin sum">
       <Prose>
@@ -73,8 +75,12 @@ export function M3Napkin() {
         ]} />
         <dl className={styles.facts}>
           <div>
+            <dt>My cheque, if the fund writes ten like Model 2</dt>
+            <dd data-testid="napkin-cheque"><span className={styles.muteInline}>{formatMoney(fund)} ÷ {CHEQUES} cheques = </span>{formatMoney(cheque)}</dd>
+          </div>
+          <div>
             <dt>The company today, at the price I pay</dt>
-            <dd data-testid="napkin-today"><span className={styles.muteInline}>{formatMoney(CHEQUE)} ÷ {formatShare(share)} = </span>{formatMoney(today)}</dd>
+            <dd data-testid="napkin-today"><span className={styles.muteInline}>{formatMoney(cheque)} ÷ {formatShare(share)} = </span>{formatMoney(today)}</dd>
           </div>
           <div>
             <dt>How much it has to grow, just to give the fund back once</dt>
@@ -93,9 +99,9 @@ export function M3Napkin() {
           company bad. It just means it can't be the one that carries this fund.
         </p>
         <p>
-          One thing surprised me. Move my share and the "grow" line doesn't change. With ten $1M cheques from a $10M
-          fund, whatever price I pay, the winner has to grow tenfold from there. The price changes how big the company
-          must end up. The growth it needs is set by how many cheques I write.
+          One thing surprised me. Move either slider and the "grow" line doesn't change. The cheque is always a tenth of
+          the fund, so the winner has to grow tenfold from the price I paid, whatever that price was. The price changes
+          how big the company must end up. The growth it needs is set by how many cheques I write.
         </p>
       </Prose>
       <Rule>Before you write the cheque, divide the fund by your share. If the company can't plausibly be worth that, the cheque can't matter.</Rule>

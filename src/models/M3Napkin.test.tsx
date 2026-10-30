@@ -34,4 +34,14 @@ describe("Model 3: the napkin sum", () => {
     expect(screen.getByRole("slider", { name: /F, the fund/ })).toBeTruthy();
     expect(screen.getByTestId("napkin-sets").textContent).toBe("These two set E");
   });
+
+  it("splits the fund into ten cheques, so the cheque grows with the fund", () => {
+    render(<M3Napkin />);
+    const t = (id: string) => screen.getByTestId(id).textContent;
+    expect(t("napkin-cheque")).toBe("$10M ÷ 10 cheques = $1M");
+    fireEvent.change(screen.getByRole("slider", { name: /fund/i }), { target: { value: String(FUND_STOPS.indexOf(100)) } });
+    expect(t("napkin-cheque")).toBe("$100M ÷ 10 cheques = $10M");
+    expect(t("napkin-today")).toBe("$10M ÷ 10% = $100M");
+    expect(t("napkin-growth")).toBe("$1B ÷ $100M = 10×");
+  });
 });
