@@ -1,3 +1,9 @@
 /* Part two: the fund drawn as notes, and the two charts over time. */
 .fundGrid { display: inline-grid; grid-template-columns: repeat(10, 24px); gap: 2px; margin-bottom: 12px; }
 .fundGrid > span { display: contents; }
+.paychecks { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px 40px; margin-top: 22px; padding-top: 16px; border-top: 1px dashed var(--line); }
+.bars { display: grid; gap: 10px; margin: 18px 0 8px; }
+.bars > div { display: grid; grid-template-columns: 96px minmax(0, 1fr) auto; align-items: center; gap: 12px; }
+.bars b { font: 600 15px var(--font-mono); }
+.barLabel { font: 400 13px/1.2 var(--font-sans); color: var(--mute); }
+.bar { display: block; height: 18px; border-radius: 1px; transition: width 200ms; }
