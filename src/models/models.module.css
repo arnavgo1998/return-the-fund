@@ -182,3 +182,17 @@
 }
 .rulerMark > [role="img"] { margin-right: 0.3em; }
 .switchWhy { margin: 4px 0 22px !important; max-width: 70ch; }
+
+/* Links between the two parts */
+.backLink { margin: 0 0 28px; font: 500 14px/1.4 var(--font-sans); }
+.backLink a { color: var(--mute); text-decoration: none; }
+.backLink a:hover, .backLink a:focus-visible { color: var(--ink); text-decoration: underline; }
+.nextPart {
+  display: grid; gap: 4px; max-width: var(--column); margin: 56px auto 0; padding: 22px 24px;
+  border: 1px solid var(--ink); border-radius: 3px; background: var(--paper); color: var(--ink); text-decoration: none;
+  box-sizing: border-box;
+}
+.nextPart:hover, .nextPart:focus-visible { background: var(--grid); }
+.nextPart .figLabel { margin: 0; color: var(--you); }
+.nextTitle { font: 600 clamp(24px, 4vw, 30px)/1.15 var(--font-sans); letter-spacing: -0.01em; }
+.nextDek { font: 400 16px/1.45 var(--font-body); color: var(--mute); }

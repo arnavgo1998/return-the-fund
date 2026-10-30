@@ -77,6 +77,11 @@ export function Finale() {
           The surprising part is how much of the job happens before the cheque. After it, the big decision left is when to back the winner harder.
         </p>
       </Prose>
+      <a className={styles.nextPart} href="#part-two">
+        <span className={styles.figLabel}>Next</span>
+        <span className={styles.nextTitle}>Part two: the fund</span>
+        <span className={styles.nextDek}>Where your $10M came from, and what the people who gave it to you expect back.</span>
+      </a>
       <div className={styles.reading}>
         <p className={styles.figLabel}>Where this comes from</p>
         <ul>

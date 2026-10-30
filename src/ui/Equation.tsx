@@ -5,6 +5,7 @@ const CHIPS = {
   E: { name: "E, the sale price", color: "var(--ink)" },
   F: { name: "F, the fund", color: "var(--you)" },
   V: { name: "V, the company's value today", color: "var(--founders)" },
+  R: { name: "R, what the fund's investments return", color: "var(--ink)" },
   h: { name: "h, the chance Nova gets as far as Orbit", color: "var(--a)" },
   s: { name: "s, the chance Orbit survives to a sale", color: "var(--b)" },
 } as const;

@@ -7,9 +7,19 @@ import { M5FollowOn } from "./models/M5FollowOn";
 import { M6Preferences } from "./models/M6Preferences";
 import { M7Price } from "./models/M7Price";
 import { Finale } from "./models/Finale";
+import { PartTwo } from "./part2/PartTwo";
+import { usePart } from "./ui/usePart";
 import styles from "./App.module.css";
 
 export default function App() {
+  const part = usePart();
+  if (part === "two") {
+    return (
+      <main className={styles.page}>
+        <PartTwo />
+      </main>
+    );
+  }
   return (
     <main className={styles.page}>
       <Hero />

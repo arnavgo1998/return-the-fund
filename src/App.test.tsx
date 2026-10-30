@@ -1,5 +1,5 @@
-import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { act, render, screen } from "@testing-library/react";
+import { afterEach, describe, expect, it } from "vitest";
 import App from "./App";
 
 describe("App", () => {
@@ -16,5 +16,41 @@ describe("App", () => {
   it("says what the sum is instead of calling it a napkin", () => {
     render(<App />);
     expect(document.body.textContent).not.toMatch(/napkin/i);
+  });
+
+  afterEach(() => { window.location.hash = ""; });
+  const h1 = () => screen.getByRole("heading", { level: 1 }).textContent;
+  const go = (hash: string) => act(() => {
+    window.location.hash = hash;
+    window.dispatchEvent(new HashChangeEvent("hashchange"));
+  });
+
+  it("opens part two at #part-two", () => {
+    window.location.hash = "#part-two";
+    render(<App />);
+    expect(h1()).toBe("The Fund");
+    expect(screen.getByText("Part two")).toBeTruthy();
+  });
+
+  it("follows the hash back and forth", () => {
+    render(<App />);
+    expect(h1()).toBe("Return the Fund");
+    go("#part-two");
+    expect(h1()).toBe("The Fund");
+    go("");
+    expect(h1()).toBe("Return the Fund");
+  });
+
+  it("keeps part one for any other hash", () => {
+    window.location.hash = "#model-3";
+    render(<App />);
+    expect(h1()).toBe("Return the Fund");
+  });
+
+  it("links part one to part two and back", () => {
+    render(<App />);
+    expect(screen.getByRole("link", { name: /part two/i }).getAttribute("href")).toBe("#part-two");
+    go("#part-two");
+    expect(screen.getByRole("link", { name: /part one/i }).getAttribute("href")).toBe("#");
   });
 });
