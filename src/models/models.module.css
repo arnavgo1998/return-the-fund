@@ -63,3 +63,29 @@
 .term { display: block; font: 500 11px/1.4 var(--font-mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--a); }
 .napkinStrip { margin-top: 24px; padding-top: 16px; border-top: 1px dashed var(--line); }
 .napkinLine { font: 500 clamp(16px, 2.6vw, 20px)/1.5 var(--font-mono); margin: 0; }
+
+/* Model 5 */
+.versus { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px 40px; margin-bottom: 24px; }
+.versusNum { font: 600 18px/1.3 var(--font-mono); margin: 10px 0 2px; }
+.versusSub { font: 400 14px/1.4 var(--font-sans); color: var(--mute); margin: 0; }
+.stack { position: relative; display: inline-block; }
+.stackOver { position: absolute; left: 0; top: 0; }
+.textButton {
+  margin-top: 16px; padding: 8px 14px; border: 1px dashed var(--ink); border-radius: 3px; background: transparent;
+  font: 500 14px/1.3 var(--font-sans); cursor: pointer;
+}
+.textButton:hover { background: var(--grid); }
+
+/* Model 6 */
+.switches { font: 400 14px/1.6 var(--font-sans); color: var(--mute); margin: 0 0 18px; }
+.switches b { font: 600 15px var(--font-mono); color: var(--ink); }
+.waterfall { display: flex; height: 28px; margin: 4px 0 16px; background: var(--grid); border-radius: 2px; overflow: hidden; }
+.waterfall > span { display: block; height: 100%; transition: width 200ms; }
+.waterfall > span + span { box-shadow: inset 2px 0 0 var(--paper); }
+.payTable { width: 100%; border-collapse: collapse; font: 400 15px/1.3 var(--font-sans); }
+.payTable th, .payTable td { padding: 8px 0; border-bottom: 1px solid var(--line); text-align: left; }
+.payTable th { font-weight: 500; }
+.payTable td:last-child { text-align: right; font: 600 16px var(--font-mono); font-variant-numeric: tabular-nums; }
+.how { color: var(--mute); font-size: 13px; }
+.swatchInline { display: inline-block; width: 11px; height: 11px; margin-right: 8px; border-radius: 1px; }
+.srOnly { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
