@@ -1,3 +1,4 @@
+import { MadeBy } from "../ui/MadeBy";
 import { useState } from "react";
 import { formatMoney, formatShare } from "../model/format";
 import { exitNeeded, shareAtEnd } from "../model/napkin";
@@ -92,6 +93,7 @@ export function Finale() {
           </li>
         </ul>
       </div>
+      <MadeBy />
     </Section>
   );
 }

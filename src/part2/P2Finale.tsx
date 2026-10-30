@@ -1,3 +1,4 @@
+import { MadeBy } from "../ui/MadeBy";
 import { useState } from "react";
 import { formatMoney, formatMultiple, formatShare, roundMoney } from "../model/format";
 import { YEARS, feeBudget, returnNeeded } from "../model/fund";
@@ -73,6 +74,7 @@ export function P2Finale() {
           </li>
         </ul>
       </div>
+      <MadeBy />
     </Section>
   );
 }

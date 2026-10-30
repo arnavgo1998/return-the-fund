@@ -109,6 +109,8 @@
 .reading { max-width: var(--column); margin: 48px auto 0; padding-top: 18px; border-top: 1px solid var(--line); font: 400 15px/1.55 var(--font-sans); }
 .reading ul { margin: 0; padding-left: 18px; }
 .reading li { margin-bottom: 6px; }
+.madeBy { max-width: var(--column); margin: 32px auto 0; font: 400 14px/1.5 var(--font-sans); color: var(--mute); text-align: center; }
+.madeBy a { color: var(--you); font-weight: 500; }
 
 /* Showing the working: every number on screen comes with the sum that made it. */
 .youInline { color: var(--you); font-weight: 600; }

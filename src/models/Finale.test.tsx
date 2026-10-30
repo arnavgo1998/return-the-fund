@@ -35,3 +35,12 @@ describe("The napkin", () => {
     expect(screen.getByTestId("share-at-end").textContent).toBe("8%");
   });
 });
+
+describe("made by credit", () => {
+  it("links to Arnav's profile at the end of part one", () => {
+    render(<Finale />);
+    const link = screen.getByRole("link", { name: "@arnavgoel_" });
+    expect(link.getAttribute("href")).toBe("https://x.com/arnavgoel_");
+    expect(link.closest("p")?.textContent).toBe("Made with love by @arnavgoel_");
+  });
+});

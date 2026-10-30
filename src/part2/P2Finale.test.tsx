@@ -58,3 +58,11 @@ describe("Part two, your fund", () => {
     }
   });
 });
+
+describe("made by credit", () => {
+  it("links to Arnav's profile at the end of part two", () => {
+    render(<P2Finale />);
+    const link = screen.getByRole("link", { name: "@arnavgoel_" });
+    expect(link.getAttribute("href")).toBe("https://x.com/arnavgoel_");
+  });
+});
