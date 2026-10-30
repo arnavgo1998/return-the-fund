@@ -15,8 +15,8 @@ export function Hero() {
         </p>
         <p>
           Chain Bear has a lovely way around this for Formula 1 strategy: start with a race so simple you can count
-          it, then add one thing at a time. This page does the same for the investor's side of a startup, using the
-          numbers in Scott Kupor's <em>Secrets of Sand Hill Road</em>.
+          it, then add one thing at a time. This page does the same for the investor's side of a startup, using simplified
+          versions of the deals Scott Kupor walks through in <em>Secrets of Sand Hill Road</em>.
         </p>
         <p>You're the investor. You have a $10M fund. Let's spend it.</p>
       </div>
