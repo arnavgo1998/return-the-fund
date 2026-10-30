@@ -2,7 +2,7 @@
 
 Venture capital from the bare basics, one variable at a time.
 
-**Live:** LIVE_URL
+**Live:** https://return-the-fund.vercel.app (Part two: https://return-the-fund.vercel.app/#part-two)
 
 ![Ten $1M cheques drawn as notes: nine return little or nothing, one returns $22M and carries the $10M fund.](public/og-image.png)
 
