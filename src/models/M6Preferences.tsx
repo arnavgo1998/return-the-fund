@@ -79,7 +79,7 @@ export function M6Preferences() {
           Which is larger comes down to one comparison. Divide what an investor paid by the squares they bought to get the price of one square. Then work out what one square is worth in the sale. If a square is now worth more than they paid, they take their share. If it is worth less, they take their money back.
         </p>
         <p>
-          The company is the one from Model 4. You hold 10 squares bought for $1M, at $0.1M each. Alex holds 25 bought for $5M, at $0.2M each. Blake holds 25 bought for $20M, at $0.8M each. The founders hold 90. Start with only Blake holding the promise, then give it to every investor, and move the sale <Chip letter="E" /> to see what a square is worth.
+          The company is Orbit, from Model 4. You hold 10 squares bought for $1M, at $0.1M each. Alex holds 25 bought for $5M, at $0.2M each. Blake holds 25 bought for $20M, at $0.8M each. The founders hold 90. Start with only Blake holding the promise, then give it to every investor, and move the sale <Chip letter="E" /> to see what a square is worth.
         </p>
       </Prose>
       <Wide label="Splitting the sale">
@@ -89,10 +89,15 @@ export function M6Preferences() {
         </div>
         {!everyone ? (
           <>
-            <p className={styles.figLabel}>B switches to its share once a square is worth the $0.8M B paid</p>
+            <p className={styles.figLabel}>The sale at which Blake switches to the share</p>
             <Equation>
-              150 squares × $0.8M = <strong data-testid="switch-b">{formatMoney(switchPoint(TABLE, "b", ["b"]))}</strong>
+              <Chip letter="E" /> = 150 squares × $0.8M = <strong data-testid="switch-b">{formatMoney(switchPoint(TABLE, "b", ["b"]))}</strong>
             </Equation>
+            <p className={`${styles.versusSub} ${styles.switchWhy}`} data-testid="switch-b-why">
+              At a $120M sale every one of Orbit's 150 squares is worth $0.8M, the price Blake paid. Blake's share is then
+              25 squares × $0.8M = $20M, exactly the money Blake put in. Below $120M the $20M back is larger, so Blake
+              takes it. Above $120M the share is larger.
+            </p>
           </>
         ) : (
           <p className={styles.switches}>

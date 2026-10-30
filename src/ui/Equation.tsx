@@ -4,8 +4,9 @@ import styles from "./ui.module.css";
 const CHIPS = {
   E: { name: "E, the sale price", color: "var(--ink)" },
   F: { name: "F, the fund", color: "var(--you)" },
-  h: { name: "h, the chance a fresh bet comes good", color: "var(--a)" },
-  s: { name: "s, the chance the company survives", color: "var(--b)" },
+  V: { name: "V, the company's value today", color: "var(--founders)" },
+  h: { name: "h, the chance Nova gets as far as Orbit", color: "var(--a)" },
+  s: { name: "s, the chance Orbit survives to a sale", color: "var(--b)" },
 } as const;
 
 export type Letter = keyof typeof CHIPS;

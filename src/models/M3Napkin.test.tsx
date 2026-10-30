@@ -44,4 +44,9 @@ describe("Model 3: the napkin sum", () => {
     expect(t("napkin-today")).toBe("$10M ÷ 10% = $100M");
     expect(t("napkin-growth")).toBe("$1B ÷ $100M = 10×");
   });
+
+  it("names the company's value today V, on the ruler and where it is worked out", () => {
+    render(<M3Napkin />);
+    expect(screen.getAllByRole("img", { name: /V, the company's value today/, hidden: true }).length).toBeGreaterThanOrEqual(3);
+  });
 });

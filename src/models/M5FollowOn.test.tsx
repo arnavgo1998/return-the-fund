@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { HIT_STOPS, M5FollowOn, SURVIVAL_STOPS } from "./M5FollowOn";
 
 const setH = (h: number) =>
-  fireEvent.change(screen.getByRole("slider", { name: /fresh bet/i }), { target: { value: String(HIT_STOPS.indexOf(h)) } });
+  fireEvent.change(screen.getByRole("slider", { name: /Nova gets as far/i }), { target: { value: String(HIT_STOPS.indexOf(h)) } });
 
 describe("Model 5: follow on, or a new bet", () => {
   it("counts the squares a million buys on each side", () => {
@@ -56,5 +56,13 @@ describe("Model 5: follow on, or a new bet", () => {
     expect(screen.getByTestId("crossover").textContent).toBe("1 in 8");
     expect(screen.getByTestId("m5-verdict").textContent).toMatch(/Your guess, 1 in 50, is a longer shot than break-even, 1 in 8/);
     expect(screen.getByRole("slider", { name: /h, the chance/ })).toBeTruthy();
+  });
+
+  it("names the company you already own and the new one", () => {
+    render(<M5FollowOn />);
+    expect(screen.getByText(/Follow on in Orbit: \$1M/)).toBeTruthy();
+    expect(screen.getByText(/New bet in Nova/)).toBeTruthy();
+    expect(screen.getByRole("slider", { name: /Nova gets as far as Orbit/ })).toBeTruthy();
+    expect(screen.getByRole("button", { name: /Orbit might still fail/ })).toBeTruthy();
   });
 });

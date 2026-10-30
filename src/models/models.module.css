@@ -180,3 +180,5 @@
 @media (max-width: 719px) {
   .capTable tbody th, .capNote { white-space: normal; }
 }
+.rulerMark > [role="img"] { margin-right: 0.3em; }
+.switchWhy { margin: 4px 0 22px !important; max-width: 70ch; }

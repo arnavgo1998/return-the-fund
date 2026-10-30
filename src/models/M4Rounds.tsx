@@ -24,10 +24,10 @@ export function M4Rounds() {
     <Section n={4} title="Other investors arrive">
       <Prose>
         <p>
-          So far your 10% has stayed at 10%. In practice it shrinks every time the company raises money.
+          So far your 10% of Orbit has stayed at 10%. In practice it shrinks every time the company raises money.
         </p>
         <p>
-          When a company raises a new round, the new investor does not buy squares from you or from the founders. The company creates new squares and sells those. In Series A, Alex pays $5M for 25 new squares: $5M ÷ 25 = $0.2M a square, twice the $0.1M you paid. In Series B, Blake pays $20M for 25 more: $20M ÷ 25 = $0.8M a square.
+          When Orbit raises a new round, the new investor does not buy squares from you or from the founders. The company creates new squares and sells those. In Series A, Alex pays $5M for 25 new squares: $5M ÷ 25 = $0.2M a square, twice the $0.1M you paid. In Series B, Blake pays $20M for 25 more: $20M ÷ 25 = $0.8M a square.
         </p>
       </Prose>
       <Wide label="The company through three rounds">
@@ -90,7 +90,7 @@ export function M4Rounds() {
           </dl>
         )}
         <div className={styles.napkinStrip}>
-          <p className={styles.figLabel}>The napkin sum, with your share after this round</p>
+          <p className={styles.figLabel}>Sale needed to return the fund, with your share after this round</p>
           <p className={styles.napkinLine}>$10M fund ÷ {formatShare(share)} = <strong data-testid="exit-small">{formatMoney(exitNeeded(10, share))}</strong></p>
           <p className={styles.napkinLine}>$100M fund ÷ {formatShare(share)} = <strong data-testid="exit-big">{formatMoney(exitNeeded(100, share))}</strong></p>
         </div>
@@ -103,7 +103,7 @@ export function M4Rounds() {
           The table also defines two common terms. The price of a square in a round, times the squares that existed before the round, is the <em>pre-money</em> value. The same price times all the squares after the round is the <em>post-money</em>{" "}value. Your $1M at $0.1M a square in Model 1 set a post-money value of $10M.
         </p>
         <p>
-          Dilution changes the napkin sum. The right share to divide by is the one you will still hold when the company is sold. For a $100M fund, the $1B target becomes $1.25B after Series A and $1.5B after Series B.
+          Dilution changes the sale you need. The right share to divide by is the one you will still hold when the company is sold. For a $100M fund, the $1B target becomes $1.25B after Series A and $1.5B after Series B.
         </p>
       </Prose>
       <Aside>

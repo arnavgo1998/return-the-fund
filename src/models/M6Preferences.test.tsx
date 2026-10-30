@@ -115,4 +115,10 @@ describe("Model 6: who gets paid first", () => {
     expect(screen.getByText("Alex (Series A)")).toBeTruthy();
     expect(screen.getByText("Blake (Series B)")).toBeTruthy();
   });
+
+  it("explains Blake's switch point as Blake's money back", () => {
+    render(<M6Preferences />);
+    expect(screen.getByTestId("switch-b-why").textContent).toMatch(/25 squares × \$0\.8M = \$20M/);
+    expect(screen.queryByText(/\bB switches\b/)).toBeNull();
+  });
 });

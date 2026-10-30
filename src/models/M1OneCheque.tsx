@@ -31,7 +31,7 @@ export function M1OneCheque() {
     <Section n={1} title="One cheque">
       <Prose>
         <p>
-          Start with one company cut into 100 squares. The founders own 90 of them. You pay $1M for the other 10.
+          Start with one company, called Orbit, cut into 100 squares. The founders own 90 of them. You pay $1M for the other 10.
         </p>
         <p>
           That price also puts a value on the whole company. If 10 squares cost $1M, one square costs $0.1M, and all 100 squares are worth $10M.
@@ -43,7 +43,7 @@ export function M1OneCheque() {
       <Wide label="One cheque into one company">
         <div className={styles.split}>
           <div>
-            <p className={styles.figLabel}>The company: 100 squares, one share each</p>
+            <p className={styles.figLabel}>Orbit: 100 squares, one share each</p>
             <CompanyGrid label="A company of 100 squares: 90 founders', 10 yours" />
             <Legend ids={["you", "founders"]} />
             <dl className={styles.facts}>

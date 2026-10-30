@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { formatMoney, formatShare } from "../model/format";
 import { exitNeeded } from "../model/napkin";
-import { Chip, Equation } from "../ui/Equation";
+import { Chip, Equation, type Letter } from "../ui/Equation";
 import { Prose, Rule, Section, Wide } from "../ui/Section";
 import { Slider } from "../ui/Slider";
 import styles from "./models.module.css";
@@ -17,7 +17,7 @@ const RULER_MAX = 100_000;
 export const rulerPosition = (v: number) => (Math.log10(Math.min(Math.max(v, 1), RULER_MAX)) / Math.log10(RULER_MAX)) * 100;
 
 /** A log ruler of company values, so $10M and $50B fit on one line. */
-export function ValueRuler({ marks }: { marks: { value: number; label: string; strong?: boolean }[] }) {
+export function ValueRuler({ marks }: { marks: { value: number; label: string; letter?: Letter; strong?: boolean }[] }) {
   return (
     <div className={styles.ruler} aria-hidden>
       {[1, 10, 100, 1000, 10_000, RULER_MAX].map((v) => (
@@ -25,7 +25,7 @@ export function ValueRuler({ marks }: { marks: { value: number; label: string; s
       ))}
       {marks.map((m) => (
         <span key={m.label} className={styles.rulerMark} data-strong={!!m.strong}
-          data-anchor={rulerPosition(m.value) > 70 ? "end" : "start"} style={{ left: `${rulerPosition(m.value)}%` }}>{m.label}</span>
+          data-anchor={rulerPosition(m.value) > 70 ? "end" : "start"} style={{ left: `${rulerPosition(m.value)}%` }}>{m.letter && <Chip letter={m.letter} />}{m.label}</span>
       ))}
     </div>
   );
@@ -38,7 +38,7 @@ export function M3Napkin() {
   const cheque = fund / CHEQUES;
   const today = cheque / share;
   return (
-    <Section n={3} title="The napkin sum">
+    <Section n={3} title="The sale you need">
       <Prose>
         <p>
           In Model 2 the winner had to return $22M for the fund to triple. You own 10% of that company, so it must have been sold for $220M. The same reasoning works in reverse, before you invest. How large does a company have to become for your share of it, on its own, to repay the whole fund?
@@ -47,7 +47,7 @@ export function M3Napkin() {
           Call the fund <Chip letter="F" /> and the sale <Chip letter="E" />. Your part of the sale is your share × <Chip letter="E" />, the same sum as in Model 1. To repay the fund, it has to equal <Chip letter="F" />. Divide both sides by your share and you get the sale the company needs.
         </p>
       </Prose>
-      <Wide label="The napkin sum">
+      <Wide label="The sale you need">
         <p className={styles.figLabel} data-testid="napkin-sets">These two set <Chip letter="E" /></p>
         <div className={`${styles.sliders} ${styles.inputs}`}>
           <Slider label="The fund" letter="F" value={fund} stops={FUND_STOPS} format={formatMoney} onChange={setFund} />
@@ -66,8 +66,8 @@ export function M3Napkin() {
           </Equation>
         </div>
         <ValueRuler marks={[
-          { value: today, label: `today ${formatMoney(today)}` },
-          { value: needed, label: `E needed ${formatMoney(needed)}`, strong: true },
+          { value: today, label: `today ${formatMoney(today)}`, letter: "V" },
+          { value: needed, label: `needed ${formatMoney(needed)}`, letter: "E", strong: true },
         ]} />
         <dl className={styles.facts}>
           <div>
@@ -75,11 +75,11 @@ export function M3Napkin() {
             <dd data-testid="napkin-cheque"><span className={styles.muteInline}>{formatMoney(fund)} ÷ {CHEQUES} cheques = </span>{formatMoney(cheque)}</dd>
           </div>
           <div>
-            <dt>The company today, at the price you pay</dt>
+            <dt><Chip letter="V" /> The company today, at the price you pay</dt>
             <dd data-testid="napkin-today"><span className={styles.muteInline}>{formatMoney(cheque)} ÷ {formatShare(share)} = </span>{formatMoney(today)}</dd>
           </div>
           <div>
-            <dt>Growth needed to return the fund once</dt>
+            <dt>Growth needed to return the fund once, <Chip letter="E" /> ÷ <Chip letter="V" /></dt>
             <dd data-testid="napkin-growth"><span className={styles.muteInline}>{formatMoney(needed)} ÷ {formatMoney(today)} = </span>{Math.round(needed / today)}×</dd>
           </div>
         </dl>
@@ -92,7 +92,7 @@ export function M3Napkin() {
           This is the arithmetic behind a question investors ask early on: <em>can this become a billion-dollar company?</em> A company that cannot reach that number may still be a good business. It just cannot be the company that returns this fund.
         </p>
         <p>
-          The growth needed does not move with either slider. Each cheque is a tenth of the fund, so the winner always has to grow ten times from the price paid. The price decides how large the company must become. The number of cheques decides how much it must grow.
+          <Chip letter="V" /> is what your price says the company is worth today: your cheque ÷ your share. The growth needed, <Chip letter="E" /> ÷ <Chip letter="V" />, does not move with either slider. Each cheque is a tenth of the fund, so the winner always has to grow ten times from the price paid. The price decides how large the company must become. The number of cheques decides how much it must grow.
         </p>
       </Prose>
       <Rule>Before you write the cheque, divide the fund by your share. If the company cannot plausibly sell for that much, it cannot return the fund.</Rule>

@@ -12,4 +12,9 @@ describe("App", () => {
     render(<App />);
     expect(document.body.textContent).not.toMatch(/\bblocks?\b/i);
   });
+
+  it("says what the sum is instead of calling it a napkin", () => {
+    render(<App />);
+    expect(document.body.textContent).not.toMatch(/napkin/i);
+  });
 });

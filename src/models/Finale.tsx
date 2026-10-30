@@ -27,13 +27,13 @@ export function Finale() {
   const needed = exitNeeded(fund, end);
   const setRound = (i: number, v: number) => setRounds((r) => r.map((x, j) => (j === i ? v : x)));
   return (
-    <Section title="The napkin">
+    <Section title="Before the cheque">
       <Prose>
         <p>
           The calculator below combines every model into one sum an investor can do before writing a cheque: the share you buy, the share left after later rounds, and the sale that share needs.
         </p>
       </Prose>
-      <Wide label="The napkin calculator">
+      <Wide label="The sale you need, from your own numbers">
         <div className={styles.napkin}>
           <div className={styles.sliders}>
             <Slider label="The fund" letter="F" value={fund} stops={FUND_STOPS} format={formatMoney} onChange={setFund} />
@@ -71,7 +71,7 @@ export function Finale() {
       </Wide>
       <Prose>
         <p>
-          The models started with a $1M cheque that could only be lost once, against a sale with no upper limit. Each step added one unknown: ten cheques and the one that carries them, the napkin sum, dilution, follow-on cheques, liquidation preferences and the price itself.
+          The models started with a $1M cheque that could only be lost once, against a sale with no upper limit. Each step added one unknown: ten cheques and the one that carries them, the sale you need, dilution, follow-on cheques, liquidation preferences and the price itself.
         </p>
         <p>
           Most of the work happens before the cheque. The price, the share you will keep, the size the company has to reach and the investors ahead of you can all be worked out in advance. After the cheque, the main decision left is whether to put more money into the company that starts to look like the winner.
