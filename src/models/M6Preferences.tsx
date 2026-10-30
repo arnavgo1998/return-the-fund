@@ -18,8 +18,11 @@ export function M6Preferences() {
   const prefs: HolderId[] | undefined = everyone ? undefined : ["b"];
   const { paid, switched } = waterfall(sale, TABLE, prefs);
   const has = (id: HolderId) => (everyone ? id !== "founders" : id === "b");
-  const how = (id: HolderId) =>
-    !has(id) ? "share" : switched.includes(id) ? "share" : "money back";
+  const how = (id: HolderId) => {
+    if (!has(id) || switched.includes(id)) return "share";
+    const invested = TABLE.find((h) => h.id === id)!.invested;
+    return paid[id] < invested - 1e-9 ? "part of the money back" : "money back";
+  };
   return (
     <Section n={6} title="Who gets paid first">
       <Prose>
@@ -60,7 +63,7 @@ export function M6Preferences() {
             {ORDER.map((id) => (
               <tr key={id}>
                 <th scope="row"><span className={styles.swatchInline} style={{ background: COLOR[id] }} />{NAMES[id]}</th>
-                <td className={styles.how}>{how(id)}</td>
+                <td className={styles.how} data-testid={`how-${id}`}>{how(id)}</td>
                 <td data-testid={`paid-${id}`}>{formatMoney(paid[id])}</td>
               </tr>
             ))}
@@ -76,7 +79,8 @@ export function M6Preferences() {
         <p>
           Now give every investor the promise. Drag the sale down to $30M, a company that raised $26M and sold for
           barely more. Series B takes $20M, A takes $5M, I take my $1M. The founders, who spent years on it, share $4M.
-          Below $26M they get nothing.
+          Below $26M there isn't enough to give every investor their money back, so the investors split the sale in
+          proportion to what they put in, and the founders get nothing.
         </p>
         <p>
           Drag it up past $120M and everyone switches to their share. The promises stop mattering, and at $1.2B I get

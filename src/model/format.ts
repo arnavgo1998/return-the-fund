@@ -10,6 +10,10 @@ export function formatMoney(m: number): string {
   return `$${trim(m, 2)}M`;
 }
 
+/** Enough precision that the sums shown with it can be checked by hand: "0.17%", "6.67%", "12.5%". */
 export function formatShare(x: number): string {
-  return `${trim(x * 100, 1)}%`;
+  const pct = x * 100;
+  if (pct === 0) return "0%";
+  if (pct < 1) return `${Number(pct.toPrecision(2))}%`;
+  return `${trim(pct, pct < 10 ? 2 : 1)}%`;
 }

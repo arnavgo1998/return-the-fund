@@ -31,6 +31,15 @@ describe("Model 6: who gets paid first", () => {
     expect(paid("you")).toBe("$80M");
   });
 
+  it("says when a sale is too small to give investors their money back", () => {
+    render(<M6Preferences />);
+    fireEvent.click(screen.getByRole("button", { name: /every investor/i }));
+    setSale(10);
+    expect(screen.getByTestId("how-you").textContent).toBe("part of the money back");
+    setSale(30);
+    expect(screen.getByTestId("how-you").textContent).toBe("money back");
+  });
+
   it("states the rule", () => {
     render(<M6Preferences />);
     expect(screen.getByText("Below the last round's price, preferences decide who gets paid. Above it, only shares matter — and above it is where a fund is made.")).toBeTruthy();

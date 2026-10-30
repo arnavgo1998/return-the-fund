@@ -1,12 +1,12 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { Finale } from "./Finale";
+import { CHEQUE_STOPS, Finale } from "./Finale";
 import { FUND_STOPS } from "./M3Napkin";
 
 describe("The napkin", () => {
   it("follows a $1M cheque at $10M through two rounds", () => {
     render(<Finale />);
-    expect(screen.getByTestId("share-at-end").textContent).toBe("6.7%");
+    expect(screen.getByTestId("share-at-end").textContent).toBe("6.67%");
     expect(screen.getByTestId("napkin-exit").textContent).toBe("$150M");
   });
 
@@ -14,6 +14,19 @@ describe("The napkin", () => {
     render(<Finale />);
     fireEvent.change(screen.getByRole("slider", { name: /^the fund/i }), { target: { value: String(FUND_STOPS.indexOf(100)) } });
     expect(screen.getByTestId("napkin-exit").textContent).toBe("$1.5B");
+  });
+
+  it("never lets the cheque be bigger than the company", () => {
+    render(<Finale />);
+    fireEvent.change(screen.getByRole("slider", { name: /my cheque/i }), { target: { value: String(CHEQUE_STOPS.indexOf(10)) } });
+    const post = screen.getByRole("slider", { name: /company after my money/i }).getAttribute("aria-valuetext");
+    expect(post).toBe("$15M");
+    expect(screen.queryByText(/= 100%/)).toBeNull();
+  });
+
+  it("names who comes out first the way Model 6 taught it", () => {
+    render(<Finale />);
+    expect(screen.getByText(/every investor takes their money back before the founders' squares are paid/)).toBeTruthy();
   });
 
   it("drops a round", () => {

@@ -10,17 +10,21 @@ export const FUND_STOPS = [10, 20, 50, 100, 200, 300, 500, 1000];
 export const SHARE_STOPS = [0.02, 0.05, 1 / 15, 0.08, 0.1, 0.15, 0.2, 0.25];
 const CHEQUE = 1;
 
-/** A log ruler of company values, so $10M and $10B fit on one line. */
+const RULER_MAX = 100_000;
+
+/** Where a company value sits on the ruler, as a percentage of its width ($1M to $100B, log scale). */
+export const rulerPosition = (v: number) => (Math.log10(Math.min(Math.max(v, 1), RULER_MAX)) / Math.log10(RULER_MAX)) * 100;
+
+/** A log ruler of company values, so $10M and $50B fit on one line. */
 export function ValueRuler({ marks }: { marks: { value: number; label: string; strong?: boolean }[] }) {
-  const lo = Math.log10(1), hi = Math.log10(20_000);
-  const x = (v: number) => `${((Math.log10(Math.max(v, 1)) - lo) / (hi - lo)) * 100}%`;
   return (
     <div className={styles.ruler} aria-hidden>
-      {[1, 10, 100, 1000, 10_000].map((v) => (
-        <span key={v} className={styles.rulerTick} style={{ left: x(v) }}>{formatMoney(v)}</span>
+      {[1, 10, 100, 1000, 10_000, RULER_MAX].map((v) => (
+        <span key={v} className={styles.rulerTick} data-edge={v === 1 ? "start" : v === RULER_MAX ? "end" : undefined} style={{ left: `${rulerPosition(v)}%` }}>{formatMoney(v)}</span>
       ))}
       {marks.map((m) => (
-        <span key={m.label} className={styles.rulerMark} data-strong={!!m.strong} style={{ left: x(m.value) }}>{m.label}</span>
+        <span key={m.label} className={styles.rulerMark} data-strong={!!m.strong}
+          data-anchor={rulerPosition(m.value) > 70 ? "end" : "start"} style={{ left: `${rulerPosition(m.value)}%` }}>{m.label}</span>
       ))}
     </div>
   );

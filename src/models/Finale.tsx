@@ -6,8 +6,10 @@ import { Slider } from "../ui/Slider";
 import { FUND_STOPS } from "./M3Napkin";
 import styles from "./models.module.css";
 
-const CHEQUE_STOPS = [0.25, 0.5, 1, 2, 3, 5, 10];
+export const CHEQUE_STOPS = [0.25, 0.5, 1, 2, 3, 5, 10];
 const POST_STOPS = [2, 5, 10, 15, 20, 30, 50, 100];
+/** The company after my money is always worth more than my money: the founders keep something. */
+const postStopsFor = (cheque: number) => POST_STOPS.filter((p) => p > cheque);
 const SOLD_STOPS = [0.1, 0.15, 1 / 6, 0.2, 0.25, 0.3];
 const MAX_ROUNDS = 4;
 
@@ -16,8 +18,12 @@ export function Finale() {
   const [cheque, setCheque] = useState(1);
   const [post, setPost] = useState(10);
   const [rounds, setRounds] = useState<number[]>([0.2, 1 / 6]);
-  const start = Math.min(cheque / post, 1);
-  const end = shareAtEnd(Math.min(cheque, post), post, rounds);
+  const start = cheque / post;
+  const end = shareAtEnd(cheque, post, rounds);
+  const chooseCheque = (c: number) => {
+    setCheque(c);
+    if (post <= c) setPost(postStopsFor(c)[0]);
+  };
   const needed = exitNeeded(fund, end);
   const setRound = (i: number, v: number) => setRounds((r) => r.map((x, j) => (j === i ? v : x)));
   return (
@@ -32,8 +38,8 @@ export function Finale() {
         <div className={styles.napkin}>
           <div className={styles.sliders}>
             <Slider label="The fund" value={fund} stops={FUND_STOPS} format={formatMoney} onChange={setFund} />
-            <Slider label="My cheque" value={cheque} stops={CHEQUE_STOPS} format={formatMoney} onChange={setCheque} />
-            <Slider label="The company after my money" value={post} stops={POST_STOPS} format={formatMoney} onChange={setPost} />
+            <Slider label="My cheque" value={cheque} stops={CHEQUE_STOPS} format={formatMoney} onChange={chooseCheque} />
+            <Slider label="The company after my money" value={post} stops={postStopsFor(cheque)} format={formatMoney} onChange={setPost} />
           </div>
           <p className={styles.figLabel}>Rounds after mine, and how much of the company each sells</p>
           {rounds.map((r, i) => (
@@ -59,7 +65,7 @@ export function Finale() {
             </p>
             <p className={styles.versusSub}>
               The sale this company needs for my share alone to give the whole fund back.
-              {rounds.length > 0 && " Below the last round's price, the later investors' money comes out first."}
+              {rounds.length > 0 && " Below the last round's price, every investor takes their money back before the founders' squares are paid."}
             </p>
           </div>
         </div>

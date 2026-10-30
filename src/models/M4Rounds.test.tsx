@@ -24,7 +24,7 @@ describe("Model 4: other investors arrive", () => {
     render(<M4Rounds />);
     fireEvent.click(screen.getByRole("button", { name: "Series B" }));
     expect(t("total-squares")).toBe("150");
-    expect(t("your-share")).toBe("6.7%");
+    expect(t("your-share")).toBe("6.67%");
     expect(t("pre-money")).toBe("$100M");
     expect(t("post-money")).toBe("$120M");
     expect(t("exit-small")).toBe("$150M");
