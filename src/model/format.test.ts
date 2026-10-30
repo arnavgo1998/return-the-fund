@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { formatMoney, formatShare } from "./format";
+import { formatMoney, formatMultiple, formatShare } from "./format";
 
 describe("money and shares read naturally", () => {
   it.each([
@@ -9,4 +9,7 @@ describe("money and shares read naturally", () => {
 
   it.each([[1 / 15, "6.67%"], [0.1, "10%"], [0.08, "8%"], [1 / 30, "3.33%"], [0, "0%"], [1 / 600, "0.17%"], [0.125, "12.5%"], [0.25, "25%"]])("%s → %s", (x, s) =>
     expect(formatShare(x)).toBe(s));
+
+  it.each([[1.375, "1.38×"], [4.375, "4.38×"], [3, "3×"], [0, "0×"], [2.8125, "2.81×"], [0.9, "0.9×"], [1.25, "1.25×"]])("%s → %s", (x, s) =>
+    expect(formatMultiple(x)).toBe(s));
 });

@@ -17,3 +17,8 @@ export function formatShare(x: number): string {
   if (pct < 1) return `${Number(pct.toPrecision(2))}%`;
   return `${trim(pct, pct < 10 ? 2 : 1)}%`;
 }
+
+/** "1.38×", "3×": two decimals at most, so a multiple can be checked against the sum beside it. */
+export function formatMultiple(x: number): string {
+  return `${trim(x, 2)}×`;
+}
