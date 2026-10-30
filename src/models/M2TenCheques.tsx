@@ -24,7 +24,7 @@ export function M2TenCheques() {
     <Section n={2} title="Ten cheques">
       <Prose>
         <p>
-          One bet like that is a coin flip you'd never take on purpose. So a fund makes lots of them. Your $10M becomes ten cheques of $1M, each buying 10% of a different company.
+          Most single bets like that fail, so a fund makes lots of them. Your $10M becomes ten cheques of $1M, each buying 10% of a different company.
         </p>
         <p>
           Most of them won't work, and that's normal. Here's a simplified version of the usual spread: five go to zero, two hand your money back, and two return three times it. The tenth is yours to decide with the slider.
@@ -68,7 +68,7 @@ export function M2TenCheques() {
           Push the winner to $2M and the fund breaks even: $8M + $2M = $10M. Push it to $22M and the fund triples.
         </p>
         <p>
-          Now look at how little the other nine matter. If the two 3× companies had only returned their money, you'd be down $4M. The winner on its own swings the total by $20M. One company is carrying the whole fund, and the other nine are along for the ride.
+          Now look at how little the other nine matter. If the two 3× companies had only returned their money, the total would drop by just $4M. The winner on its own swings the total by $20M. One company is carrying the whole fund, and the other nine are along for the ride.
         </p>
       </Prose>
       <Rule>One company carries the fund.</Rule>
