@@ -1,0 +1,8 @@
+:root {
+  --paper: #fbfaf6; --grid: #ece8de; --ink: #1c1b18; --mute: #6b675e; --line: #d8d3c6;
+  --you: #b0431c; --founders: #8a8478; --a: #2f5d8a; --b: #3f7a4a;
+  --font-body: "Newsreader", Georgia, serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-sans: "Instrument Sans", system-ui, sans-serif;
+  --cell: 24px; --column: 640px; --wide: 960px; --gutter: 20px;
+}
