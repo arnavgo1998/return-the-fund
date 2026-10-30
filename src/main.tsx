@@ -7,6 +7,7 @@ import App from "./App";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <App />
-    <Analytics />
+    {/* The artifact copy runs in a sandbox that blocks Vercel's script. */}
+    {import.meta.env.MODE !== "artifact" && <Analytics />}
   </StrictMode>,
 );
