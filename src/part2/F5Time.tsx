@@ -20,8 +20,8 @@ export function F5Time() {
   const investing = Math.min(year, INVESTED_CALLS.filter((c) => c > 0).length);
   const feeOnly = year - investing;
   const years = (n: number) => `${n} year${n === 1 ? "" : "s"}`;
-  const paidWorking = `${formatMoney(INVESTED_CALLS[0] + FEE_CALLS[0])} × ${years(investing)}`
-    + (feeOnly > 0 ? ` + ${formatMoney(FEE_CALLS[5])} × ${years(feeOnly)}` : "");
+  const invested = INVESTED_CALLS[0] * investing;
+  const fees = FEE_CALLS[0] * (investing + feeOnly);
   const backs = DISTRIBUTIONS.slice(0, year).filter((d) => d > 0);
   return (
     <Section n={5} title="Time">
@@ -57,10 +57,24 @@ export function F5Time() {
           })}
           <span className={fund.zero} style={{ top: `${(UP / (UP + DOWN)) * PLOT}px` }} />
         </div>
+        <p className={styles.figLabel}>The fee, taken every year</p>
+        <div className={fund.feeRow} aria-label={`The fee: ${formatMoney(FEE_CALLS[0])} taken in each of years 1 to ${year} so far`}>
+          {FEE_CALLS.map((f, i) => (
+            <span key={i} data-testid="f5-fee-year" data-taken={i < year}>{formatMoney(f)}</span>
+          ))}
+        </div>
         <dl className={styles.facts}>
           <div>
+            <dt>Invested in companies so far</dt>
+            <dd data-testid="f5-invested"><span className={styles.muteInline}>{formatMoney(INVESTED_CALLS[0])} × {years(investing)} = </span>{formatMoney(invested)}</dd>
+          </div>
+          <div>
+            <dt>Fees taken so far</dt>
+            <dd data-testid="f5-fees"><span className={styles.muteInline}>{formatMoney(FEE_CALLS[0])} × {years(year)} = </span>{formatMoney(fees)}</dd>
+          </div>
+          <div>
             <dt>LPs have paid in</dt>
-            <dd data-testid="f5-paid"><span className={styles.muteInline}>{paidWorking} = </span>{formatMoney(now.paidIn)}</dd>
+            <dd data-testid="f5-paid"><span className={styles.muteInline}>{formatMoney(invested)} + {formatMoney(fees)} = </span>{formatMoney(now.paidIn)}</dd>
           </div>
           <div>
             <dt>LPs have got back</dt>
@@ -77,8 +91,13 @@ export function F5Time() {
       <Prose>
         <p>
           For five years the bars only go down. LPs have paid in $90M and seen nothing back, even though, as you'll
-          see shortly, the fund may be doing well. The fee keeps coming out every year after that too. It isn't until year 8 that they're above zero, and most of the money
+          see shortly, the fund may be doing well. It isn't until year 8 that they're above zero, and most of the money
           arrives in the last two years. People call this shape the J-curve, for obvious reasons.
+        </p>
+        <p>
+          Now watch the fee line under the chart. It fills in every single year, whether the fund is doing well or
+          badly, and it keeps going after the investing stops in year 5. From year 6 to year 10 the only thing LPs are
+          still paying for is you. By the end that's $20M, a fifth of everything they put in.
         </p>
       </Prose>
       <Rule>A good fund looks like a bad one for its first five years.</Rule>

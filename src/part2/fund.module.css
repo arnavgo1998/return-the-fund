@@ -32,3 +32,10 @@
 .feeYears span { font: 600 12px/1 var(--font-mono); font-variant-numeric: tabular-nums; }
 .feeYears small { font: 400 10px/1 var(--font-mono); color: var(--mute); }
 @media (max-width: 719px) { .feeYears { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+/* Model 5's fee line, one cell per year, lined up with the chart's columns. */
+.feeRow { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: clamp(4px, 1.4vw, 10px); margin: 0 0 18px; }
+.feeRow span {
+  display: block; padding: 5px 0; text-align: center; border: 1.5px dashed var(--line); border-radius: 2px;
+  font: 600 11px/1 var(--font-mono); color: var(--mute); font-variant-numeric: tabular-nums;
+}
+.feeRow span[data-taken="true"] { border-color: var(--you); color: var(--you); }
