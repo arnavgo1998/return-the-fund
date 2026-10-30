@@ -28,4 +28,10 @@ describe("Model 3: the napkin sum", () => {
     expect(screen.getByTestId("napkin-today").textContent).toBe("$1M ÷ 10% = $10M");
     expect(screen.getByTestId("napkin-growth").textContent).toBe("$100M ÷ $10M = 10×");
   });
+
+  it("puts F on the fund slider and shows E is what the sliders set", () => {
+    render(<M3Napkin />);
+    expect(screen.getByRole("slider", { name: /F, the fund/ })).toBeTruthy();
+    expect(screen.getByTestId("napkin-sets").textContent).toBe("These two set E");
+  });
 });

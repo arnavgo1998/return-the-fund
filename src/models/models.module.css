@@ -22,7 +22,7 @@
 .compare > div { min-width: 0; }
 
 /* Model 2 columns */
-.columns { display: flex; align-items: flex-end; gap: clamp(3px, 1.2vw, 7px); min-height: 120px; margin: 4px 0 18px; max-width: 360px; }
+.columns { display: flex; align-items: flex-end; gap: clamp(3px, 1.2vw, 7px); min-height: 120px; margin: 4px 0 18px; max-width: 440px; }
 .column { display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1 1 0; min-width: 0; }
 .column > span:first-child { transform: scaleY(-1); }
 .colBase { width: 100%; height: 2px; background: var(--ink); }
@@ -112,7 +112,7 @@
 
 /* Showing the working: every number on screen comes with the sum that made it. */
 .youInline { color: var(--you); font-weight: 600; }
-.groups { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: clamp(3px, 1.2vw, 7px); max-width: 360px; margin: -10px 0 18px; font: 400 11px/1.2 var(--font-sans); color: var(--mute); }
+.groups { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: clamp(3px, 1.2vw, 7px); max-width: 440px; margin: -10px 0 18px; font: 400 11px/1.2 var(--font-sans); color: var(--mute); }
 .groups > span { text-align: center; border-top: 1px solid var(--line); padding-top: 4px; white-space: nowrap; }
 .groups > span[data-winner="true"] { color: var(--you); font-weight: 600; border-color: var(--you); }
 .facts:not(:first-child) { margin-top: 16px; }
@@ -149,3 +149,5 @@
   .facts dd { text-align: left; white-space: normal; }
   .term { display: inline; margin-left: 6px; }
 }
+.unitTag { font: 500 12px/1 var(--font-mono); letter-spacing: 0.04em; color: var(--mute); border: 1px solid var(--line); border-radius: 2px; padding: 3px 5px; margin-right: 10px; vertical-align: 0.3em; }
+.inputs { margin: 0 0 22px; padding-bottom: 6px; border-bottom: 1px dashed var(--line); }

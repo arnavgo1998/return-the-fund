@@ -16,7 +16,7 @@ export function Hero() {
         </p>
         <p>
           Then I watched Chain Bear build a Formula 1 race strategy out of little coloured squares. Ten laps, two tyres,
-          count the blocks. One new variable at a time, each step ending in a sum simple enough to say out loud. By the
+          count them. One new variable at a time, each step ending in a sum simple enough to say out loud. By the
           end I could see why teams stop when they stop.
         </p>
         <p>
@@ -26,8 +26,8 @@ export function Hero() {
         </p>
       </div>
       <dl className={styles.units}>
-        <div><dt><Blocks count={1} color="ink" label="one block" size={16} /></dt><dd>One block is a million dollars.</dd></div>
-        <div><dt><Blocks count={1} color="founders" label="one square" size={16} /></dt><dd>One square is one share of a company.</dd></div>
+        <div><dt><Blocks count={1} color="ink" label="one note" size={16} shape="note" /></dt><dd>One note is $1M of money.</dd></div>
+        <div><dt><Blocks count={1} color="founders" label="one square" size={16} /></dt><dd>One square is one share of a company. What a square costs changes from round to round.</dd></div>
       </dl>
       <Legend ids={["you", "founders", "a", "b"]} />
       <p className={styles.unitsNote}>Everything on this page can be counted.</p>

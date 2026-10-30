@@ -72,7 +72,7 @@ export function M6Preferences() {
             Series B <b>{formatMoney(switchPoint(TABLE, "b"))}</b>
           </p>
         )}
-        <Slider label="What the company sells for" value={sale} stops={EXIT_STOPS} format={formatMoney} onChange={setSale} />
+        <Slider label="What the company sells for" letter="E" value={sale} stops={EXIT_STOPS} format={formatMoney} onChange={setSale} />
         <div className={styles.waterfall} aria-hidden>
           {ORDER.map((id) => (
             <span key={id} style={{ width: sale > 0 ? `${(paid[id] / sale) * 100}%` : 0, background: COLOR[id] }} />
@@ -114,7 +114,7 @@ export function M6Preferences() {
         <p>
           So the promise protects me in the bad sales: it gets my $1M back. But Model 2 already told me the fund isn't
           made in the bad sales. It's made in the one sale where the promise doesn't matter at all. My downside
-          protection is one block. My upside is eighty. The promise has a name, by the way: a <em>liquidation preference</em>.
+          protection is $1M. My upside is $80M. The promise has a name, by the way: a <em>liquidation preference</em>.
         </p>
       </Prose>
       <Aside>

@@ -7,4 +7,9 @@ describe("App", () => {
     render(<App />);
     expect(screen.getByRole("heading", { level: 1 }).textContent).toBe("Return the Fund");
   });
+
+  it("never calls money a block: notes are money, squares are shares", () => {
+    render(<App />);
+    expect(document.body.textContent).not.toMatch(/\bblocks?\b/i);
+  });
 });

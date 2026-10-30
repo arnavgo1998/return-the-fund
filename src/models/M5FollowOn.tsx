@@ -25,9 +25,11 @@ export function M5FollowOn() {
   const freshExpected = h * fresh;
   const cross = followOnCrossover(SEED_PRICE, ROUND_B.price, survival);
   const verdict =
-    Math.abs(followExpected - freshExpected) < 1e-9 ? "Dead equal. Either cheque buys the same squares, on average."
-    : followExpected > freshExpected ? "Follow on: the company that's already working gives more squares, on average."
-    : "Write the new cheque: cheap squares in a fresh bet win at these odds.";
+    Math.abs(followExpected - freshExpected) < 1e-9
+      ? `My guess, ${oneIn(h)}, is exactly break-even. Dead equal: either cheque buys ${round2(freshExpected)} squares on average.`
+    : followExpected > freshExpected
+      ? `My guess, ${oneIn(h)}, is a longer shot than break-even, ${oneIn(cross)}. Follow on: ${round2(followExpected)} squares beats ${round2(freshExpected)} on average.`
+    : `My guess, ${oneIn(h)}, is better odds than break-even, ${oneIn(cross)}. Write the new cheque: ${round2(freshExpected)} squares beats ${round2(followExpected)} on average.`;
   return (
     <Section n={5} title="More money into the winner, or a new bet?">
       <Prose>
@@ -63,10 +65,15 @@ export function M5FollowOn() {
             <p className={styles.versusSub}>× {oneIn(h)} comes good = {round2(freshExpected)} on average</p>
           </div>
         </div>
-        <Slider label="Chance a fresh bet gets this far" value={h} stops={HIT_STOPS} format={oneIn} onChange={setH} />
+        <Slider label="Chance a fresh bet gets this far: my guess" letter="h" value={h} stops={HIT_STOPS} format={oneIn} onChange={setH} />
         {twoUnknowns && (
-          <Slider label="Chance this company survives to a sale" value={s} stops={SURVIVAL_STOPS} format={formatShare} onChange={setS} />
+          <Slider label="Chance this company survives to a sale" letter="s" value={s} stops={SURVIVAL_STOPS} format={formatShare} onChange={setS} />
         )}
+        <p className={styles.figLabel}>Break-even odds</p>
+        <p className={styles.versusSub}>
+          Where both cheques buy the same squares on average. The prices{twoUnknowns ? " and s" : ""} set it, so
+          moving my guess for <Chip letter="h" /> doesn't move it.
+        </p>
         <Equation>
           <span data-testid="m5-equation">
             {twoUnknowns && <><Chip letter="s" /> × </>}1.25 = <Chip letter="h" /> × 10 → <Chip letter="h" /> ={" "}
@@ -88,7 +95,7 @@ export function M5FollowOn() {
         </p>
         <p>
           Then the second unknown. Reaching Series B isn't the same as selling well. If this company has only an even
-          chance of getting to a sale, the follow-on is worth half as much, and the crossover halves too: one in sixteen.
+          chance of getting to a sale, the follow-on is worth half as much, and the break-even halves too: one in sixteen.
         </p>
         <p>
           This is the "prepare widely, then commit" idea, done as arithmetic. Early on, when I know very little, cheap

@@ -73,4 +73,9 @@ describe("Model 6: who gets paid first", () => {
     setSale(1200);
     expect(pool()).toBe("Nobody takes money back: the $1.2B sale is split over all 150 squares");
   });
+
+  it("puts E on the sale slider", () => {
+    render(<M6Preferences />);
+    expect(screen.getByRole("slider", { name: /E, the sale price/ })).toBeTruthy();
+  });
 });

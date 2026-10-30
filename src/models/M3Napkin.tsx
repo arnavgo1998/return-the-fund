@@ -39,7 +39,7 @@ export function M3Napkin() {
     <Section n={3} title="The napkin sum">
       <Prose>
         <p>
-          Model 2 said the winner has to return 22 blocks for the fund to triple. I own 10% of it, so the company must
+          Model 2 said the winner has to return $22M for the fund to triple. I own 10% of it, so the company must
           have sold for $220M. Turn that around and it becomes a question I can ask <em>before</em> I invest: how big
           does this company have to get for my share of it, alone, to pay back the whole fund?
         </p>
@@ -50,6 +50,11 @@ export function M3Napkin() {
         </p>
       </Prose>
       <Wide label="The napkin sum">
+        <p className={styles.figLabel} data-testid="napkin-sets">These two set <Chip letter="E" /></p>
+        <div className={`${styles.sliders} ${styles.inputs}`}>
+          <Slider label="The fund" letter="F" value={fund} stops={FUND_STOPS} format={formatMoney} onChange={setFund} />
+          <Slider label="My share of the company" value={share} stops={SHARE_STOPS} format={formatShare} onChange={setShare} />
+        </div>
         <div className={styles.derive}>
           <p className={styles.figLabel}>In words</p>
           <p className={styles.figLabel}>In numbers</p>
@@ -62,13 +67,9 @@ export function M3Napkin() {
             </span>
           </Equation>
         </div>
-        <div className={styles.sliders}>
-          <Slider label="The fund" value={fund} stops={FUND_STOPS} format={formatMoney} onChange={setFund} />
-          <Slider label="My share of the company" value={share} stops={SHARE_STOPS} format={formatShare} onChange={setShare} />
-        </div>
         <ValueRuler marks={[
           { value: today, label: `today ${formatMoney(today)}` },
-          { value: needed, label: `needed ${formatMoney(needed)}`, strong: true },
+          { value: needed, label: `E needed ${formatMoney(needed)}`, strong: true },
         ]} />
         <dl className={styles.facts}>
           <div>

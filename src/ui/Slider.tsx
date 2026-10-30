@@ -1,7 +1,8 @@
 import { useId } from "react";
+import { Chip, type Letter } from "./Equation";
 import styles from "./ui.module.css";
 
-interface Common { label: string; value: number; onChange: (v: number) => void; format: (v: number) => string }
+interface Common { label: string; letter?: Letter; value: number; onChange: (v: number) => void; format: (v: number) => string }
 type Range = Common & { min: number; max: number; step: number; stops?: undefined };
 type Stops = Common & { stops: number[]; min?: undefined; max?: undefined; step?: undefined };
 
@@ -11,14 +12,14 @@ const nearest = (stops: number[], v: number) =>
 /** A labelled range. With `stops`, it moves between named values so round numbers are a keypress away. */
 export function Slider(props: Range | Stops) {
   const id = useId();
-  const { label, value, onChange, format } = props;
+  const { label, letter, value, onChange, format } = props;
   const stops = props.stops;
   const pos = stops ? nearest(stops, value) : value;
   const max = stops ? stops.length - 1 : props.max;
   return (
     <div className={styles.slider}>
       <div className={styles.sliderHead}>
-        <label htmlFor={id}>{label}</label>
+        <label htmlFor={id}>{letter && <Chip letter={letter} />}{label}</label>
         <output htmlFor={id} className={styles.sliderValue}>{format(value)}</output>
       </div>
       <input id={id} type="range" className={styles.range}

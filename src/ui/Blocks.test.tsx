@@ -22,4 +22,10 @@ describe("Blocks", () => {
     render(<Blocks count={100} color="ink" label="a hundred" perRow={10} />);
     expect(squares(screen.getByRole("img", { name: "a hundred" }))).toHaveLength(100);
   });
+
+  it("draws money as banknotes, so a note never looks like a share", () => {
+    render(<Blocks count={2} color="ink" label="two notes" shape="note" />);
+    const img = screen.getByRole("img", { name: "two notes" });
+    expect(img.getAttribute("data-shape")).toBe("note");
+  });
 });

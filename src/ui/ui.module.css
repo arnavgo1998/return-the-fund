@@ -28,10 +28,12 @@
 
 /* Squares */
 .blocks {
-  display: inline-grid; grid-template-columns: repeat(var(--per-row), var(--size)); grid-auto-rows: var(--size);
+  display: inline-grid; grid-template-columns: repeat(var(--per-row), var(--w)); grid-auto-rows: var(--size);
   gap: 2px; vertical-align: bottom;
 }
-.square { display: block; width: var(--size); height: var(--size); background: var(--fill); border-radius: 1px; transition: background-color 200ms; }
+.square { display: block; width: var(--w); height: var(--size); background: var(--fill); border-radius: 1px; transition: background-color 200ms; }
+/* A banknote: a thin inner border, like the frame printed on a real note. */
+.blocks[data-shape="note"] .square { border-radius: 2px; box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--paper) 40%, transparent); }
 .blocks[data-ghost="true"] .square { outline: 1px dashed var(--mute); outline-offset: -1px; }
 
 /* Equations */
@@ -64,3 +66,4 @@
 .legend { display: flex; flex-wrap: wrap; gap: 6px 18px; list-style: none; padding: 0; margin: 0 0 16px; font: 500 13px/1.3 var(--font-sans); color: var(--mute); }
 .legend li { display: inline-flex; align-items: center; gap: 7px; }
 .swatch { width: 12px; height: 12px; border-radius: 1px; display: inline-block; }
+.sliderHead label .chip { margin: 0 0.45em 0 0; }

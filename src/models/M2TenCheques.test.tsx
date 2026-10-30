@@ -38,4 +38,10 @@ describe("Model 2: ten cheques", () => {
     render(<M2TenCheques />);
     for (const g of ["lost", "money back", "3×", "winner"]) expect(screen.getByText(g)).toBeTruthy();
   });
+
+  it("talks about money in dollars", () => {
+    render(<M2TenCheques />);
+    expect(screen.getByText("$8M back for $10M put in. The fund loses.")).toBeTruthy();
+    expect(screen.getByRole("slider", { name: /winner returns, \$M/i })).toBeTruthy();
+  });
 });

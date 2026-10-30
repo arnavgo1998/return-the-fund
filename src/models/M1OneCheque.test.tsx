@@ -9,11 +9,11 @@ const setSale = (v: number) =>
 describe("Model 1: one cheque", () => {
   it("returns ten per cent of the sale, in blocks", () => {
     render(<M1OneCheque />);
-    expect(screen.getByText(/10 blocks back/)).toBeTruthy();
+    expect(screen.getByTestId("m1-back").textContent).toBe("$10M");
     setSale(1000);
-    expect(screen.getByText(/100 blocks back/)).toBeTruthy();
+    expect(screen.getByTestId("m1-back").textContent).toBe("$100M");
     setSale(0);
-    expect(screen.getByText(/0 blocks back/)).toBeTruthy();
+    expect(screen.getByTestId("m1-back").textContent).toBe("$0");
   });
 
   it("states the rule", () => {
@@ -26,5 +26,10 @@ describe("Model 1: one cheque", () => {
     expect(screen.getByTestId("m1-squares").textContent).toBe("$1M ÷ $0.1M = 10");
     expect(screen.getByTestId("m1-share").textContent).toBe("10 ÷ 100 = 10%");
     expect(screen.getByTestId("m1-worth").textContent).toBe("100 × $0.1M = $10M");
+  });
+
+  it("puts E on the slider that sets it", () => {
+    render(<M1OneCheque />);
+    expect(screen.getByRole("slider", { name: /E, the sale price/ })).toBeTruthy();
   });
 });

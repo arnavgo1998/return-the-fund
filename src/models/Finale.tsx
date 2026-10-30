@@ -37,7 +37,7 @@ export function Finale() {
       <Wide label="The napkin calculator">
         <div className={styles.napkin}>
           <div className={styles.sliders}>
-            <Slider label="The fund" value={fund} stops={FUND_STOPS} format={formatMoney} onChange={setFund} />
+            <Slider label="The fund" letter="F" value={fund} stops={FUND_STOPS} format={formatMoney} onChange={setFund} />
             <Slider label="My cheque" value={cheque} stops={CHEQUE_STOPS} format={formatMoney} onChange={chooseCheque} />
             <Slider label="The company after my money" value={post} stops={postStopsFor(cheque)} format={formatMoney} onChange={setPost} />
           </div>
@@ -72,7 +72,7 @@ export function Finale() {
       </Wide>
       <Prose>
         <p>
-          That's the model. It started with one block that could only ever be lost once, against a sale with no
+          That's the model. It started with $1M that could only ever be lost once, against a sale with no
           ceiling. Every step after that added one unknown: ten cheques and the one that carries them, the napkin, more
           squares, more money into the winner, who gets paid first, what the price does.
         </p>

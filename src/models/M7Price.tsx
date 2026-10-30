@@ -83,7 +83,7 @@ export function M7Price() {
         </p>
         <p>
           In the cold market it runs the other way. My reserve $1M buys 3.33 squares instead of 1.25, and the
-          follow-on crossover jumps from 1 in 8 to 1 in 3. I don't believe one in three of my fresh bets get this far,
+          follow-on break-even jumps from 1 in 8 to 1 in 3. I don't believe one in three of my fresh bets get this far,
           so the follow-on wins easily. The money I held back is worth most exactly when nobody else wants to spend theirs.
         </p>
         <p>

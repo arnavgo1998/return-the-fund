@@ -8,8 +8,10 @@ const CHIPS = {
   s: { name: "s, the chance the company survives", color: "var(--b)" },
 } as const;
 
+export type Letter = keyof typeof CHIPS;
+
 /** One unknown, drawn as a round chip so it stands out from the numbers around it. */
-export function Chip({ letter }: { letter: keyof typeof CHIPS }) {
+export function Chip({ letter }: { letter: Letter }) {
   return <span className={styles.chip} style={{ background: CHIPS[letter].color }} role="img" aria-label={CHIPS[letter].name}>{letter}</span>;
 }
 

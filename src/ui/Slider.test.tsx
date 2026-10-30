@@ -28,4 +28,9 @@ describe("Slider", () => {
     fireEvent.change(input, { target: { value: "3" } });
     expect(onChange).toHaveBeenCalledWith(1000);
   });
+
+  it("shows the letter it sets, and names it for assistive tech", () => {
+    render(<Slider label="What the company sells for" letter="E" value={100} min={0} max={200} step={10} format={fmt} onChange={() => {}} />);
+    expect(screen.getByRole("slider", { name: /E, the sale price.*sells for/ })).toBeTruthy();
+  });
 });

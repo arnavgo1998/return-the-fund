@@ -23,7 +23,7 @@ export function M1OneCheque() {
   const [sale, setSale] = useState(100);
   const back = SHARE * sale;
   const verdict =
-    back === 0 ? "The block is gone. That is the worst case, and it is only ever one block."
+    back === 0 ? "The $1M is gone. That is the worst case, and it is only ever the $1M."
     : back < 1 ? "Less than I put in. Still never less than nothing."
     : back === 1 ? "My money back, and nothing for the years it was locked up."
     : `${Math.round(back * 10) / 10} times my money.`;
@@ -46,7 +46,7 @@ export function M1OneCheque() {
       <Wide label="One cheque into one company">
         <div className={styles.split}>
           <div>
-            <p className={styles.figLabel}>The company</p>
+            <p className={styles.figLabel}>The company: 100 squares, one share each</p>
             <CompanyGrid label="A company of 100 squares: 90 founders', 10 yours" />
             <Legend ids={["you", "founders"]} />
             <dl className={styles.facts}>
@@ -56,16 +56,16 @@ export function M1OneCheque() {
             </dl>
           </div>
           <div className={styles.grow}>
-            <Slider label="What the company sells for" value={sale} stops={EXIT_STOPS} format={formatMoney} onChange={setSale} />
+            <Slider label="What the company sells for" letter="E" value={sale} stops={EXIT_STOPS} format={formatMoney} onChange={setSale} />
             <Equation>10% × <Chip letter="E" /> = 10% × {formatMoney(sale)} = {formatMoney(back)}</Equation>
             <div className={styles.compare}>
               <div>
-                <p className={styles.figLabel}>Put in</p>
-                <Blocks count={1} color="ink" label="1 block put in" size={13} />
+                <p className={styles.figLabel}>Put in: $1M</p>
+                <Blocks count={1} color="ink" label="$1M put in: one note" size={13} shape="note" />
               </div>
               <div>
-                <p className={styles.figLabel} aria-live="polite">{formatBlocks(back)} back</p>
-                <Blocks count={back} color="you" label={`${formatBlocks(back)} back`} perRow={20} size={13} />
+                <p className={styles.figLabel} aria-live="polite">Back: <span data-testid="m1-back">{formatMoney(back)}</span></p>
+                <Blocks count={back} color="you" label={`${formatMoney(back)} back: ${formatNotes(back)}`} perRow={10} size={13} shape="note" />
               </div>
             </div>
             <p className={styles.verdict}>{verdict}</p>
@@ -74,11 +74,12 @@ export function M1OneCheque() {
       </Wide>
       <Prose>
         <p>
-          Drag the sale all the way down. The worst that can happen is that my one block is gone. There is no setting
-          that takes more than the block.
+          Drag the sale all the way down. The worst that can happen is that my $1M is gone. There is no setting
+          that takes more than the $1M.
         </p>
         <p>
-          Now drag it up. At $100M I get ten blocks. At $1B I get a hundred, and the picture has to grow to hold them.
+          Now drag it up. At $100M I get $10M back, ten notes. At $1B I get a hundred notes, and the picture has to
+          grow to hold them.
           One side of this has a floor. The other side has no ceiling. Everything after this is built on that.
         </p>
       </Prose>
@@ -90,4 +91,4 @@ export function M1OneCheque() {
   );
 }
 
-export const formatBlocks = (n: number) => `${Math.round(n * 100) / 100} block${n === 1 ? "" : "s"}`;
+export const formatNotes = (n: number) => `${Math.round(n * 100) / 100} note${n === 1 ? "" : "s"} of $1M`;
