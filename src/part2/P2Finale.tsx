@@ -50,8 +50,8 @@ export function P2Finale() {
       <Prose>
         <p>
           That's the fund side. LPs hand you money that is mostly theirs, you take a fee to run it, and you share in the
-          profit only once they're whole. To give them 3×, $80M has to become $350M, which in part one meant one company
-          selling for billions. And for most of the fund's life, the only sign you're on track is paper.
+          profit only once they're whole. To give them 3×, $80M has to become $350M, which by part one's logic means one
+          company selling for billions. And for most of the fund's life, the only sign you're on track is paper.
         </p>
         <p>
           Both parts come down to the same habit: do the division before you commit. The answer won't tell you

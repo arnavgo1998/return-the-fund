@@ -71,8 +71,8 @@ export function F2Fee() {
           grow $80M into $100M just to cover the fee.
         </p>
         <p>
-          Many funds lower the fee once the investing years are over, because there are no new companies to find,
-          only existing ones to help. A common version drops it to 1% a year from year 6. We'll stick with the flat
+          Many funds lower the fee once the investing years are over, because the fund has stopped backing new
+          companies and is helping the ones it has. One simple version drops it to 1% a year from year 6. We'll stick with the flat
           2% from here, and your own $1M gets treated like any LP's, so LPs put in $100M.
         </p>
       </Prose>

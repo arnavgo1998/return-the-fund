@@ -20,11 +20,11 @@ export function F6Clawback() {
       <Prose>
         <p>
           So far carry has been paid at the end, on the whole fund: LPs get every dollar back, then you take 20% of
-          what's left. Some funds pay carry earlier, company by company, as each one is sold. That's lovely for you,
+          what's left. Some funds pay carry earlier, company by company, as each one is sold. That's great for you,
           and a risk for LPs.
         </p>
         <p>
-          Say that in year 6 one company that cost $10M sells for $150M. Paid company by company, your carry is 20%
+          Take a separate example. Say one company that cost $10M sells early, for $150M. Paid company by company, your carry is 20%
           of that company's $140M profit, so you take $28M now. Then the rest of the fund comes in. Drag what the rest
           returns.
         </p>

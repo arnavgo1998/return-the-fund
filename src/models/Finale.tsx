@@ -80,7 +80,7 @@ export function Finale() {
       <a className={styles.nextPart} href="#part-two">
         <span className={styles.figLabel}>Next</span>
         <span className={styles.nextTitle}>Part two: the fund</span>
-        <span className={styles.nextDek}>Where your $10M came from, and what the people who gave it to you expect back.</span>
+        <span className={styles.nextDek}>Where a fund's money comes from, and what the people who put it in expect back.</span>
       </a>
       <div className={styles.reading}>
         <p className={styles.figLabel}>Where this comes from</p>
