@@ -36,7 +36,7 @@ export function F4Need() {
         <dl className={styles.facts}>
           <div>
             <dt>What the investments must return</dt>
-            <dd data-testid="f4-R"><span className={styles.muteInline}>{formatMoney(FUND)} + {formatMoney(lpProfit)} ÷ {1 - CARRY} = </span>{formatMoney(R)}</dd>
+            <dd data-testid="f4-R"><span className={styles.muteInline}>{formatMoney(FUND)} + ({formatMoney(lpProfit)} ÷ {1 - CARRY}) = </span>{formatMoney(R)}</dd>
           </div>
           <div>
             <dt>On the money actually invested</dt>
@@ -51,7 +51,7 @@ export function F4Need() {
       <Prose>
         <p>
           This is where the two parts meet. In part one, one company had to carry the fund. If one company produces
-          most of that $350M and you own 10% of it when it sells, it has to sell for $3.5B. That's why investors keep
+          all of that $350M and you own 10% of it when it sells, it has to sell for $3.5B. That's why investors keep
           asking whether something can become a multi-billion-dollar company.
         </p>
       </Prose>

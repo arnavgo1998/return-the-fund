@@ -1,5 +1,5 @@
 import { act, render, screen } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import App from "./App";
 
 describe("App", () => {
@@ -32,13 +32,19 @@ describe("App", () => {
     expect(screen.getByText("Part two")).toBeTruthy();
   });
 
-  it("follows the hash back and forth", () => {
+  it("follows the hash back and forth, starting each part at the top", () => {
+    const scroll = vi.spyOn(window, "scrollTo");
     render(<App />);
+    expect(scroll).not.toHaveBeenCalled();
     expect(h1()).toBe("Return the Fund");
     go("#part-two");
     expect(h1()).toBe("The Fund");
+    expect(scroll).toHaveBeenLastCalledWith(0, 0);
+    scroll.mockClear();
     go("");
     expect(h1()).toBe("Return the Fund");
+    expect(scroll).toHaveBeenLastCalledWith(0, 0);
+    scroll.mockRestore();
   });
 
   it("keeps part one for any other hash", () => {

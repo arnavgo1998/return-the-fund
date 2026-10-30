@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { formatMoney, formatMultiple, formatShare } from "../model/format";
-import { YEARS, carrySplit, feeBudget, returnNeeded } from "../model/fund";
+import { formatMoney, formatMultiple, formatShare, roundMoney } from "../model/format";
+import { YEARS, feeBudget, returnNeeded } from "../model/fund";
 import { Prose, Section, Wide } from "../ui/Section";
 import { Slider } from "../ui/Slider";
 import styles from "../models/models.module.css";
@@ -17,8 +17,10 @@ export function P2Finale() {
   const [carryRate, setCarryRate] = useState(0.2);
   const [target, setTarget] = useState(3);
   const { fees, invested } = feeBudget(fee, size);
-  const R = returnNeeded(target, size, carryRate);
-  const { profit, carry } = carrySplit(R, size, carryRate);
+  // Each line builds on the rounded figure printed above it, so the whole column checks by hand.
+  const R = roundMoney(returnNeeded(target, size, carryRate));
+  const profit = Math.max(R - size, 0);
+  const carry = carryRate * profit;
   const keep = Number((1 - carryRate).toFixed(2));
   return (
     <Section title="Your fund">
@@ -36,7 +38,7 @@ export function P2Finale() {
           <div className={styles.napkinSum} aria-live="polite">
             <p>Fees: <span data-testid="p2-fees">{formatMoney(size)} × {formatShare(fee)} × {YEARS} years = <strong>{formatMoney(fees)}</strong></span></p>
             <p>Invested: <span data-testid="p2-invested">{formatMoney(size)} − {formatMoney(fees)} = <strong>{formatMoney(invested)}</strong></span></p>
-            <p>Must return: <span data-testid="p2-R">{formatMoney(size)} + {formatMoney(size * target - size)} ÷ {keep} = <strong>{formatMoney(R)}</strong></span></p>
+            <p>Must return: <span data-testid="p2-R">{formatMoney(size)} + ({formatMoney(size * target - size)} ÷ {keep}) = <strong>{formatMoney(R)}</strong></span></p>
             <p className={styles.napkinBottom}><span data-testid="p2-gross">{formatMoney(R)} ÷ {formatMoney(invested)} = <strong>{formatMultiple(R / invested)}</strong></span></p>
             <p className={styles.versusSub}>
               What the companies have to make on every dollar you invest, for LPs to get {target}× after fees and carry.
@@ -52,8 +54,8 @@ export function P2Finale() {
           selling for billions. And for most of the fund's life, the only sign you're on track is paper.
         </p>
         <p>
-          Both parts come down to the same habit: do the division before you commit. How big the company has to get,
-          how much the fund has to make, how long until anyone sees cash. You can work all of it out on day one.
+          Both parts come down to the same habit: do the division before you commit. The answer won't tell you
+          which company wins, but it tells you how big the winner has to be.
         </p>
       </Prose>
       <a className={styles.nextPart} href="#">

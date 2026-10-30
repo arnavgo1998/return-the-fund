@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { formatMoney, formatMultiple, formatShare } from "./format";
+import { formatMoney, formatMultiple, formatShare, roundMoney } from "./format";
 
 describe("money and shares read naturally", () => {
   it.each([
@@ -12,4 +12,7 @@ describe("money and shares read naturally", () => {
 
   it.each([[1.375, "1.38×"], [4.375, "4.38×"], [3, "3×"], [0, "0×"], [2.8125, "2.81×"], [0.9, "0.9×"], [1.25, "1.25×"]])("%s → %s", (x, s) =>
     expect(formatMultiple(x)).toBe(s));
+
+  it.each([[112.5, 113], [67.142857, 67.1], [1271.43, 1270], [10 / 26, 0.38], [350, 350], [0, 0]])("roundMoney(%s) = %s, the number formatMoney prints", (m, r) =>
+    expect(roundMoney(m)).toBe(r));
 });

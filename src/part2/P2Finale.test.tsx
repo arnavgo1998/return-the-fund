@@ -11,7 +11,7 @@ describe("Part two, your fund", () => {
     render(<P2Finale />);
     expect(t("p2-fees")).toBe("$100M × 2% × 10 years = $20M");
     expect(t("p2-invested")).toBe("$100M − $20M = $80M");
-    expect(t("p2-R")).toBe("$100M + $200M ÷ 0.8 = $350M");
+    expect(t("p2-R")).toBe("$100M + ($200M ÷ 0.8) = $350M");
     expect(t("p2-gross")).toBe("$350M ÷ $80M = 4.38×");
     expect(t("p2-carry")).toBe("20% × $250M = $50M");
   });
@@ -37,5 +37,24 @@ describe("Part two, your fund", () => {
   it("links back to part one", () => {
     render(<P2Finale />);
     expect(screen.getByRole("link", { name: /part one/i }).getAttribute("href")).toBe("#");
+  });
+
+  it("keeps every line checkable by hand from the numbers shown beside it", () => {
+    render(<P2Finale />);
+    const money = (s: string) => (s.endsWith("B") ? Number(s.slice(1, -1)) * 1000 : s === "$0" ? 0 : Number(s.slice(1, -1)));
+    const tol = (s: string) => {
+      const d = (s.split(".")[1] ?? "").replace(/[^0-9]/g, "").length;
+      return 0.5 * 10 ** -d * (s.endsWith("B") ? 1000 : 1) + 1e-9;
+    };
+    for (const f of FUND_STOPS_2) for (const fee of FEE_STOPS_2) for (const c of CARRY_STOPS) for (const m of TARGET_STOPS_2) {
+      set(/^F, the fund/, FUND_STOPS_2, f);
+      set(/fee/i, FEE_STOPS_2, fee);
+      set(/carry/i, CARRY_STOPS, c);
+      set(/LPs want/i, TARGET_STOPS_2, m);
+      const [a, , b, , g] = t("p2-gross")!.split(" ");
+      expect(Math.abs(money(a) / money(b) - Number(g.slice(0, -1)))).toBeLessThanOrEqual(tol(g));
+      const [pct, , p, , cv] = t("p2-carry")!.split(" ");
+      expect(Math.abs((Number(pct.slice(0, -1)) / 100) * money(p) - money(cv))).toBeLessThanOrEqual(tol(cv));
+    }
   });
 });

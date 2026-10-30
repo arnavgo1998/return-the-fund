@@ -16,7 +16,7 @@ export function P2Hero() {
         <p>
           Investors raise their funds from other investors, called limited partners, or LPs. The person who runs the
           fund is the general partner, the GP. That's you. Same method as before: one thing at a time, every number
-          countable, with the numbers from Scott Kupor's <em>Secrets of Sand Hill Road</em>.
+          countable, using the standard terms Scott Kupor describes in <em>Secrets of Sand Hill Road</em>.
         </p>
         <p>This time it's a $100M fund. Let's see what you've signed up for.</p>
       </div>

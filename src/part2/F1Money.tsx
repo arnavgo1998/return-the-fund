@@ -7,7 +7,8 @@ import { Slider } from "../ui/Slider";
 import { FundGrid } from "./FundGrid";
 import styles from "../models/models.module.css";
 
-export const R_STOPS = [0, 50, 100, 150, 200, 300, 350, 500];
+// Whole hundreds (or under $100M) so 99% and 1% both print exactly and add back up to R.
+export const R_STOPS = [0, 50, 100, 200, 300, 500];
 
 export function F1Money() {
   const [R, setR] = useState(300);

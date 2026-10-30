@@ -1,5 +1,13 @@
 const trim = (n: number, digits: number) => String(Number(n.toFixed(digits)));
 
+/** The number formatMoney prints, so later sums can be built from what the reader sees. */
+export function roundMoney(m: number): number {
+  if (!Number.isFinite(m) || m === 0) return m;
+  if (m >= 1000) return Number(trim(m / 1000, 2)) * 1000;
+  if (m >= 100) return Math.round(m);
+  return Number(trim(m, m >= 10 ? 1 : 2));
+}
+
 /** $M in, plain words out: "$0.38M", "$28.8M", "$120M", "$1.25B". */
 export function formatMoney(m: number): string {
   if (!Number.isFinite(m)) return "—";

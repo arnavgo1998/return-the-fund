@@ -51,8 +51,8 @@ export function F2Fee() {
       </Wide>
       <Prose>
         <p>
-          That 1.25× is a hurdle nobody mentions out loud. Before anyone makes a cent of profit, the companies you pick
-          have to grow $80M into $100M just to cover the fee.
+          That 1.25× is the first bar your companies have to clear. Before anyone makes a cent of profit, they have to
+          grow $80M into $100M just to cover the fee.
         </p>
         <p>From here on, your own $1M gets treated like any LP's, so we'll simply say LPs put in $100M.</p>
       </Prose>

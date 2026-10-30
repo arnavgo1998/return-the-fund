@@ -39,7 +39,11 @@ export function F3Carry() {
         <dl className={styles.facts}>
           <div>
             <dt>Profit, after LPs get $100M back</dt>
-            <dd data-testid="f3-profit"><span className={styles.muteInline}>{formatMoney(R)} − {formatMoney(FUND)} = </span>{formatMoney(profit)}</dd>
+            <dd data-testid="f3-profit">
+              <span className={styles.muteInline}>
+                {R >= FUND ? `${formatMoney(R)} − ${formatMoney(FUND)} = ` : `${formatMoney(R)} is less than ${formatMoney(FUND)}, so `}
+              </span>{formatMoney(profit)}
+            </dd>
           </div>
           <div>
             <dt>Your carry</dt>

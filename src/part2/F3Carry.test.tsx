@@ -33,4 +33,12 @@ describe("Part two, model 3: carry", () => {
     render(<F3Carry />);
     expect(screen.getByText("You get 20% of the profit, and only after the LPs are whole.")).toBeTruthy();
   });
+
+  it("never prints a subtraction that doesn't add up when there is no profit", () => {
+    render(<F3Carry />);
+    setR(80);
+    expect(t("f3-profit")).toBe("$80M is less than $100M, so $0");
+    setR(0);
+    expect(t("f3-profit")).toBe("$0 is less than $100M, so $0");
+  });
 });

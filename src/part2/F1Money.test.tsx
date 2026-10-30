@@ -22,4 +22,14 @@ describe("Part two, model 1: other people's money", () => {
     render(<F1Money />);
     expect(screen.getByText("It's mostly other people's money. On your own $1M, you earn like any LP.")).toBeTruthy();
   });
+
+  it("splits every R so the two shares add back up to R", () => {
+    render(<F1Money />);
+    const money = (s: string) => Number(s.replace(/.*= \$/, "").replace("M", ""));
+    for (const R of R_STOPS) {
+      fireEvent.change(screen.getByRole("slider", { name: /R, what/ }), { target: { value: String(R_STOPS.indexOf(R)) } });
+      const lp = R === 0 ? 0 : money(t("f1-lp")!), gp = R === 0 ? 0 : money(t("f1-gp")!);
+      expect(lp + gp).toBeCloseTo(R, 9);
+    }
+  });
 });
