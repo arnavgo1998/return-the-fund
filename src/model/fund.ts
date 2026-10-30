@@ -18,6 +18,11 @@ export function feeBudget(feeRate: number, fund = FUND, years = YEARS): { fees: 
   return { fees, invested: clean(fund - fees) };
 }
 
+/** The fee each year. With `stepDown`, it drops to 1% a year once the investing years (1–5) are over. */
+export function feeSchedule(feeRate: number, stepDown = false, fund = FUND, years = YEARS): number[] {
+  return Array.from({ length: years }, (_, i) => clean(fund * (stepDown && i >= 5 ? 0.01 : feeRate)));
+}
+
 /** LPs get the fund back first; the GP keeps `carry` of any profit above that. */
 export function carrySplit(R: number, fund = FUND, carry = CARRY): { profit: number; carry: number; lp: number } {
   const profit = Math.max(clean(R - fund), 0);
@@ -30,10 +35,12 @@ export function returnNeeded(netMultiple: number, fund = FUND, carry = CARRY): n
   return clean(fund + (fund * netMultiple - fund) / (1 - carry));
 }
 
-/** Years 1–10: money called from LPs, cash sent back, and the paper value of what is still held. */
-export const CALLS = [20, 20, 20, 20, 20, 0, 0, 0, 0, 0];
+/** Years 1–10: what LPs are asked for (investing money plus that year's fee), cash sent back, and the paper value still held. */
+export const INVESTED_CALLS = [16, 16, 16, 16, 16, 0, 0, 0, 0, 0];
+export const FEE_CALLS = feeSchedule(0.02);
+export const CALLS = INVESTED_CALLS.map((c, i) => c + FEE_CALLS[i]);
 export const DISTRIBUTIONS = [0, 0, 0, 0, 0, 15, 30, 60, 90, 105];
-export const NAV = [18, 42, 72, 110, 160, 190, 220, 190, 110, 0];
+export const NAV = [16, 34, 60, 96, 150, 180, 210, 190, 110, 0];
 
 const upTo = (xs: number[], year: number) => xs.slice(0, year).reduce((s, x) => s + x, 0);
 
@@ -47,4 +54,16 @@ export function fundYear(year: number): { paidIn: number; back: number; net: num
     dpi: paidIn > 0 ? clean(back / paidIn) : 0,
     tvpi: paidIn > 0 ? clean((back + nav) / paidIn) : 0,
   };
+}
+
+/** One early sale: a company that cost $10M sells for $150M, and carry is paid on it straight away. */
+export const EARLY_SALE = 150;
+export const EARLY_COST = 10;
+
+/** Carry taken deal by deal on the early sale, against what the whole fund owes once the rest returns `rest`. */
+export function clawback(rest: number, fund = FUND, carry = CARRY): { R: number; taken: number; owed: number; giveBack: number; stillDue: number } {
+  const R = EARLY_SALE + rest;
+  const taken = clean(carry * (EARLY_SALE - EARLY_COST));
+  const owed = clean(carry * Math.max(R - fund, 0));
+  return { R, taken, owed, giveBack: Math.max(clean(taken - owed), 0), stillDue: Math.max(clean(owed - taken), 0) };
 }

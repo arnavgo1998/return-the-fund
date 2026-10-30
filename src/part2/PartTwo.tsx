@@ -3,7 +3,8 @@ import { F2Fee } from "./F2Fee";
 import { F3Carry } from "./F3Carry";
 import { F4Need } from "./F4Need";
 import { F5Time } from "./F5Time";
-import { F6Paper } from "./F6Paper";
+import { F6Clawback } from "./F6Clawback";
+import { F7Paper } from "./F7Paper";
 import { P2Finale } from "./P2Finale";
 import { P2Hero } from "./P2Hero";
 
@@ -16,7 +17,8 @@ export function PartTwo() {
       <F3Carry />
       <F4Need />
       <F5Time />
-      <F6Paper />
+      <F6Clawback />
+      <F7Paper />
       <P2Finale />
     </>
   );

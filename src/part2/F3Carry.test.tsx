@@ -41,4 +41,16 @@ describe("Part two, model 3: carry", () => {
     setR(0);
     expect(t("f3-profit")).toBe("$0 is less than $100M, so $0");
   });
+
+  it("shows the fees inside what LPs get back first", () => {
+    render(<F3Carry />);
+    expect(t("f3-paidin")).toBe("$80M invested + $20M of fees = $100M");
+  });
+
+  it("adds up your whole pay: fees plus carry", () => {
+    render(<F3Carry />);
+    expect(t("f3-gp-total")).toBe("$20M + $40M = $60M");
+    setR(80);
+    expect(t("f3-gp-total")).toBe("$20M + $0 = $20M");
+  });
 });

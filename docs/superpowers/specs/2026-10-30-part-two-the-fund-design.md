@@ -95,3 +95,13 @@ Warm guide talking to "you", as in Part one after review: "let's", light wit, sh
 ## Left to the builder
 
 Component breakdown, chart details for the J-curve and paper/cash charts, exact copy within the voice.
+
+## Revision after Arnav's review (2026-10-30)
+
+Arnav: "carry doesn't have fees built in, there is no talk about yearwise fees and GP clawback."
+
+- **Model 2 (fee), yearwise:** a ten-year strip of the fee, $2M each year. A toggle shows the common step-down: the fee drops to 1% a year after year 5 (2% → $10M + $5M = $15M, $85M invested; 1.5% → $12.5M; 2.5% → $17.5M). Later models keep the flat 2%.
+- **Model 3 (carry), fees built in:** LPs paid in $80M invested + $20M of fees = $100M, and all of it, fees included, comes back before carry. Your total pay = fees + carry ($20M + $40M = $60M at R = $300M).
+- **Model 5 (time):** each call now includes that year's fee: $16M invested + $2M fee in years 1–5, then $2M fee only in years 6–10 (total $100M). Running total: −18, −36, −54, −72, −90, −77, −49, +9, +97, +200; breaks even in year 8.
+- **New Model 6, carry taken too early (clawback):** some funds pay carry deal by deal. An early sale returns $150M on a company that cost $10M, so you take 20% × $140M = $28M. If the rest of the fund then returns Y (stops 0, 30, 50, 90, 100, 200), whole-fund carry is 20% × (150 + Y − 100); anything taken above that is clawed back (Y = 30 → owed $16M, give back $12M; Y = 100 → owed $30M, $2M still due). Labels arrive after: deal by deal vs whole fund, clawback, escrow.
+- **Model 7 (paper and cash), was Model 6:** NAV becomes 16, 34, 60, 96, 150, 180, 210, 190, 110, 0. Year 1 TVPI 0.89× (fees drag it below 1×); year 4 DPI 0, TVPI $96M ÷ $72M = 1.33×; year 8 DPI 1.09×, TVPI 3.07×; peak 3.11× in year 9; year 10 both 3×.

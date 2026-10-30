@@ -1,5 +1,5 @@
 /* Part two: the fund drawn as notes, and the two charts over time. */
-.fundGrid { display: inline-grid; grid-template-columns: repeat(10, 24px); gap: 2px; margin-bottom: 12px; }
+.fundGrid { display: inline-grid; gap: 2px; margin-bottom: 12px; }
 .fundGrid > span { display: contents; }
 .paychecks { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px 40px; margin-top: 22px; padding-top: 16px; border-top: 1px dashed var(--line); }
 .bars { display: grid; gap: 10px; margin: 18px 0 22px; }
@@ -27,3 +27,8 @@
 .keyCash { background: var(--a); }
 .twoByTwo { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 @media (max-width: 719px) { .twoByTwo { grid-template-columns: 1fr; } }
+.feeYears { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 4px; margin: 4px 0 14px; }
+.feeYears > div { display: grid; justify-items: center; gap: 2px; padding: 6px 0; border: 1px dashed var(--line); border-radius: 2px; }
+.feeYears span { font: 600 12px/1 var(--font-mono); font-variant-numeric: tabular-nums; }
+.feeYears small { font: 400 10px/1 var(--font-mono); color: var(--mute); }
+@media (max-width: 719px) { .feeYears { grid-template-columns: repeat(5, minmax(0, 1fr)); } }

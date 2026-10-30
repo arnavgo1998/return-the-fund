@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { formatMoney } from "../model/format";
-import { CALLS, DISTRIBUTIONS, YEARS, fundYear } from "../model/fund";
+import { DISTRIBUTIONS, FEE_CALLS, INVESTED_CALLS, YEARS, fundYear } from "../model/fund";
 import { Prose, Rule, Section, Wide } from "../ui/Section";
 import { Slider } from "../ui/Slider";
 import styles from "../models/models.module.css";
@@ -16,15 +16,21 @@ const PLOT = 180; // px, matches .plot in fund.module.css
 export function F5Time() {
   const [year, setYear] = useState(10);
   const now = fundYear(year);
-  const callYears = CALLS.slice(0, year).filter((c) => c > 0);
+  // Years 1–5 call investing money plus the fee; after that, only the fee.
+  const investing = Math.min(year, INVESTED_CALLS.filter((c) => c > 0).length);
+  const feeOnly = year - investing;
+  const years = (n: number) => `${n} year${n === 1 ? "" : "s"}`;
+  const paidWorking = `${formatMoney(INVESTED_CALLS[0] + FEE_CALLS[0])} × ${years(investing)}`
+    + (feeOnly > 0 ? ` + ${formatMoney(FEE_CALLS[5])} × ${years(feeOnly)}` : "");
   const backs = DISTRIBUTIONS.slice(0, year).filter((d) => d > 0);
   return (
     <Section n={5} title="Time">
       <Prose>
         <p>
           Here's something the earlier models skipped. LPs don't hand over $100M on day one. You call the money as you
-          need it, a bit each year while you're making investments, roughly over the first five years. The money comes
-          back much later, when companies get sold.
+          need it. For the first five years, while you're making investments, that's $16M to invest plus the year's
+          $2M fee, so $18M a year. After that it's just the $2M fee. The money comes back much later, when companies
+          get sold.
         </p>
         <p>
           Let's follow one made-up but typical fund that ends up giving LPs 3×. Slide through the years and watch the
@@ -54,7 +60,7 @@ export function F5Time() {
         <dl className={styles.facts}>
           <div>
             <dt>LPs have paid in</dt>
-            <dd data-testid="f5-paid"><span className={styles.muteInline}>$20M × {callYears.length} year{callYears.length === 1 ? "" : "s"} = </span>{formatMoney(now.paidIn)}</dd>
+            <dd data-testid="f5-paid"><span className={styles.muteInline}>{paidWorking} = </span>{formatMoney(now.paidIn)}</dd>
           </div>
           <div>
             <dt>LPs have got back</dt>
@@ -70,8 +76,8 @@ export function F5Time() {
       </Wide>
       <Prose>
         <p>
-          For five years the bars only go down. LPs have paid in $100M and seen nothing back, even though, as you'll
-          see next, the fund may be doing well. It isn't until year 8 that they're above zero, and most of the money
+          For five years the bars only go down. LPs have paid in $90M and seen nothing back, even though, as you'll
+          see shortly, the fund may be doing well. The fee keeps coming out every year after that too. It isn't until year 8 that they're above zero, and most of the money
           arrives in the last two years. People call this shape the J-curve, for obvious reasons.
         </p>
       </Prose>

@@ -7,14 +7,14 @@ import styles from "../models/models.module.css";
 import fund from "./fund.module.css";
 
 const YEAR_LIST = Array.from({ length: YEARS }, (_, i) => i + 1);
-const TOP = 3.6; // just above the paper score's peak, 3.05×
+const TOP = 3.6; // just above the paper score's peak, 3.11×
 
-export function F6Paper() {
+export function F7Paper() {
   const [year, setYear] = useState(4);
   const now = fundYear(year);
   const nav = NAV[year - 1];
   return (
-    <Section n={6} title="Paper and cash">
+    <Section n={7} title="Paper and cash">
       <Prose>
         <p>
           If LPs see nothing for years, how do they know whether you're any good? They look at two scores. The first is
@@ -60,12 +60,14 @@ export function F6Paper() {
       </Wide>
       <Prose>
         <p>
-          Look at year 4. Cash back is zero, but on paper the fund is at 1.38×. Year 4 is also about when you go out to
-          raise your next fund, because a GP can't wait ten years between funds. So you raise fund two on paper.
+          Start at year 1. The paper score is 0.89×, below 1× before a single company has moved, because LPs have paid
+          a year of fees that never got invested. Now look at year 4. Cash back is still zero, but on paper the fund is
+          at 1.33×. Year 4 is also about when you go out to raise your next fund, because a GP can't wait ten years
+          between funds. So you raise fund two on paper.
         </p>
         <p>
           Paper isn't cash, though. Companies get marked up at every new round, and some of those marks never turn into
-          a sale. In this fund the paper score peaks at 3.05× in year 9 and lands at 3× once all the cash is in. LPs know
+          a sale. In this fund the paper score peaks at 3.11× in year 9 and lands at 3× once all the cash is in. LPs know
           this, so in the end they judge you on the cash. The industry has names for both: the cash score is DPI,
           distributions over paid-in, and the paper score is TVPI, total value over paid-in.
         </p>

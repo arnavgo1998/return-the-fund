@@ -21,8 +21,9 @@ export function F3Carry() {
     <Section n={3} title="Carry">
       <Prose>
         <p>
-          Here's the other half of how you get paid. LPs get their whole $100M back first. Anything above that is
-          profit, and you keep a share of it, usually 20%. That share is called carried interest, or carry.
+          Here's the other half of how you get paid. LPs first get back everything they paid in, all $100M, and that
+          includes the $20M they paid you in fees. Only what's left after that is profit, and you keep a share of it,
+          usually 20%. That share is called carried interest, or carry.
         </p>
         <p>Drag <Chip letter="R" /> and watch the money split.</p>
       </Prose>
@@ -38,7 +39,11 @@ export function F3Carry() {
         </p>
         <dl className={styles.facts}>
           <div>
-            <dt>Profit, after LPs get $100M back</dt>
+            <dt>LPs paid in, fees included</dt>
+            <dd data-testid="f3-paidin"><span className={styles.muteInline}>{formatMoney(invested)} invested + {formatMoney(fees)} of fees = </span>{formatMoney(FUND)}</dd>
+          </div>
+          <div>
+            <dt>Profit, after LPs get all of that back</dt>
             <dd data-testid="f3-profit">
               <span className={styles.muteInline}>
                 {R >= FUND ? `${formatMoney(R)} − ${formatMoney(FUND)} = ` : `${formatMoney(R)} is less than ${formatMoney(FUND)}, so `}
@@ -48,6 +53,10 @@ export function F3Carry() {
           <div>
             <dt>Your carry</dt>
             <dd data-testid="f3-carry"><span className={styles.muteInline}>{CARRY * 100}% × {formatMoney(profit)} = </span>{formatMoney(carry)}</dd>
+          </div>
+          <div>
+            <dt>Your total pay, fees plus carry</dt>
+            <dd data-testid="f3-gp-total"><span className={styles.muteInline}>{formatMoney(fees)} + {formatMoney(carry)} = </span>{formatMoney(fees + carry)}</dd>
           </div>
           <div>
             <dt>LPs get</dt>
@@ -81,8 +90,9 @@ export function F3Carry() {
           multiples. The companies turned $80M into $300M, which is 3.75×. LPs see 2.6×. Fees and carry live in that gap.
         </p>
         <p>
-          Compare your two paycheques as well. The fee arrives whatever happens. Carry only shows up when the fund
-          makes a profit, and it's where good GPs make their real money.
+          Compare your two paycheques as well. At $300M you earn $60M in all: $20M of fees, which arrive whatever
+          happens, and $40M of carry, which only shows up because the fund made a profit. And because the fees were
+          LPs' money too, they come back to LPs before you see a cent of carry.
         </p>
       </Prose>
       <Rule>You get 20% of the profit, and only after the LPs are whole.</Rule>

@@ -28,4 +28,20 @@ describe("Part two, model 2: the fee", () => {
     render(<F2Fee />);
     expect(screen.getByText("Fees come off the top, so $80M has to earn back $100M.")).toBeTruthy();
   });
+
+  it("shows the fee year by year", () => {
+    render(<F2Fee />);
+    const years = screen.getAllByTestId("fee-year").map((e) => e.textContent);
+    expect(years).toEqual(Array(10).fill("$2M"));
+  });
+
+  it("can step the fee down to 1% a year after year 5", () => {
+    render(<F2Fee />);
+    fireEvent.click(screen.getByRole("button", { name: /steps down/i }));
+    const years = screen.getAllByTestId("fee-year").map((e) => e.textContent);
+    expect(years).toEqual([...Array(5).fill("$2M"), ...Array(5).fill("$1M")]);
+    expect(t("f2-fees")).toBe("$2M × 5 years + $1M × 5 years = $15M");
+    expect(t("f2-invested")).toBe("$100M − $15M = $85M");
+    expect(t("f2-needed")).toBe("$100M ÷ $85M = 1.18×");
+  });
 });

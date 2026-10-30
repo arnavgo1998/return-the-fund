@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { carrySplit, feeBudget, fundYear, returnNeeded, splitByCommitment } from "./fund";
+import { carrySplit, clawback, feeBudget, feeSchedule, fundYear, returnNeeded, splitByCommitment } from "./fund";
 
 describe("whose money", () => {
   it("splits what comes back by what went in: 99% LPs, 1% you", () => {
@@ -32,15 +32,40 @@ describe("what LPs need", () => {
 });
 
 describe("one illustrative fund over ten years", () => {
-  it("starts with money called and nothing back", () => {
-    expect(fundYear(1)).toEqual({ paidIn: 20, back: 0, net: -20, dpi: 0, tvpi: 0.9 });
+  it("calls that year's fee with every call, for all ten years", () => {
+    expect(fundYear(1)).toMatchObject({ paidIn: 18, back: 0, net: -18, dpi: 0 });
+    expect(fundYear(5).paidIn).toBe(90);
+    expect(fundYear(6).paidIn).toBe(92);
+  });
+  it("sits below 1× in year 1, because of the fee", () => {
+    expect(fundYear(1).tvpi).toBeCloseTo(16 / 18, 9);
   });
   it("shows paper gains long before cash", () => {
-    expect(fundYear(4).tvpi).toBe(1.375);
+    expect(fundYear(4).tvpi).toBeCloseTo(96 / 72, 9);
     expect(fundYear(4).dpi).toBe(0);
   });
   it("breaks even in year 8 and ends at 3×", () => {
-    expect(fundYear(8)).toEqual({ paidIn: 100, back: 105, net: 5, dpi: 1.05, tvpi: 2.95 });
+    expect(fundYear(8)).toMatchObject({ paidIn: 96, back: 105, net: 9 });
     expect(fundYear(10)).toEqual({ paidIn: 100, back: 300, net: 200, dpi: 3, tvpi: 3 });
   });
+
+describe("the fee, year by year", () => {
+  it("charges the same fee every year when it's flat", () => {
+    expect(feeSchedule(0.02)).toEqual([2, 2, 2, 2, 2, 2, 2, 2, 2, 2]);
+  });
+  it("drops to 1% a year after year 5 when it steps down", () => {
+    expect(feeSchedule(0.02, true)).toEqual([2, 2, 2, 2, 2, 1, 1, 1, 1, 1]);
+    expect(feeSchedule(0.025, true).reduce((a, b) => a + b, 0)).toBe(17.5);
+  });
+});
+
+describe("carry taken too early", () => {
+  it("claws back what was taken above the whole-fund carry", () => {
+    expect(clawback(30)).toEqual({ R: 180, taken: 28, owed: 16, giveBack: 12, stillDue: 0 });
+    expect(clawback(0)).toEqual({ R: 150, taken: 28, owed: 10, giveBack: 18, stillDue: 0 });
+  });
+  it("pays the rest at the end when the fund does well", () => {
+    expect(clawback(100)).toEqual({ R: 250, taken: 28, owed: 30, giveBack: 0, stillDue: 2 });
+  });
+});
 });

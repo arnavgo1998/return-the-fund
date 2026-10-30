@@ -1,16 +1,23 @@
 import { useState } from "react";
 import { formatMoney, formatMultiple, formatShare } from "../model/format";
-import { FUND, YEARS, feeBudget } from "../model/fund";
+import { FUND, feeSchedule } from "../model/fund";
 import { Prose, Rule, Section, Wide } from "../ui/Section";
 import { Slider } from "../ui/Slider";
 import { FundGrid } from "./FundGrid";
 import styles from "../models/models.module.css";
+import fund from "./fund.module.css";
 
 export const FEE_STOPS = [0.015, 0.02, 0.025];
 
 export function F2Fee() {
   const [fee, setFee] = useState(0.02);
-  const { fees, invested } = feeBudget(fee);
+  const [stepDown, setStepDown] = useState(false);
+  const schedule = feeSchedule(fee, stepDown);
+  const fees = schedule.reduce((a, b) => a + b, 0);
+  const invested = FUND - fees;
+  const feesWorking = stepDown
+    ? `${formatMoney(schedule[0])} × 5 years + ${formatMoney(schedule[5])} × 5 years`
+    : `${formatMoney(schedule[0])} × ${schedule.length} years`;
   return (
     <Section n={2} title="The fee">
       <Prose>
@@ -31,11 +38,20 @@ export function F2Fee() {
               runs={[{ count: invested, color: "a" }, { count: fees, color: "ghost" }]} />
           </div>
           <div className={styles.grow}>
+            <div className={styles.segmented} role="group" aria-label="How the fee runs">
+              <button type="button" aria-pressed={!stepDown} onClick={() => setStepDown(false)}>Flat for 10 years</button>
+              <button type="button" aria-pressed={stepDown} onClick={() => setStepDown(true)}>Steps down after year 5</button>
+            </div>
             <Slider label="Management fee, per year" value={fee} stops={FEE_STOPS} format={formatShare} onChange={setFee} />
+            <div className={fund.feeYears} aria-label="The fee each year">
+              {schedule.map((f, i) => (
+                <div key={i}><span data-testid="fee-year">{formatMoney(f)}</span><small>Y{i + 1}</small></div>
+              ))}
+            </div>
             <dl className={styles.facts}>
               <div>
                 <dt>Fees over the fund's life</dt>
-                <dd data-testid="f2-fees"><span className={styles.muteInline}>{formatMoney(FUND * fee)} × {YEARS} years = </span>{formatMoney(fees)}</dd>
+                <dd data-testid="f2-fees"><span className={styles.muteInline}>{feesWorking} = </span>{formatMoney(fees)}</dd>
               </div>
               <div>
                 <dt>Left to invest</dt>
@@ -54,7 +70,11 @@ export function F2Fee() {
           That 1.25× is the first bar your companies have to clear. Before anyone makes a cent of profit, they have to
           grow $80M into $100M just to cover the fee.
         </p>
-        <p>From here on, your own $1M gets treated like any LP's, so we'll simply say LPs put in $100M.</p>
+        <p>
+          Many funds lower the fee once the investing years are over, because there are no new companies to find,
+          only existing ones to help. A common version drops it to 1% a year from year 6. We'll stick with the flat
+          2% from here, and your own $1M gets treated like any LP's, so LPs put in $100M.
+        </p>
       </Prose>
       <Rule>Fees come off the top, so $80M has to earn back $100M.</Rule>
     </Section>
