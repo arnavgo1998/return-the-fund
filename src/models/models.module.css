@@ -36,3 +36,30 @@
   font: 400 12px/1.25 var(--font-sans); color: var(--mute); padding: 30px 0 0 6px; white-space: nowrap;
 }
 .trackMark b { font: 600 12px var(--font-mono); color: var(--ink); margin-right: 3px; }
+
+/* Model 3 */
+.sliders { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0 32px; margin-top: 18px; }
+.ruler { position: relative; height: 64px; margin: 8px 0 40px; border-bottom: 2px solid var(--ink); }
+.rulerTick { position: absolute; bottom: -22px; transform: translateX(-50%); font: 400 11px/1 var(--font-mono); color: var(--mute); }
+.rulerTick::before { content: ""; position: absolute; left: 50%; top: -8px; height: 6px; border-left: 1px solid var(--ink); }
+.rulerMark {
+  position: absolute; bottom: 0; height: 34px; border-left: 2px solid var(--mute); padding-left: 6px;
+  font: 500 12px/1.2 var(--font-sans); color: var(--mute); white-space: nowrap; transition: left 200ms;
+}
+.rulerMark[data-strong="true"] { border-color: var(--you); color: var(--you); height: 56px; font-weight: 600; }
+
+/* Model 4 */
+.segmented { display: inline-flex; border: 1px solid var(--ink); border-radius: 3px; margin-bottom: 22px; overflow: hidden; }
+.segmented button { border: 0; background: transparent; padding: 8px 16px; font: 500 14px/1 var(--font-sans); cursor: pointer; }
+.segmented button + button { border-left: 1px solid var(--ink); }
+.segmented button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.capGrid { display: grid; gap: 2px; margin-bottom: 12px; }
+.capGrid > span { display: contents; }
+.facts { flex: 1 1 260px; margin: 0; display: grid; gap: 10px; align-content: start; }
+.facts > div { display: flex; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--line); padding-bottom: 8px; }
+.facts dt { font: 400 14px/1.35 var(--font-sans); color: var(--mute); }
+.facts dd { margin: 0; font: 600 16px/1.35 var(--font-mono); text-align: right; white-space: nowrap; }
+.muteInline { color: var(--mute); font-weight: 400; }
+.term { display: block; font: 500 11px/1.4 var(--font-mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--a); }
+.napkinStrip { margin-top: 24px; padding-top: 16px; border-top: 1px dashed var(--line); }
+.napkinLine { font: 500 clamp(16px, 2.6vw, 20px)/1.5 var(--font-mono); margin: 0; }
