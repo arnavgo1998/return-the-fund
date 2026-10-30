@@ -51,6 +51,6 @@ describe("App", () => {
     render(<App />);
     expect(screen.getByRole("link", { name: /part two/i }).getAttribute("href")).toBe("#part-two");
     go("#part-two");
-    expect(screen.getByRole("link", { name: /part one/i }).getAttribute("href")).toBe("#");
+    expect(screen.getAllByRole("link", { name: /part one/i })[0].getAttribute("href")).toBe("#");
   });
 });

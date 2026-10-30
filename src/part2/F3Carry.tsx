@@ -5,6 +5,7 @@ import { Blocks } from "../ui/Blocks";
 import { Chip } from "../ui/Equation";
 import { Prose, Rule, Section, Wide } from "../ui/Section";
 import { Slider } from "../ui/Slider";
+import { useWide } from "../ui/useWide";
 import styles from "../models/models.module.css";
 import fund from "./fund.module.css";
 
@@ -13,6 +14,7 @@ const { fees, invested } = feeBudget(0.02);
 
 export function F3Carry() {
   const [R, setR] = useState(300);
+  const perRow = useWide() ? 20 : 10;
   const { profit, carry, lp } = carrySplit(R);
   const lpProfit = profit - carry;
   return (
@@ -30,6 +32,10 @@ export function F3Carry() {
           <span style={{ width: R > 0 ? `${(lp / R) * 100}%` : 0, background: "var(--a)" }} />
           <span style={{ width: R > 0 ? `${(carry / R) * 100}%` : 0, background: "var(--you)" }} />
         </div>
+        <p className={fund.key}>
+          <span><i style={{ background: "var(--a)" }} /> LPs</span>
+          <span><i style={{ background: "var(--you)" }} /> your carry</span>
+        </p>
         <dl className={styles.facts}>
           <div>
             <dt>Profit, after LPs get $100M back</dt>
@@ -57,11 +63,11 @@ export function F3Carry() {
         <div className={fund.paychecks}>
           <div>
             <p className={styles.figLabel}>Your fee: <span data-testid="f3-fees">{formatMoney(fees)}</span>, whatever happens</p>
-            <Blocks count={fees} color="ghost" label={`${fees} notes of fees`} perRow={20} size={9} shape="note" />
+            <Blocks count={fees} color="ghost" label={`${fees} notes of fees`} perRow={perRow} size={9} shape="note" />
           </div>
           <div>
             <p className={styles.figLabel}>Your carry: {formatMoney(carry)}, only if there's profit</p>
-            <Blocks count={carry} color="you" label={`${carry} notes of carry`} perRow={20} size={9} shape="note" />
+            <Blocks count={carry} color="you" label={`${carry} notes of carry`} perRow={perRow} size={9} shape="note" />
           </div>
         </div>
       </Wide>

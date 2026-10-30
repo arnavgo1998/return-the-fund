@@ -2,7 +2,7 @@
 .fundGrid { display: inline-grid; grid-template-columns: repeat(10, 24px); gap: 2px; margin-bottom: 12px; }
 .fundGrid > span { display: contents; }
 .paychecks { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px 40px; margin-top: 22px; padding-top: 16px; border-top: 1px dashed var(--line); }
-.bars { display: grid; gap: 10px; margin: 18px 0 8px; }
+.bars { display: grid; gap: 10px; margin: 18px 0 22px; }
 .bars > div { display: grid; grid-template-columns: 96px minmax(0, 1fr) auto; align-items: center; gap: 12px; }
 .bars b { font: 600 15px var(--font-mono); }
 .barLabel { font: 400 13px/1.2 var(--font-sans); color: var(--mute); }
@@ -25,3 +25,5 @@
 .key i { display: inline-block; width: 14px; height: 10px; margin-right: 6px; vertical-align: -1px; }
 .keyPaper { border: 1.5px dashed var(--a); box-sizing: border-box; }
 .keyCash { background: var(--a); }
+.twoByTwo { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 719px) { .twoByTwo { grid-template-columns: 1fr; } }

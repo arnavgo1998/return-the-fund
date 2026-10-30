@@ -4,6 +4,7 @@ import { F3Carry } from "./F3Carry";
 import { F4Need } from "./F4Need";
 import { F5Time } from "./F5Time";
 import { F6Paper } from "./F6Paper";
+import { P2Finale } from "./P2Finale";
 import { P2Hero } from "./P2Hero";
 
 export function PartTwo() {
@@ -16,6 +17,7 @@ export function PartTwo() {
       <F4Need />
       <F5Time />
       <F6Paper />
+      <P2Finale />
     </>
   );
 }
