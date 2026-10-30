@@ -41,10 +41,10 @@ export function M3Napkin() {
     <Section n={3} title="The sale you need">
       <Prose>
         <p>
-          In Model 2 the winner had to return $22M for the fund to triple. You own 10% of that company, so it must have been sold for $220M. The same reasoning works in reverse, before you invest. How large does a company have to become for your share of it, on its own, to repay the whole fund?
+          Model 2 has a handy side effect. If the winner returned $22M and you own 10% of it, it must have sold for $220M. Flip that around and you get a question you can ask before you invest. How big does this company need to get for your slice alone to pay back the whole fund?
         </p>
         <p>
-          Call the fund <Chip letter="F" /> and the sale <Chip letter="E" />. Your part of the sale is your share × <Chip letter="E" />, the same sum as in Model 1. To repay the fund, it has to equal <Chip letter="F" />. Divide both sides by your share and you get the sale the company needs.
+          Call the fund <Chip letter="F" /> and the sale <Chip letter="E" />. Your slice is your share × <Chip letter="E" />, same as Model 1. Set it equal to <Chip letter="F" />, divide by your share, and out comes the sale you need.
         </p>
       </Prose>
       <Wide label="The sale you need">
@@ -86,16 +86,16 @@ export function M3Napkin() {
       </Wide>
       <Prose>
         <p>
-          A $10M fund that owns 10% needs a $100M sale. To check it the other way, 10% of $100M is $10M. A $100M fund at 10% needs a $1B sale.
+          A $10M fund owning 10% needs a $100M sale. Check it backwards: 10% of $100M is $10M. Slide the fund up to $100M and the answer becomes $1B.
         </p>
         <p>
-          This is the arithmetic behind a question investors ask early on: <em>can this become a billion-dollar company?</em> A company that cannot reach that number may still be a good business. It just cannot be the company that returns this fund.
+          That's where the famous question comes from. When an investor asks whether something can be a billion-dollar company, they're doing this division in their head. A smaller company can still be a great business. It just can't be the one that returns the fund.
         </p>
         <p>
-          <Chip letter="V" /> is what your price says the company is worth today: your cheque ÷ your share. The growth needed, <Chip letter="E" /> ÷ <Chip letter="V" />, does not move with either slider. Each cheque is a tenth of the fund, so the winner always has to grow ten times from the price paid. The price decides how large the company must become. The number of cheques decides how much it must grow.
+          <Chip letter="V" /> is what your price says the company is worth today, your cheque ÷ your share. Notice that the growth you need, <Chip letter="E" /> ÷ <Chip letter="V" />, never moves. Write ten cheques and your winner has to grow tenfold, whatever price you paid.
         </p>
       </Prose>
-      <Rule>Before you write the cheque, divide the fund by your share. If the company cannot plausibly sell for that much, it cannot return the fund.</Rule>
+      <Rule>Fund ÷ your share = the sale you need.</Rule>
     </Section>
   );
 }

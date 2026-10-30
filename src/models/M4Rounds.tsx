@@ -24,10 +24,10 @@ export function M4Rounds() {
     <Section n={4} title="Other investors arrive">
       <Prose>
         <p>
-          So far your 10% of Orbit has stayed at 10%. In practice it shrinks every time the company raises money.
+          So far your 10% of Orbit has stayed 10%. Enjoy it while it lasts.
         </p>
         <p>
-          When Orbit raises a new round, the new investor does not buy squares from you or from the founders. The company creates new squares and sells those. In Series A, Alex pays $5M for 25 new squares: $5M ÷ 25 = $0.2M a square, twice the $0.1M you paid. In Series B, Blake pays $20M for 25 more: $20M ÷ 25 = $0.8M a square.
+          Companies keep raising money, and new investors don't buy your squares. Orbit makes new ones and sells those. In Series A, Alex pays $5M for 25 new squares, $0.2M each, double what you paid. In Series B, Blake pays $20M for 25 more, $0.8M each.
         </p>
       </Prose>
       <Wide label="The company through three rounds">
@@ -97,21 +97,21 @@ export function M4Rounds() {
       </Wide>
       <Prose>
         <p>
-          Step through the rounds. Your 10 squares stay the same, but the company grows from 100 squares to 125 and then 150, so each square is a smaller part of it. This is called dilution. Nothing is taken from you. The company is simply cut into more squares.
+          Click through the rounds and watch your 10 squares. They never move. Orbit just grows around them, from 100 squares to 150, so each one is a smaller slice. That's dilution. Nobody took anything from you; there's just more company.
         </p>
         <p>
-          The table also defines two common terms. The price of a square in a round, times the squares that existed before the round, is the <em>pre-money</em> value. The same price times all the squares after the round is the <em>post-money</em>{" "}value. Your $1M at $0.1M a square in Model 1 set a post-money value of $10M.
+          The table also explains two words you'll hear constantly. The price of a square times the squares before the round is the <em>pre-money</em> value. The same price times the squares after the round is the <em>post-money</em>{" "}value. Your first $1M at $0.1M a square set a $10M post-money.
         </p>
         <p>
-          Dilution changes the sale you need. The right share to divide by is the one you will still hold when the company is sold. For a $100M fund, the $1B target becomes $1.25B after Series A and $1.5B after Series B.
+          It also changes the sale you need. Divide by the share you'll still have at the end. For a $100M fund, the $1B target becomes $1.25B after Series A and $1.5B after Series B.
         </p>
       </Prose>
       <Aside>
         <p>
-          Real companies also set aside squares for employees, called an option pool, which dilutes everyone a little more. It is left out here so that each model adds only one new variable.
+          Real companies also set squares aside for employees, which dilutes everyone a little more. It's left out here to keep to one new thing at a time.
         </p>
       </Aside>
-      <Rule>Every round adds squares and never removes yours. Use the share you'll have at the end.</Rule>
+      <Rule>Divide by the share you'll have at the end.</Rule>
     </Section>
   );
 }

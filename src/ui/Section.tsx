@@ -21,7 +21,7 @@ export const Wide = ({ children, label }: { children: ReactNode; label?: string 
 );
 
 export const Rule = ({ children }: { children: ReactNode }) => (
-  <div className={styles.rule}><p className={styles.ruleLabel}>The rule</p><p className={styles.ruleText}>{children}</p></div>
+  <div className={styles.rule}><p className={styles.ruleText}>{children}</p></div>
 );
 
 export const Aside = ({ children }: { children: ReactNode }) => <aside className={styles.aside}>{children}</aside>;

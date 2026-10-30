@@ -24,10 +24,10 @@ export function M2TenCheques() {
     <Section n={2} title="Ten cheques">
       <Prose>
         <p>
-          One cheque is a single bet, and a fund makes many. Take a $10M fund that writes ten cheques of $1M, each buying 10% of a different company.
+          One bet like that is a coin flip you'd never take on purpose. So a fund makes lots of them. Your $10M becomes ten cheques of $1M, each buying 10% of a different company.
         </p>
         <p>
-          Most of those companies will not work out. Kupor describes the usual spread, and a simplified version of it looks like this: five companies return nothing, two return the money, and two return three times the money. The tenth company's result is set with the slider.
+          Most of them won't work, and that's normal. Here's a simplified version of the usual spread: five go to zero, two hand your money back, and two return three times it. The tenth is yours to decide with the slider.
         </p>
       </Prose>
       <Wide label="Ten cheques from a $10M fund">
@@ -65,16 +65,13 @@ export function M2TenCheques() {
       </Wide>
       <Prose>
         <p>
-          With the winner at $2M, the fund gets its money back: $8M + $2M = $10M. At $22M the fund triples: $8M + $22M = $30M.
+          Push the winner to $2M and the fund breaks even: $8M + $2M = $10M. Push it to $22M and the fund triples.
         </p>
         <p>
-          Compare how much each part of the portfolio moves the total. If the two 3× companies had only returned their money, the total would fall by $4M. Taking the winner from $2M to $22M adds $20M. Peter Thiel states this as a rule in <em>Zero to One</em>: in a good fund, the best investment returns as much as all the others combined.
-        </p>
-        <p>
-          So the fund's result depends almost entirely on one company, and the other nine make little difference.
+          Now look at how little the other nine matter. If the two 3× companies had only returned their money, you'd be down $4M. The winner on its own swings the total by $20M. One company is carrying the whole fund, and the other nine are along for the ride.
         </p>
       </Prose>
-      <Rule>One company has to carry the fund. The rest barely matter.</Rule>
+      <Rule>One company carries the fund.</Rule>
     </Section>
   );
 }

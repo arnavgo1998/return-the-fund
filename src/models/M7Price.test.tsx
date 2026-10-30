@@ -29,7 +29,7 @@ describe("Model 7: other investors set the price", () => {
 
   it("states the rule", () => {
     render(<M7Price />);
-    expect(screen.getByText("Paying twice the price halves your squares and doubles the sale you need. Reserves buy the most squares when prices fall.")).toBeTruthy();
+    expect(screen.getByText("Pay double, need double. Reserves go furthest when prices fall.")).toBeTruthy();
   });
 
   it("shows the division behind every number", () => {

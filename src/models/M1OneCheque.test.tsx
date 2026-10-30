@@ -18,7 +18,7 @@ describe("Model 1: one cheque", () => {
 
   it("states the rule", () => {
     render(<M1OneCheque />);
-    expect(screen.getByText("The most you can lose is the cheque. What you can win is your share × the sale, with no ceiling.")).toBeTruthy();
+    expect(screen.getByText("You can lose the cheque. What you can win has no ceiling.")).toBeTruthy();
   });
 
   it("shows where the 10 squares, the 10% and the $10M come from", () => {

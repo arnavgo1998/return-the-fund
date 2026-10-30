@@ -36,7 +36,7 @@ describe("Model 5: follow on, or a new bet", () => {
 
   it("states the rule", () => {
     render(<M5FollowOn />);
-    expect(screen.getByText("Follow on when a fresh bet's chance of getting this far is lower than the old price ÷ the new price.")).toBeTruthy();
+    expect(screen.getByText("Follow on when a new bet's odds are worse than old price ÷ new price.")).toBeTruthy();
   });
 
   it("shows the division behind each pile of squares and the crossover", () => {

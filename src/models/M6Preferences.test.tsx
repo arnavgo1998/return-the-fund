@@ -42,7 +42,7 @@ describe("Model 6: who gets paid first", () => {
 
   it("states the rule", () => {
     render(<M6Preferences />);
-    expect(screen.getByText("Below the last round's price, preferences decide who gets paid. Above it, only squares count, and that is where a fund makes its money.")).toBeTruthy();
+    expect(screen.getByText("Preferences decide the small sales. Big sales are all squares.")).toBeTruthy();
   });
 
   it("shows the working behind every payout", () => {

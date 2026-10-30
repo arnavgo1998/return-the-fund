@@ -18,7 +18,7 @@ describe("Model 2: ten cheques", () => {
 
   it("states the rule", () => {
     render(<M2TenCheques />);
-    expect(screen.getByText("One company has to carry the fund. The rest barely matter.")).toBeTruthy();
+    expect(screen.getByText("One company carries the fund.")).toBeTruthy();
   });
 
   it("labels the winner's column with what it returns, not a question mark", () => {

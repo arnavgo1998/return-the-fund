@@ -33,7 +33,7 @@ describe("Model 4: other investors arrive", () => {
 
   it("states the rule", () => {
     render(<M4Rounds />);
-    expect(screen.getByText("Every round adds squares and never removes yours. Use the share you'll have at the end.")).toBeTruthy();
+    expect(screen.getByText("Divide by the share you'll have at the end.")).toBeTruthy();
   });
 
   it("shows what every investor paid, at what price, for how many squares", () => {

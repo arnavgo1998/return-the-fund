@@ -34,13 +34,13 @@ export function M5FollowOn() {
     <Section n={5} title="More money into the winner, or a new bet?">
       <Prose>
         <p>
-          Kupor spends a lot of time on a decision that comes after the first cheque. Orbit, the company from Model 4, is raising its Series B, and the fund has $1M left. You can put it into Orbit's Series B, or into Nova, a new company raising its seed round.
+          Here's a decision that sneaks up on you. Orbit is raising its Series B and you have $1M left. Do you put it into Orbit, or into Nova, a brand-new company raising its seed round?
         </p>
         <p>
-          In Orbit's Series B a square costs $0.8M, so $1M buys 1.25 squares. In Nova's seed round a square costs $0.1M, so $1M buys 10, but Nova may never get as far as Orbit has. Call the chance that Nova reaches Series B <Chip letter="h" />.
+          In Orbit, a square now costs $0.8M, so $1M buys 1.25 of them. In Nova, a square costs $0.1M, so $1M buys 10. The catch is that Nova might never get as far as Orbit has. Call that chance <Chip letter="h" />.
         </p>
         <p>
-          To keep to one variable, assume that if Nova succeeds it ends up exactly like Orbit, with the same sale and the same later rounds. Then the two choices can be compared in squares alone.
+          To keep it to one new variable, assume Nova, if it makes it, turns out exactly like Orbit. Then you're just comparing squares.
         </p>
       </Prose>
       <Wide label="Follow on, or a new bet">
@@ -85,21 +85,21 @@ export function M5FollowOn() {
       </Wide>
       <Prose>
         <p>
-          Setting 1.25 = h × 10 gives h = 1 in 8. If fewer than one in eight companies like Nova reach Series B, following on in Orbit buys more. The break-even is just $0.1M ÷ $0.8M, the old price divided by the new one.
+          Solve 1.25 = h × 10 and you get h = 1 in 8. If fewer than one in eight companies like Nova make it to Series B, Orbit is the better buy. And 1 in 8 is simply $0.1M ÷ $0.8M, the old price over the new one.
         </p>
         <p>
-          The second unknown is that reaching Series B does not guarantee a good sale. If Orbit has an even chance of getting to one, the follow-on is worth half as much, and the break-even halves as well, to one in sixteen.
+          Now add the second unknown. Getting to Series B doesn't guarantee a good sale. If Orbit only has an even chance, the follow-on is worth half as much and the break-even halves too, to 1 in 16.
         </p>
         <p>
-          Early on, when little is known, cheap squares spread across many companies give the best odds. Once one company has shown more than the others, the same sum starts to favour putting more money into it. Buying enough of each new round to keep your share is called taking your <em>pro rata</em>.
+          This is why funds spread small bets early and concentrate later. When you know nothing, cheap squares everywhere is the smart play. Once one company pulls ahead, the same maths starts pushing money towards it. Buying enough of each new round to keep your share is called your <em>pro rata</em>.
         </p>
       </Prose>
       <Aside>
         <p>
-          Funds plan for this by holding back a large part of each fund as reserves for follow-on cheques, instead of spending it all on first cheques.
+          Funds plan for this by keeping a big part of the fund back as reserves for follow-ons.
         </p>
       </Aside>
-      <Rule>Follow on when a fresh bet's chance of getting this far is lower than the old price ÷ the new price.</Rule>
+      <Rule>Follow on when a new bet's odds are worse than old price ÷ new price.</Rule>
     </Section>
   );
 }

@@ -12,7 +12,7 @@ describe("Model 3: the napkin sum", () => {
 
   it("states the rule", () => {
     render(<M3Napkin />);
-    expect(screen.getByText("Before you write the cheque, divide the fund by your share. If the company cannot plausibly sell for that much, it cannot return the fund.")).toBeTruthy();
+    expect(screen.getByText("Fund ÷ your share = the sale you need.")).toBeTruthy();
   });
 
   it("writes the sum the same way round in words and in numbers", () => {

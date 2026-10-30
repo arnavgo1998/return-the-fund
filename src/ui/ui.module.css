@@ -15,9 +15,10 @@
 .wide > :last-child { margin-bottom: 0; }
 @media (max-width: 520px) { .wide { margin-left: calc(-1 * var(--gutter) + 6px); margin-right: calc(-1 * var(--gutter) + 6px); } }
 
-.rule { max-width: var(--column); margin: 32px auto 0; padding: 18px 0 0; border-top: 2px solid var(--ink); }
-.ruleLabel { font: 500 12px/1 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--mute); margin: 0 0 10px; }
-.ruleText { font: 500 clamp(20px, 3.2vw, 24px)/1.35 var(--font-sans); letter-spacing: -0.01em; margin: 0; }
+.rule { max-width: var(--column); margin: 28px auto 0; }
+/* One takeaway per model, marked with the page's own unit: a small rust square. */
+.ruleText { display: flex; gap: 12px; align-items: baseline; font: 600 clamp(17px, 2.6vw, 19px)/1.4 var(--font-sans); letter-spacing: -0.005em; margin: 0; }
+.ruleText::before { content: ""; flex: none; width: 10px; height: 10px; background: var(--you); border-radius: 1px; transform: translateY(-1px); }
 
 .aside {
   max-width: var(--column); margin: 24px auto; padding-left: 16px; border-left: 2px solid var(--line);

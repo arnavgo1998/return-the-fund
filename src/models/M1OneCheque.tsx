@@ -3,7 +3,7 @@ import { formatMoney } from "../model/format";
 import { Blocks } from "../ui/Blocks";
 import { Chip, Equation } from "../ui/Equation";
 import { Legend } from "../ui/Legend";
-import { Aside, Prose, Rule, Section, Wide } from "../ui/Section";
+import { Prose, Rule, Section, Wide } from "../ui/Section";
 import { Slider } from "../ui/Slider";
 import { EXIT_STOPS } from "./stops";
 import styles from "./models.module.css";
@@ -31,13 +31,13 @@ export function M1OneCheque() {
     <Section n={1} title="One cheque">
       <Prose>
         <p>
-          Start with one company, called Orbit, cut into 100 squares. The founders own 90 of them. You pay $1M for the other 10.
+          Let's start as small as we can. One company, Orbit, cut into 100 squares. The founders own 90. You pay $1M for the other 10.
         </p>
         <p>
-          That price also puts a value on the whole company. If 10 squares cost $1M, one square costs $0.1M, and all 100 squares are worth $10M.
+          Notice what just happened. Your cheque priced the whole company. Ten squares for $1M means one square costs $0.1M, so all 100 are worth $10M.
         </p>
         <p>
-          Some years later the company is sold, or it shuts down. Call the sale price <Chip letter="E" />. Nobody knows it when the cheque is written. Whatever it turns out to be, your 10 squares get 10% of it.
+          One day Orbit gets sold, or it quietly shuts down. Call the sale price <Chip letter="E" />. Nobody knows it yet, and that's the whole game. Your 10 squares get 10% of whatever it turns out to be.
         </p>
       </Prose>
       <Wide label="One cheque into one company">
@@ -71,18 +71,13 @@ export function M1OneCheque() {
       </Wide>
       <Prose>
         <p>
-          Drag the sale down to $0 and you lose the $1M. No position of the slider costs more than that.
+          Drag the sale to zero. You lose your $1M, and that's as bad as it gets. No setting on that slider costs you more.
         </p>
         <p>
-          Drag it up and there is no limit. A $100M sale pays back $10M, ten notes. A $1B sale pays back a hundred notes, and the picture has to grow to hold them. The loss stops at the cheque and the gain has no ceiling. Every later model builds on that difference.
+          Now drag it the other way and keep going. A $100M sale gives you ten notes back. A $1B sale gives you a hundred, and the picture has to stretch to fit them. The downside has a floor and the upside has no ceiling. Almost everything in venture follows from that lopsided shape.
         </p>
       </Prose>
-      <Aside>
-        <p>
-          Peter Bernstein comes back to this asymmetry throughout <em>Against the Gods</em>. The possible loss is known before the bet is made. The possible gain is not.
-        </p>
-      </Aside>
-      <Rule>The most you can lose is the cheque. What you can win is your share × the sale, with no ceiling.</Rule>
+      <Rule>You can lose the cheque. What you can win has no ceiling.</Rule>
     </Section>
   );
 }

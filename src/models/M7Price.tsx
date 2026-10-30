@@ -27,10 +27,10 @@ export function M7Price() {
     <Section n={7} title="Other investors set the price">
       <Prose>
         <p>
-          Every model so far has fixed the price. In practice the price depends on how many investors want into a company and how confident the market feels.
+          Until now the price has been handed to you. In real life it depends on how many investors want in, and how brave everyone is feeling.
         </p>
         <p>
-          Take two cases. In a <strong>hot deal</strong>, a rival fund offers the founders $0.2M a square at seed, and you have to match it to invest. In a <strong>cold market</strong>, Series B happens during a downturn and is priced at $0.3M a square instead of $0.8M.
+          Two scenarios. In a <strong>hot deal</strong>, a rival fund offers Orbit's founders $0.2M a square, and you have to match it. In a <strong>cold market</strong>, Series B lands in a downturn at $0.3M a square instead of $0.8M.
         </p>
       </Prose>
       <Wide label="What the price does">
@@ -74,16 +74,16 @@ export function M7Price() {
       </Wide>
       <Prose>
         <p>
-          In the hot deal, $1M buys 5 squares instead of 10. Later rounds dilute those 5 squares exactly as before, so your final share halves and the sale the fund needs doubles, from $150M to $300M. Paying more can still be the right call, but only if the company can grow larger to match.
+          Paying up in the hot deal gets you 5 squares instead of 10. Every later round dilutes them the same way, so you end with half the share and need double the sale: $300M instead of $150M. Sometimes that's worth it. The company just has to get twice as big.
         </p>
         <p>
-          In the cold market the effect runs the other way. The reserve $1M buys 3.33 squares instead of 1.25, and the follow-on break-even rises from 1 in 8 to 1 in 3. Few seed bets have a one-in-three chance of getting this far, so the follow-on wins clearly. Reserves buy the most when other investors are holding back.
+          The cold market flips it. Your reserve $1M buys 3.33 squares instead of 1.25, and the break-even for following on jumps from 1 in 8 to 1 in 3. Very few seed bets have one-in-three odds, so following on wins easily. Money you held back is worth the most when nobody else wants to spend theirs.
         </p>
         <p>
-          Almost every question in these models can be answered before the cheque is written: the price of a square, how many squares you will keep, how large the company must become, and who is paid ahead of you. The sale price <em>E</em> is the one number that cannot be known in advance.
+          Look back at what you've worked out: what a square costs, how many you'll keep, how big the company must get, and who gets paid before you. All of it can be done before the cheque. The only thing you can't know is <em>E</em>.
         </p>
       </Prose>
-      <Rule>Paying twice the price halves your squares and doubles the sale you need. Reserves buy the most squares when prices fall.</Rule>
+      <Rule>Pay double, need double. Reserves go furthest when prices fall.</Rule>
     </Section>
   );
 }

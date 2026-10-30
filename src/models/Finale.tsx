@@ -30,7 +30,7 @@ export function Finale() {
     <Section title="Before the cheque">
       <Prose>
         <p>
-          The calculator below combines every model into one sum an investor can do before writing a cheque: the share you buy, the share left after later rounds, and the sale that share needs.
+          Here's everything in one calculator. Put in your own fund, cheque and later rounds, and it tells you the sale your company needs.
         </p>
       </Prose>
       <Wide label="The sale you need, from your own numbers">
@@ -71,18 +71,16 @@ export function Finale() {
       </Wide>
       <Prose>
         <p>
-          The models started with a $1M cheque that could only be lost once, against a sale with no upper limit. Each step added one unknown: ten cheques and the one that carries them, the sale you need, dilution, follow-on cheques, liquidation preferences and the price itself.
+          We started with one $1M cheque that could only ever be lost once, against a sale with no ceiling. Each step added one thing: a portfolio, the sale you need, dilution, follow-ons, preferences and price.
         </p>
         <p>
-          Most of the work happens before the cheque. The price, the share you will keep, the size the company has to reach and the investors ahead of you can all be worked out in advance. After the cheque, the main decision left is whether to put more money into the company that starts to look like the winner.
+          The surprising part is how much of the job happens before the cheque. After it, the big decision left is when to back the winner harder.
         </p>
       </Prose>
       <div className={styles.reading}>
-        <p className={styles.figLabel}>Further reading</p>
+        <p className={styles.figLabel}>Where this comes from</p>
         <ul>
           <li>Scott Kupor, <em>Secrets of Sand Hill Road</em>. The source for every model on this page.</li>
-          <li>Peter L. Bernstein, <em>Against the Gods</em>. On why a known downside and an unknown upside are different things.</li>
-          <li>Peter Thiel with Blake Masters, <em>Zero to One</em>. On the power law: one company carrying the fund.</li>
           <li>
             Chain Bear, <a href="https://www.youtube.com/watch?v=TNQuUZYHJdE"><em>Building an F1 Strategy from the Bare Basics</em></a>.
             The method used here: start small and add one variable at a time.
