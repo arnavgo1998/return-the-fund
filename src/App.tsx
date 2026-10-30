@@ -5,6 +5,8 @@ import { M3Napkin } from "./models/M3Napkin";
 import { M4Rounds } from "./models/M4Rounds";
 import { M5FollowOn } from "./models/M5FollowOn";
 import { M6Preferences } from "./models/M6Preferences";
+import { M7Price } from "./models/M7Price";
+import { Finale } from "./models/Finale";
 import styles from "./App.module.css";
 
 export default function App() {
@@ -17,6 +19,8 @@ export default function App() {
       <M4Rounds />
       <M5FollowOn />
       <M6Preferences />
+      <M7Price />
+      <Finale />
     </main>
   );
 }
