@@ -48,18 +48,18 @@ export function M5FollowOn() {
       <Wide label="Follow on, or a new bet">
         <div className={styles.versus}>
           <div>
-            <p className={styles.figLabel}>Follow on at {"$0.8M"} a square</p>
+            <p className={styles.figLabel}>Follow on: $1M ÷ $0.8M a square</p>
             <Blocks count={follow} color="you" label={`${follow} squares`} size={18} />
-            <p className={styles.versusNum} data-testid="follow-squares">{follow} squares</p>
+            <p className={styles.versusNum}>= <span data-testid="follow-squares">{follow} squares</span></p>
             <p className={styles.versusSub}>{twoUnknowns ? `× ${formatShare(survival)} survives = ${round2(followExpected)} on average` : "in a company that already got this far"}</p>
           </div>
           <div>
-            <p className={styles.figLabel}>New bet at $0.1M a square</p>
+            <p className={styles.figLabel}>New bet: $1M ÷ $0.1M a square</p>
             <span className={styles.stack}>
               <Blocks count={fresh} color="ghost" label="" size={18} />
               <span className={styles.stackOver}><Blocks count={freshExpected} color="a" label={`${round2(freshExpected)} squares on average`} size={18} /></span>
             </span>
-            <p className={styles.versusNum} data-testid="seed-squares">{fresh} squares</p>
+            <p className={styles.versusNum}>= <span data-testid="seed-squares">{fresh} squares</span></p>
             <p className={styles.versusSub}>× {oneIn(h)} comes good = {round2(freshExpected)} on average</p>
           </div>
         </div>
@@ -68,8 +68,10 @@ export function M5FollowOn() {
           <Slider label="Chance this company survives to a sale" value={s} stops={SURVIVAL_STOPS} format={formatShare} onChange={setS} />
         )}
         <Equation>
-          {twoUnknowns && <><Chip letter="s" /> × </>}1.25 = <Chip letter="h" /> × 10 → <Chip letter="h" /> ={" "}
-          <strong data-testid="crossover">{oneIn(cross)}</strong>
+          <span data-testid="m5-equation">
+            {twoUnknowns && <><Chip letter="s" /> × </>}1.25 = <Chip letter="h" /> × 10 → <Chip letter="h" /> ={" "}
+            {twoUnknowns && `${formatShare(survival)} × `}1.25 ÷ 10 = <strong data-testid="crossover">{oneIn(cross)}</strong>
+          </span>
         </Equation>
         <p className={styles.verdict} data-testid="m5-verdict" aria-live="polite">{verdict}</p>
         {!twoUnknowns && (

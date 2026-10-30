@@ -49,6 +49,11 @@ export function M1OneCheque() {
             <p className={styles.figLabel}>The company</p>
             <CompanyGrid label="A company of 100 squares: 90 founders', 10 yours" />
             <Legend ids={["you", "founders"]} />
+            <dl className={styles.facts}>
+              <div><dt>My squares</dt><dd data-testid="m1-squares"><span className={styles.muteInline}>$1M ÷ $0.1M = </span>10</dd></div>
+              <div><dt>My share</dt><dd data-testid="m1-share"><span className={styles.muteInline}>10 ÷ 100 = </span>10%</dd></div>
+              <div><dt>The company, at my price</dt><dd data-testid="m1-worth"><span className={styles.muteInline}>100 × $0.1M = </span>$10M</dd></div>
+            </dl>
           </div>
           <div className={styles.grow}>
             <Slider label="What the company sells for" value={sale} stops={EXIT_STOPS} format={formatMoney} onChange={setSale} />

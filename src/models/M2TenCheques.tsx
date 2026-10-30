@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { OTHERS, fundReturn } from "../model/portfolio";
 import { Blocks } from "../ui/Blocks";
+import { Equation } from "../ui/Equation";
 import { Prose, Rule, Section, Wide } from "../ui/Section";
 import { Slider } from "../ui/Slider";
 import styles from "./models.module.css";
 
 const SCALE = 50;
+/** The columns read left to right in these groups; `span` is how many columns each covers. */
+const GROUPS = [{ name: "lost", span: 5 }, { name: "money back", span: 2 }, { name: "3×", span: 2 }, { name: "winner", span: 1 }];
 
 export function M2TenCheques() {
   const [winner, setWinner] = useState(0);
@@ -34,25 +37,34 @@ export function M2TenCheques() {
             <div key={i} className={styles.column} data-winner={i === 9}>
               <Blocks count={r} color={i === 9 ? "you" : "ink"} label="" perRow={2} size={11} />
               <span className={styles.colBase} />
-              <span className={styles.colLabel}>{i === 9 ? "?" : r}</span>
+              <span className={styles.colLabel} data-testid={i === 9 ? "winner-label" : undefined}>{r}</span>
             </div>
+          ))}
+        </div>
+        <div className={styles.groups} aria-hidden>
+          {GROUPS.map((g) => (
+            <span key={g.name} style={{ gridColumn: `span ${g.span}` }} data-winner={g.name === "winner"}>{g.name}</span>
           ))}
         </div>
         <Slider label="What the winner returns, in blocks" value={winner} min={0} max={40} step={1}
           format={(v) => `${v}`} onChange={setWinner} />
+        <Equation>
+          <span data-testid="m2-sum">
+            {OTHERS.join(" + ")} + <span className={styles.youInline}>{winner}</span> ={" "}
+            <strong data-testid="fund-total">{total}</strong>
+          </span>
+        </Equation>
         <div className={styles.track} aria-hidden>
           <div className={styles.trackFill} style={{ width: `${(Math.min(total, SCALE) / SCALE) * 100}%` }} />
           <span className={styles.trackMark} style={{ left: `${(10 / SCALE) * 100}%` }}><b>10</b> the fund back</span>
           <span className={styles.trackMark} style={{ left: `${(30 / SCALE) * 100}%` }}><b>30</b> three times the fund</span>
         </div>
-        <p className={styles.verdict}>
-          Fund total: <span className={styles.big} data-testid="fund-total">{total}</span> blocks.{" "}
-          <span aria-live="polite">{verdict}</span>
-        </p>
+        <p className={styles.verdict} aria-live="polite">{verdict}</p>
       </Wide>
       <Prose>
         <p>
-          Push the winner to 2 blocks and the fund gets its money back. Push it to 22 and the fund triples.
+          Push the winner to 2 blocks and the fund gets its money back: 8 + 2 = 10. Push it to 22 and the fund
+          triples: 8 + 22 = 30.
         </p>
         <p>
           Now look at the other nine. If the two good ones had only given the money back, the total would drop by four

@@ -23,6 +23,27 @@ export function M6Preferences() {
     const invested = TABLE.find((h) => h.id === id)!.invested;
     return paid[id] < invested - 1e-9 ? "part of the money back" : "money back";
   };
+  // The sum behind each payout, in squares and money the reader can recount.
+  const takers = TABLE.filter((h) => has(h.id) && !switched.includes(h.id));
+  const owed = takers.reduce((m, h) => m + h.invested, 0);
+  const sharing = TABLE.filter((h) => !takers.includes(h)).reduce((n, h) => n + h.shares, 0);
+  const pool = Math.max(sale - owed, 0);
+  const poolLine =
+    sale === 0 ? "Nothing to split."
+    : sale < owed ? `${formatMoney(sale)} sale is less than the ${formatMoney(owed)} put in: the investors split it by what they put in`
+    : owed === 0 ? `Nobody takes money back: the ${formatMoney(sale)} sale is split over all ${sharing} squares`
+    : `${formatMoney(sale)} sale − ${formatMoney(owed)} taken back first = ${formatMoney(pool)} left, split over ${sharing} squares`;
+  const work = (id: HolderId) => {
+    const h = TABLE.find((x) => x.id === id)!;
+    if (sale === 0) return "nothing to split";
+    if (takers.includes(h)) {
+      if (sale >= owed) return `the ${formatMoney(h.invested)} put in`;
+      return h.invested === owed ? `all of the ${formatMoney(sale)} sale` : `${h.invested}/${owed} of the ${formatMoney(sale)} sale`;
+    }
+    if (pool === 0) return "nothing left";
+    if (h.shares === sharing) return `all of the ${formatMoney(pool)} left`;
+    return owed === 0 ? `${h.shares}/${sharing} of the ${formatMoney(sale)} sale` : `${h.shares}/${sharing} of the ${formatMoney(pool)} left`;
+  };
   return (
     <Section n={6} title="Who gets paid first">
       <Prose>
@@ -57,13 +78,17 @@ export function M6Preferences() {
             <span key={id} style={{ width: sale > 0 ? `${(paid[id] / sale) * 100}%` : 0, background: COLOR[id] }} />
           ))}
         </div>
+        <p className={styles.poolLine} data-testid="m6-pool">{poolLine}</p>
         <table className={styles.payTable}>
           <caption className={styles.srOnly}>How a {formatMoney(sale)} sale is split</caption>
           <tbody>
             {ORDER.map((id) => (
               <tr key={id}>
                 <th scope="row"><span className={styles.swatchInline} style={{ background: COLOR[id] }} />{NAMES[id]}</th>
-                <td className={styles.how} data-testid={`how-${id}`}>{how(id)}</td>
+                <td className={styles.how}>
+                  <span data-testid={`how-${id}`}>{how(id)}</span>
+                  <span className={styles.work} data-testid={`work-${id}`}>{work(id)}</span>
+                </td>
                 <td data-testid={`paid-${id}`}>{formatMoney(paid[id])}</td>
               </tr>
             ))}

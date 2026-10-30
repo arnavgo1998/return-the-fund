@@ -44,15 +44,24 @@ export function M3Napkin() {
           does this company have to get for my share of it, alone, to pay back the whole fund?
         </p>
         <p>
-          Call the fund <Chip letter="F" />. My share of the sale is share × <Chip letter="E" />. Set them equal and
-          divide.
+          Call the fund <Chip letter="F" /> and the sale <Chip letter="E" />. What comes back to me is my share
+          × <Chip letter="E" />, the same sum as Model 1. For my share alone to give the whole fund back, that has to
+          equal <Chip letter="F" />. Then divide both sides by my share, and the sale I need falls out.
         </p>
       </Prose>
       <Wide label="The napkin sum">
-        <Equation><Chip letter="E" /> = <Chip letter="F" /> ÷ share</Equation>
-        <Equation>
-          {formatMoney(fund)} ÷ {formatShare(share)} = <strong data-testid="exit-needed">{formatMoney(needed)}</strong>
-        </Equation>
+        <div className={styles.derive}>
+          <p className={styles.figLabel}>In words</p>
+          <p className={styles.figLabel}>In numbers</p>
+          <Equation><span data-testid="napkin-words-1">my share × <Chip letter="E" /> = <Chip letter="F" /></span></Equation>
+          <Equation><span data-testid="napkin-numbers-1">{formatShare(share)} × <Chip letter="E" /> = {formatMoney(fund)}</span></Equation>
+          <Equation><span data-testid="napkin-words-2"><Chip letter="E" /> = <Chip letter="F" /> ÷ my share</span></Equation>
+          <Equation>
+            <span data-testid="napkin-numbers-2">
+              <Chip letter="E" /> = {formatMoney(fund)} ÷ {formatShare(share)} = <strong data-testid="exit-needed">{formatMoney(needed)}</strong>
+            </span>
+          </Equation>
+        </div>
         <div className={styles.sliders}>
           <Slider label="The fund" value={fund} stops={FUND_STOPS} format={formatMoney} onChange={setFund} />
           <Slider label="My share of the company" value={share} stops={SHARE_STOPS} format={formatShare} onChange={setShare} />
@@ -61,14 +70,21 @@ export function M3Napkin() {
           { value: today, label: `today ${formatMoney(today)}` },
           { value: needed, label: `needed ${formatMoney(needed)}`, strong: true },
         ]} />
-        <p className={styles.verdict}>
-          The company has to grow {Math.round(needed / today)}× from the price I paid, just to give the fund back once.
-        </p>
+        <dl className={styles.facts}>
+          <div>
+            <dt>The company today, at the price I pay</dt>
+            <dd data-testid="napkin-today"><span className={styles.muteInline}>{formatMoney(CHEQUE)} ÷ {formatShare(share)} = </span>{formatMoney(today)}</dd>
+          </div>
+          <div>
+            <dt>How much it has to grow, just to give the fund back once</dt>
+            <dd data-testid="napkin-growth"><span className={styles.muteInline}>{formatMoney(needed)} ÷ {formatMoney(today)} = </span>{Math.round(needed / today)}×</dd>
+          </div>
+        </dl>
       </Wide>
       <Prose>
         <p>
-          That's the napkin. A $10M fund that owns 10% needs a $100M company. Slide the fund to $100M: at 10%, it needs
-          a $1B company.
+          That's the napkin. A $10M fund that owns 10% needs a $100M company: check it the other way round, 10% of
+          $100M is $10M. Slide the fund to $100M: at 10%, it needs a $1B company.
         </p>
         <p>
           This is why every investor asks some version of the same question in the first meeting: <em>can this be a

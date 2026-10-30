@@ -20,4 +20,11 @@ describe("Model 1: one cheque", () => {
     render(<M1OneCheque />);
     expect(screen.getByText("The most you can lose is the cheque. What you can win is your share × the sale, with no ceiling.")).toBeTruthy();
   });
+
+  it("shows where the 10 squares, the 10% and the $10M come from", () => {
+    render(<M1OneCheque />);
+    expect(screen.getByTestId("m1-squares").textContent).toBe("$1M ÷ $0.1M = 10");
+    expect(screen.getByTestId("m1-share").textContent).toBe("10 ÷ 100 = 10%");
+    expect(screen.getByTestId("m1-worth").textContent).toBe("100 × $0.1M = $10M");
+  });
 });

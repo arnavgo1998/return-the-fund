@@ -14,4 +14,18 @@ describe("Model 3: the napkin sum", () => {
     render(<M3Napkin />);
     expect(screen.getByText("Before you write the cheque, divide the fund by your share. If the company can't plausibly be worth that, the cheque can't matter.")).toBeTruthy();
   });
+
+  it("writes the sum the same way round in words and in numbers", () => {
+    render(<M3Napkin />);
+    expect(screen.getByTestId("napkin-words-1").textContent).toBe("my share × E = F");
+    expect(screen.getByTestId("napkin-numbers-1").textContent).toBe("10% × E = $10M");
+    expect(screen.getByTestId("napkin-words-2").textContent).toBe("E = F ÷ my share");
+    expect(screen.getByTestId("napkin-numbers-2").textContent).toBe("E = $10M ÷ 10% = $100M");
+  });
+
+  it("shows today's price and the growth needed as divisions", () => {
+    render(<M3Napkin />);
+    expect(screen.getByTestId("napkin-today").textContent).toBe("$1M ÷ 10% = $10M");
+    expect(screen.getByTestId("napkin-growth").textContent).toBe("$100M ÷ $10M = 10×");
+  });
 });

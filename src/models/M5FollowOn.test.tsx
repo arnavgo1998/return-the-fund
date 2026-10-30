@@ -38,4 +38,14 @@ describe("Model 5: follow on, or a new bet", () => {
     render(<M5FollowOn />);
     expect(screen.getByText("Follow on when your odds on a fresh bet are worse than the old price ÷ the new price. Prepare widely, then concentrate on what's working.")).toBeTruthy();
   });
+
+  it("shows the division behind each pile of squares and the crossover", () => {
+    render(<M5FollowOn />);
+    expect(screen.getByText(/\$1M ÷ \$0\.8M a square/)).toBeTruthy();
+    expect(screen.getByText(/\$1M ÷ \$0\.1M a square/)).toBeTruthy();
+    expect(screen.getByTestId("m5-equation").textContent).toBe("1.25 = h × 10 → h = 1.25 ÷ 10 = 1 in 8");
+    fireEvent.click(screen.getByRole("button", { name: /one more unknown/i }));
+    fireEvent.change(screen.getByRole("slider", { name: /survives/i }), { target: { value: String(SURVIVAL_STOPS.indexOf(0.5)) } });
+    expect(screen.getByTestId("m5-equation").textContent).toBe("s × 1.25 = h × 10 → h = 50% × 1.25 ÷ 10 = 1 in 16");
+  });
 });

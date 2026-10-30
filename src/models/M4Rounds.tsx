@@ -3,7 +3,7 @@ import { ROUND_A, ROUND_B, capTable, postMoney, preMoney, shareOf, totalShares }
 import { formatMoney, formatShare } from "../model/format";
 import { exitNeeded } from "../model/napkin";
 import { Blocks } from "../ui/Blocks";
-import { Legend } from "../ui/Legend";
+import { COLOR, NAMES } from "../ui/players";
 import { Aside, Prose, Rule, Section, Wide } from "../ui/Section";
 import { useWide } from "../ui/useWide";
 import styles from "./models.module.css";
@@ -28,8 +28,8 @@ export function M4Rounds() {
         </p>
         <p>
           Companies raise more money. The new investor doesn't buy my squares, or the founders'. The company makes
-          new squares and sells those. In Series A, someone pays $5M for 25 new squares: $0.2M a square, twice what I
-          paid. In Series B, someone else pays $20M for 25 more: $0.8M a square.
+          new squares and sells those. In Series A, someone pays $5M for 25 new squares: $5M ÷ 25 = $0.2M a square,
+          twice the $0.1M I paid. In Series B, someone else pays $20M for 25 more: $20M ÷ 25 = $0.8M a square.
         </p>
       </Prose>
       <Wide label="The company through three rounds">
@@ -39,32 +39,58 @@ export function M4Rounds() {
           ))}
         </div>
         <div className={styles.split}>
-          <div>
-            <span role="img" className={styles.capGrid} style={{ gridTemplateColumns: `repeat(${perRow}, 13px)` }}
-              aria-label={`${total} squares: ${table.map((h) => `${h.shares} ${h.id}`).join(", ")}`}>
-              {table.map((h) => <Blocks key={h.id} count={h.shares} color={h.id} label="" />)}
-            </span>
-            <Legend ids={table.map((h) => h.id)} />
-          </div>
-          <dl className={styles.facts}>
-            <div><dt>Squares in the company</dt><dd data-testid="total-squares">{total}</dd></div>
-            <div><dt>Mine</dt><dd>10</dd></div>
-            <div><dt>My share</dt><dd><span className={styles.muteInline}>10 ÷ {total} = </span><span data-testid="your-share">{formatShare(share)}</span></dd></div>
-            {before && (
-              <>
-                <div><dt>Price of a square</dt><dd>{formatMoney(round.price)}</dd></div>
-                <div>
-                  <dt>Before the money <span className={styles.term}>pre-money</span></dt>
-                  <dd><span className={styles.muteInline}>{totalShares(before)} × {formatMoney(round.price)} = </span><span data-testid="pre-money">{formatMoney(preMoney(before, round))}</span></dd>
-                </div>
-                <div>
-                  <dt>After the money <span className={styles.term}>post-money</span></dt>
-                  <dd><span className={styles.muteInline}>{total} × {formatMoney(round.price)} = </span><span data-testid="post-money">{formatMoney(postMoney(before, round))}</span></dd>
-                </div>
-              </>
-            )}
-          </dl>
+          <span role="img" className={styles.capGrid} style={{ gridTemplateColumns: `repeat(${perRow}, 13px)` }}
+            aria-label={`${total} squares: ${table.map((h) => `${h.shares} ${NAMES[h.id]}`).join(", ")}`}>
+            {table.map((h) => <Blocks key={h.id} count={h.shares} color={h.id} label="" />)}
+          </span>
+          <table className={styles.capTable}>
+            <caption className={styles.srOnly}>Who owns the company after {STAGES.find((s) => s.id === stage)!.name}</caption>
+            <thead>
+              <tr><th scope="col">Who</th><th scope="col">Paid</th><th scope="col">÷ Price of a square</th><th scope="col">= Squares</th><th scope="col">Share</th></tr>
+            </thead>
+            <tbody>
+              {table.map((h) => (
+                <tr key={h.id}>
+                  <th scope="row"><span className={styles.swatchInline} style={{ background: COLOR[h.id] }} />{NAMES[h.id]}</th>
+                  {h.invested > 0 ? (
+                    <>
+                      <td data-testid={`cap-paid-${h.id}`}>{formatMoney(h.invested)}</td>
+                      <td data-testid={`cap-price-${h.id}`}>{formatMoney(h.invested / h.shares)}</td>
+                    </>
+                  ) : (
+                    <td colSpan={2} className={styles.capNote}>started the company</td>
+                  )}
+                  <td data-testid={`cap-squares-${h.id}`}>{h.shares}</td>
+                  <td>
+                    <span className={styles.capWorking}>{h.shares} ÷ {total} = </span>
+                    <span data-testid={h.id === "you" ? "your-share" : `cap-share-${h.id}`}>{formatShare(shareOf(table, h.id))}</span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+            <tfoot>
+              <tr>
+                <th scope="row">All</th>
+                <td data-testid="cap-paid-total">{formatMoney(table.reduce((m, h) => m + h.invested, 0))}</td>
+                <td />
+                <td data-testid="total-squares">{total}</td>
+                <td>100%</td>
+              </tr>
+            </tfoot>
+          </table>
         </div>
+        {before && (
+          <dl className={`${styles.facts} ${styles.factsWide}`}>
+            <div>
+              <dt>Before the money <span className={styles.term}>pre-money</span></dt>
+              <dd><span className={styles.muteInline}>{totalShares(before)} squares × {formatMoney(round.price)} = </span><span data-testid="pre-money">{formatMoney(preMoney(before, round))}</span></dd>
+            </div>
+            <div>
+              <dt>After the money <span className={styles.term}>post-money</span></dt>
+              <dd><span className={styles.muteInline}>{total} squares × {formatMoney(round.price)} = </span><span data-testid="post-money">{formatMoney(postMoney(before, round))}</span></dd>
+            </div>
+          </dl>
+        )}
         <div className={styles.napkinStrip}>
           <p className={styles.figLabel}>The napkin, with the share I'll have now</p>
           <p className={styles.napkinLine}>$10M fund ÷ {formatShare(share)} = <strong data-testid="exit-small">{formatMoney(exitNeeded(10, share))}</strong></p>

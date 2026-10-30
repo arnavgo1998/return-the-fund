@@ -35,4 +35,28 @@ describe("Model 4: other investors arrive", () => {
     render(<M4Rounds />);
     expect(screen.getByText("Every round adds squares and never removes yours. Use the share you'll have at the end.")).toBeTruthy();
   });
+
+  it("shows what every investor paid, at what price, for how many squares", () => {
+    render(<M4Rounds />);
+    fireEvent.click(screen.getByRole("button", { name: "Series B" }));
+    expect(t("cap-paid-you")).toBe("$1M");
+    expect(t("cap-price-you")).toBe("$0.1M");
+    expect(t("cap-squares-you")).toBe("10");
+    expect(t("cap-paid-a")).toBe("$5M");
+    expect(t("cap-price-a")).toBe("$0.2M");
+    expect(t("cap-squares-a")).toBe("25");
+    expect(t("cap-paid-b")).toBe("$20M");
+    expect(t("cap-price-b")).toBe("$0.8M");
+    expect(t("cap-share-b")).toBe("16.7%");
+    expect(t("cap-share-founders")).toBe("60%");
+    expect(t("cap-paid-total")).toBe("$26M");
+  });
+
+  it("only lists investors who have arrived", () => {
+    render(<M4Rounds />);
+    expect(screen.queryByTestId("cap-paid-a")).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "Series A" }));
+    expect(t("cap-paid-a")).toBe("$5M");
+    expect(screen.queryByTestId("cap-paid-b")).toBeNull();
+  });
 });

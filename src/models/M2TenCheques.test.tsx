@@ -13,11 +13,29 @@ describe("Model 2: ten cheques", () => {
     render(<M2TenCheques />);
     fireEvent.change(screen.getByRole("slider", { name: /winner returns/i }), { target: { value: "22" } });
     expect(screen.getByTestId("fund-total").textContent).toBe("30");
-    expect(screen.getByText(/3×/)).toBeTruthy();
+    expect(screen.getByText(/comes back 3×/)).toBeTruthy();
   });
 
   it("states the rule", () => {
     render(<M2TenCheques />);
     expect(screen.getByText("One company has to carry the fund. The rest barely matter.")).toBeTruthy();
+  });
+
+  it("labels the winner's column with what it returns, not a question mark", () => {
+    render(<M2TenCheques />);
+    fireEvent.change(screen.getByRole("slider", { name: /winner returns/i }), { target: { value: "22" } });
+    expect(screen.getByTestId("winner-label").textContent).toBe("22");
+    expect(screen.queryByText("?")).toBeNull();
+  });
+
+  it("writes the fund total out as a sum of the ten columns", () => {
+    render(<M2TenCheques />);
+    fireEvent.change(screen.getByRole("slider", { name: /winner returns/i }), { target: { value: "22" } });
+    expect(screen.getByTestId("m2-sum").textContent).toBe("0 + 0 + 0 + 0 + 0 + 1 + 1 + 3 + 3 + 22 = 30");
+  });
+
+  it("names each group of columns", () => {
+    render(<M2TenCheques />);
+    for (const g of ["lost", "money back", "3×", "winner"]) expect(screen.getByText(g)).toBeTruthy();
   });
 });

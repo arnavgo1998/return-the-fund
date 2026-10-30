@@ -31,4 +31,15 @@ describe("Model 7: other investors set the price", () => {
     render(<M7Price />);
     expect(screen.getByText("Paying up halves your squares and doubles the exit you need. Money held back is worth most when everyone else is scared.")).toBeTruthy();
   });
+
+  it("shows the division behind every number", () => {
+    render(<M7Price />);
+    fireEvent.click(screen.getByRole("button", { name: "Hot deal" }));
+    expect(t("first-working-7")).toBe("$1M ÷ $0.2M =");
+    expect(t("share-end-7")).toBe("5 ÷ 150 = 3.33%");
+    expect(t("napkin-7")).toBe("$10M ÷ 3.33% = $300M");
+    fireEvent.click(screen.getByRole("button", { name: "Cold market" }));
+    expect(t("follow-working-7")).toBe("$1M ÷ $0.3M =");
+    expect(t("crossover-working-7")).toBe("$0.1M ÷ $0.3M = 1 in 3");
+  });
 });
