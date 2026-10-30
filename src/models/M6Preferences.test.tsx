@@ -10,7 +10,7 @@ const paid = (id: string) => screen.getByTestId(`paid-${id}`).textContent;
 describe("Model 6: who gets paid first", () => {
   it("starts with Series B alone, switching at the price it paid", () => {
     render(<M6Preferences />);
-    expect(screen.getByRole("button", { name: /only series b/i }).getAttribute("aria-pressed")).toBe("true");
+    expect(screen.getByRole("button", { name: /only blake/i }).getAttribute("aria-pressed")).toBe("true");
     expect(screen.getByTestId("switch-b").textContent).toBe("$120M");
   });
 
@@ -42,7 +42,7 @@ describe("Model 6: who gets paid first", () => {
 
   it("states the rule", () => {
     render(<M6Preferences />);
-    expect(screen.getByText("Below the last round's price, preferences decide who gets paid. Above it, only shares matter — and above it is where a fund is made.")).toBeTruthy();
+    expect(screen.getByText("Below the last round's price, preferences decide who gets paid. Above it, only squares count, and that is where a fund makes its money.")).toBeTruthy();
   });
 
   it("shows the working behind every payout", () => {
@@ -103,5 +103,16 @@ describe("Model 6: who gets paid first", () => {
     setSale(60);
     expect(screen.getByTestId("why-you").textContent).toBe("no promise to choose");
     expect(screen.getByTestId("work-you").textContent).toBe("10 squares × $0.32M");
+  });
+
+  it("names the investors and shows what each one holds", () => {
+    render(<M6Preferences />);
+    const t = (id: string) => screen.getByTestId(id).textContent;
+    expect(t("holds-you")).toBe("10 squares for $1M");
+    expect(t("holds-a")).toBe("25 squares for $5M");
+    expect(t("holds-b")).toBe("25 squares for $20M");
+    expect(t("holds-founders")).toBe("90 squares");
+    expect(screen.getByText("Alex (Series A)")).toBeTruthy();
+    expect(screen.getByText("Blake (Series B)")).toBeTruthy();
   });
 });

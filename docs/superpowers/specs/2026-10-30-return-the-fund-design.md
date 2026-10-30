@@ -106,7 +106,7 @@ Units: $M. One company is followed throughout ("the company"). The reader is a s
 
 ## Voice
 
-First person learner, Arnav's notebook. Claude drafts all prose; Arnav will rewrite it in his voice before sharing. Allowed asides: "This is where I got lost the first time…". Kupor, Bernstein, Thiel quoted sparingly and attributed.
+Revised after review (2026-10-30): plain, educational second person, addressed to *you*, the investor in the models. No diary voice and no AI tells (punchy fragments, colon reveals, em dashes, "not X but Y"). Series A and B investors are named Alex and Blake. Money is drawn as $1M notes, shares as squares. Kupor, Bernstein, Thiel quoted sparingly and attributed.
 
 ## Constraints
 

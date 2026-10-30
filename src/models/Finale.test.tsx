@@ -18,8 +18,8 @@ describe("The napkin", () => {
 
   it("never lets the cheque be bigger than the company", () => {
     render(<Finale />);
-    fireEvent.change(screen.getByRole("slider", { name: /my cheque/i }), { target: { value: String(CHEQUE_STOPS.indexOf(10)) } });
-    const post = screen.getByRole("slider", { name: /company after my money/i }).getAttribute("aria-valuetext");
+    fireEvent.change(screen.getByRole("slider", { name: /your cheque/i }), { target: { value: String(CHEQUE_STOPS.indexOf(10)) } });
+    const post = screen.getByRole("slider", { name: /company after your money/i }).getAttribute("aria-valuetext");
     expect(post).toBe("$15M");
     expect(screen.queryByText(/= 100%/)).toBeNull();
   });

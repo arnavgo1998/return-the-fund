@@ -24,12 +24,10 @@ export function M4Rounds() {
     <Section n={4} title="Other investors arrive">
       <Prose>
         <p>
-          So far I've pretended my 10% stays 10%. It doesn't, and this is the part I never properly understood.
+          So far your 10% has stayed at 10%. In practice it shrinks every time the company raises money.
         </p>
         <p>
-          Companies raise more money. The new investor doesn't buy my squares, or the founders'. The company makes
-          new squares and sells those. In Series A, someone pays $5M for 25 new squares: $5M ÷ 25 = $0.2M a square,
-          twice the $0.1M I paid. In Series B, someone else pays $20M for 25 more: $20M ÷ 25 = $0.8M a square.
+          When a company raises a new round, the new investor does not buy squares from you or from the founders. The company creates new squares and sells those. In Series A, Alex pays $5M for 25 new squares: $5M ÷ 25 = $0.2M a square, twice the $0.1M you paid. In Series B, Blake pays $20M for 25 more: $20M ÷ 25 = $0.8M a square.
         </p>
       </Prose>
       <Wide label="The company through three rounds">
@@ -92,30 +90,26 @@ export function M4Rounds() {
           </dl>
         )}
         <div className={styles.napkinStrip}>
-          <p className={styles.figLabel}>The napkin, with the share I'll have now</p>
+          <p className={styles.figLabel}>The napkin sum, with your share after this round</p>
           <p className={styles.napkinLine}>$10M fund ÷ {formatShare(share)} = <strong data-testid="exit-small">{formatMoney(exitNeeded(10, share))}</strong></p>
           <p className={styles.napkinLine}>$100M fund ÷ {formatShare(share)} = <strong data-testid="exit-big">{formatMoney(exitNeeded(100, share))}</strong></p>
         </div>
       </Wide>
       <Prose>
         <p>
-          Click through the rounds. My ten squares never move. The company just keeps getting bigger around them, so
-          each square is a smaller slice. Investors call this dilution. I'd been picturing someone taking part of my
-          stake. Nobody takes anything. There's just more company.
+          Step through the rounds. Your 10 squares stay the same, but the company grows from 100 squares to 125 and then 150, so each square is a smaller part of it. This is called dilution. Nothing is taken from you. The company is simply cut into more squares.
         </p>
         <p>
-          Two words I'd seen a hundred times finally made sense here. The price of a square times the squares that
-          existed before the round is the <em>pre-money</em> value. Add the new squares and it's the <em>post-money</em>{" "}
-          value. That's all they are. And back in Model 1, my $1M at $0.1M a square was the same thing: a $10M post-money
-          company.
+          The table also defines two common terms. The price of a square in a round, times the squares that existed before the round, is the <em>pre-money</em> value. The same price times all the squares after the round is the <em>post-money</em>{" "}value. Your $1M at $0.1M a square in Model 1 set a post-money value of $10M.
         </p>
         <p>
-          It also breaks my napkin. I was dividing by the share I bought. I should divide by the share I'll still have
-          when the company sells. For a $100M fund, the $1B company becomes $1.25B after Series A and $1.5B after Series B.
+          Dilution changes the napkin sum. The right share to divide by is the one you will still hold when the company is sold. For a $100M fund, the $1B target becomes $1.25B after Series A and $1.5B after Series B.
         </p>
       </Prose>
       <Aside>
-        <p>Real companies also set aside squares for employees, which dilutes everyone a little more. I've left that out to keep one variable at a time.</p>
+        <p>
+          Real companies also set aside squares for employees, called an option pool, which dilutes everyone a little more. It is left out here so that each model adds only one new variable.
+        </p>
       </Aside>
       <Rule>Every round adds squares and never removes yours. Use the share you'll have at the end.</Rule>
     </Section>

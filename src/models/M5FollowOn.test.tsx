@@ -36,7 +36,7 @@ describe("Model 5: follow on, or a new bet", () => {
 
   it("states the rule", () => {
     render(<M5FollowOn />);
-    expect(screen.getByText("Follow on when your odds on a fresh bet are worse than the old price ÷ the new price. Prepare widely, then concentrate on what's working.")).toBeTruthy();
+    expect(screen.getByText("Follow on when a fresh bet's chance of getting this far is lower than the old price ÷ the new price.")).toBeTruthy();
   });
 
   it("shows the division behind each pile of squares and the crossover", () => {
@@ -54,7 +54,7 @@ describe("Model 5: follow on, or a new bet", () => {
     expect(screen.getByText(/break-even odds/i)).toBeTruthy();
     setH(0.02);
     expect(screen.getByTestId("crossover").textContent).toBe("1 in 8");
-    expect(screen.getByTestId("m5-verdict").textContent).toMatch(/My guess, 1 in 50, is a longer shot than break-even, 1 in 8/);
+    expect(screen.getByTestId("m5-verdict").textContent).toMatch(/Your guess, 1 in 50, is a longer shot than break-even, 1 in 8/);
     expect(screen.getByRole("slider", { name: /h, the chance/ })).toBeTruthy();
   });
 });

@@ -8,7 +8,7 @@ import styles from "./models.module.css";
 
 export const CHEQUE_STOPS = [0.25, 0.5, 1, 2, 3, 5, 10];
 const POST_STOPS = [2, 5, 10, 15, 20, 30, 50, 100];
-/** The company after my money is always worth more than my money: the founders keep something. */
+/** The company after your money is always worth more than your money: the founders keep something. */
 const postStopsFor = (cheque: number) => POST_STOPS.filter((p) => p > cheque);
 const SOLD_STOPS = [0.1, 0.15, 1 / 6, 0.2, 0.25, 0.3];
 const MAX_ROUNDS = 4;
@@ -30,18 +30,17 @@ export function Finale() {
     <Section title="The napkin">
       <Prose>
         <p>
-          Here is everything above, folded into the sum I can now do on a napkin before any cheque: what I buy, what
-          I'll still own when the company sells, and what that sale has to be.
+          The calculator below combines every model into one sum an investor can do before writing a cheque: the share you buy, the share left after later rounds, and the sale that share needs.
         </p>
       </Prose>
       <Wide label="The napkin calculator">
         <div className={styles.napkin}>
           <div className={styles.sliders}>
             <Slider label="The fund" letter="F" value={fund} stops={FUND_STOPS} format={formatMoney} onChange={setFund} />
-            <Slider label="My cheque" value={cheque} stops={CHEQUE_STOPS} format={formatMoney} onChange={chooseCheque} />
-            <Slider label="The company after my money" value={post} stops={postStopsFor(cheque)} format={formatMoney} onChange={setPost} />
+            <Slider label="Your cheque" value={cheque} stops={CHEQUE_STOPS} format={formatMoney} onChange={chooseCheque} />
+            <Slider label="The company after your money" value={post} stops={postStopsFor(cheque)} format={formatMoney} onChange={setPost} />
           </div>
-          <p className={styles.figLabel}>Rounds after mine, and how much of the company each sells</p>
+          <p className={styles.figLabel}>Rounds after yours, and how much of the company each sells</p>
           {rounds.map((r, i) => (
             <Slider key={i} label={`Round ${i + 1} sells`} value={r} stops={SOLD_STOPS} format={formatShare} onChange={(v) => setRound(i, v)} />
           ))}
@@ -52,7 +51,7 @@ export function Finale() {
               onClick={() => setRounds((r) => r.slice(0, -1))}>Remove a round</button>
           </div>
           <div className={styles.napkinSum} aria-live="polite">
-            <p>I buy {formatMoney(cheque)} ÷ {formatMoney(post)} = <strong>{formatShare(start)}</strong></p>
+            <p>You buy {formatMoney(cheque)} ÷ {formatMoney(post)} = <strong>{formatShare(start)}</strong></p>
             {rounds.length > 0 && (
               <p>
                 × {rounds.map((r) => `(1 − ${formatShare(r)})`).join(" × ")} ={" "}
@@ -64,7 +63,7 @@ export function Finale() {
               {formatMoney(fund)} ÷ {formatShare(end)} = <strong data-testid="napkin-exit">{formatMoney(needed)}</strong>
             </p>
             <p className={styles.versusSub}>
-              The sale this company needs for my share alone to give the whole fund back.
+              The sale this company needs for your share alone to return the whole fund.
               {rounds.length > 0 && " Below the last round's price, every investor takes their money back before the founders' squares are paid."}
             </p>
           </div>
@@ -72,29 +71,21 @@ export function Finale() {
       </Wide>
       <Prose>
         <p>
-          That's the model. It started with $1M that could only ever be lost once, against a sale with no
-          ceiling. Every step after that added one unknown: ten cheques and the one that carries them, the napkin, more
-          squares, more money into the winner, who gets paid first, what the price does.
+          The models started with a $1M cheque that could only be lost once, against a sale with no upper limit. Each step added one unknown: ten cheques and the one that carries them, the napkin sum, dilution, follow-on cheques, liquidation preferences and the price itself.
         </p>
         <p>
-          What surprised me most is where the work sits. Almost all of it happens before the cheque: the price, the
-          share I'll keep, what the company has to become, who stands in front of me. After the cheque, the sum only
-          cares about one more decision: when one company starts to look like <em>the</em> one, put more in. Prepare
-          widely. Then commit.
-        </p>
-        <p>
-          I wrote this to check that I'd understood the book. If I've got something wrong, I'd like to know.
+          Most of the work happens before the cheque. The price, the share you will keep, the size the company has to reach and the investors ahead of you can all be worked out in advance. After the cheque, the main decision left is whether to put more money into the company that starts to look like the winner.
         </p>
       </Prose>
       <div className={styles.reading}>
-        <p className={styles.figLabel}>Read these</p>
+        <p className={styles.figLabel}>Further reading</p>
         <ul>
-          <li>Scott Kupor, <em>Secrets of Sand Hill Road</em>. The book this notebook works through.</li>
+          <li>Scott Kupor, <em>Secrets of Sand Hill Road</em>. The source for every model on this page.</li>
           <li>Peter L. Bernstein, <em>Against the Gods</em>. On why a known downside and an unknown upside are different things.</li>
           <li>Peter Thiel with Blake Masters, <em>Zero to One</em>. On the power law: one company carrying the fund.</li>
           <li>
             Chain Bear, <a href="https://www.youtube.com/watch?v=TNQuUZYHJdE"><em>Building an F1 Strategy from the Bare Basics</em></a>.
-            The method: start tiny, add one variable at a time.
+            The method used here: start small and add one variable at a time.
           </li>
         </ul>
       </div>

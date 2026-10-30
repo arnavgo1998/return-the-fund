@@ -27,13 +27,10 @@ export function M7Price() {
     <Section n={7} title="Other investors set the price">
       <Prose>
         <p>
-          Every model so far handed me the price. Nobody hands you the price. Other investors want the same companies,
-          and the price moves with how many of them want in, and how brave they're feeling.
+          Every model so far has fixed the price. In practice the price depends on how many investors want into a company and how confident the market feels.
         </p>
         <p>
-          Two cases. In a <strong>hot deal</strong>, a rival fund offers the founders $0.2M a square at seed, and to win
-          I have to match it. In a <strong>cold market</strong>, Series B happens in a downturn, when most investors are
-          scared, and prices at $0.3M a square instead of $0.8M.
+          Take two cases. In a <strong>hot deal</strong>, a rival fund offers the founders $0.2M a square at seed, and you have to match it to invest. In a <strong>cold market</strong>, Series B happens during a downturn and is priced at $0.3M a square instead of $0.8M.
         </p>
       </Prose>
       <Wide label="What the price does">
@@ -44,7 +41,7 @@ export function M7Price() {
         </div>
         <div className={styles.versus}>
           <div>
-            <p className={styles.figLabel}>My first $1M, at {formatMoney(m.seed)} a square</p>
+            <p className={styles.figLabel}>Your first $1M, at {formatMoney(m.seed)} a square</p>
             <Blocks count={first} color="you" label={squares(first)} size={18} />
             <p className={styles.versusNum}>
               <span className={styles.muteInline} data-testid="first-working-7">$1M ÷ {formatMoney(m.seed)} =</span>{" "}
@@ -61,7 +58,7 @@ export function M7Price() {
             </p>
           </div>
           <div>
-            <p className={styles.figLabel}>My reserve $1M, at {formatMoney(m.b)} a square</p>
+            <p className={styles.figLabel}>Your reserve $1M, at {formatMoney(m.b)} a square</p>
             <Blocks count={follow} color="you" label={squares(follow)} size={18} />
             <p className={styles.versusNum}>
               <span className={styles.muteInline} data-testid="follow-working-7">$1M ÷ {formatMoney(m.b)} =</span>{" "}
@@ -77,22 +74,16 @@ export function M7Price() {
       </Wide>
       <Prose>
         <p>
-          In the hot deal my $1M buys 5 squares instead of 10. Every round after that dilutes those 5 exactly as before,
-          so I end up with half the share, and the napkin doubles: the company now has to sell for $300M to give my fund
-          back, not $150M. Paying up isn't wrong. It just has to be paid for by a bigger company.
+          In the hot deal, $1M buys 5 squares instead of 10. Later rounds dilute those 5 squares exactly as before, so your final share halves and the sale the fund needs doubles, from $150M to $300M. Paying more can still be the right call, but only if the company can grow larger to match.
         </p>
         <p>
-          In the cold market it runs the other way. My reserve $1M buys 3.33 squares instead of 1.25, and the
-          follow-on break-even jumps from 1 in 8 to 1 in 3. I don't believe one in three of my fresh bets get this far,
-          so the follow-on wins easily. The money I held back is worth most exactly when nobody else wants to spend theirs.
+          In the cold market the effect runs the other way. The reserve $1M buys 3.33 squares instead of 1.25, and the follow-on break-even rises from 1 in 8 to 1 in 3. Few seed bets have a one-in-three chance of getting this far, so the follow-on wins clearly. Reserves buy the most when other investors are holding back.
         </p>
         <p>
-          This is where "risk without gambling" finally became concrete for me. A gambler asks whether this one will win.
-          The questions here are different: what does a square cost, how many will I still have, what must the company
-          be worth, who is ahead of me? Every one of them can be answered before the cheque. Only <em>E</em> can't.
+          Almost every question in these models can be answered before the cheque is written: the price of a square, how many squares you will keep, how large the company must become, and who is paid ahead of you. The sale price <em>E</em> is the one number that cannot be known in advance.
         </p>
       </Prose>
-      <Rule>Paying up halves your squares and doubles the exit you need. Money held back is worth most when everyone else is scared.</Rule>
+      <Rule>Paying twice the price halves your squares and doubles the sale you need. Reserves buy the most squares when prices fall.</Rule>
     </Section>
   );
 }

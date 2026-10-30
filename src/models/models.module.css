@@ -177,3 +177,6 @@
   .payTable { font-size: 13px; }
   .payTable .work { font-size: 11px; }
 }
+@media (max-width: 719px) {
+  .capTable tbody th, .capNote { white-space: normal; }
+}

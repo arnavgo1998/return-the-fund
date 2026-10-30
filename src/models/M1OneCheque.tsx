@@ -23,24 +23,21 @@ export function M1OneCheque() {
   const [sale, setSale] = useState(100);
   const back = SHARE * sale;
   const verdict =
-    back === 0 ? "The $1M is gone. That is the worst case, and it is only ever the $1M."
-    : back < 1 ? "Less than I put in. Still never less than nothing."
-    : back === 1 ? "My money back, and nothing for the years it was locked up."
-    : `${Math.round(back * 10) / 10} times my money.`;
+    back === 0 ? "The $1M is gone. That is the worst case, and it never costs more than the $1M."
+    : back < 1 ? "Less than you put in, but never less than $0."
+    : back === 1 ? "Your money back, with nothing extra for the years it was tied up."
+    : `${Math.round(back * 10) / 10} times your money.`;
   return (
     <Section n={1} title="One cheque">
       <Prose>
         <p>
-          Start with the smallest version I can think of. One company, cut into 100 squares. The founders own 90.
-          I pay $1M for the other 10.
+          Start with one company cut into 100 squares. The founders own 90 of them. You pay $1M for the other 10.
         </p>
         <p>
-          So one square costs $0.1M, and without anyone saying it out loud, my cheque has just decided what the whole
-          company is worth: 100 squares at $0.1M is $10M.
+          That price also puts a value on the whole company. If 10 squares cost $1M, one square costs $0.1M, and all 100 squares are worth $10M.
         </p>
         <p>
-          Years later the company sells, or it dies. Call the sale <Chip letter="E" />. I don't know it yet. That's
-          the whole point. My 10 squares get 10% of whatever it is.
+          Some years later the company is sold, or it shuts down. Call the sale price <Chip letter="E" />. Nobody knows it when the cheque is written. Whatever it turns out to be, your 10 squares get 10% of it.
         </p>
       </Prose>
       <Wide label="One cheque into one company">
@@ -50,9 +47,9 @@ export function M1OneCheque() {
             <CompanyGrid label="A company of 100 squares: 90 founders', 10 yours" />
             <Legend ids={["you", "founders"]} />
             <dl className={styles.facts}>
-              <div><dt>My squares</dt><dd data-testid="m1-squares"><span className={styles.muteInline}>$1M ÷ $0.1M = </span>10</dd></div>
-              <div><dt>My share</dt><dd data-testid="m1-share"><span className={styles.muteInline}>10 ÷ 100 = </span>10%</dd></div>
-              <div><dt>The company, at my price</dt><dd data-testid="m1-worth"><span className={styles.muteInline}>100 × $0.1M = </span>$10M</dd></div>
+              <div><dt>Your squares</dt><dd data-testid="m1-squares"><span className={styles.muteInline}>$1M ÷ $0.1M = </span>10</dd></div>
+              <div><dt>Your share</dt><dd data-testid="m1-share"><span className={styles.muteInline}>10 ÷ 100 = </span>10%</dd></div>
+              <div><dt>The company, at this price</dt><dd data-testid="m1-worth"><span className={styles.muteInline}>100 × $0.1M = </span>$10M</dd></div>
             </dl>
           </div>
           <div className={styles.grow}>
@@ -74,17 +71,16 @@ export function M1OneCheque() {
       </Wide>
       <Prose>
         <p>
-          Drag the sale all the way down. The worst that can happen is that my $1M is gone. There is no setting
-          that takes more than the $1M.
+          Drag the sale down to $0 and you lose the $1M. No position of the slider costs more than that.
         </p>
         <p>
-          Now drag it up. At $100M I get $10M back, ten notes. At $1B I get a hundred notes, and the picture has to
-          grow to hold them.
-          One side of this has a floor. The other side has no ceiling. Everything after this is built on that.
+          Drag it up and there is no limit. A $100M sale pays back $10M, ten notes. A $1B sale pays back a hundred notes, and the picture has to grow to hold them. The loss stops at the cheque and the gain has no ceiling. Every later model builds on that difference.
         </p>
       </Prose>
       <Aside>
-        <p>This is the asymmetry Peter Bernstein keeps circling in <em>Against the Gods</em>: what you can lose is known in advance, what you can win isn't.</p>
+        <p>
+          Peter Bernstein comes back to this asymmetry throughout <em>Against the Gods</em>. The possible loss is known before the bet is made. The possible gain is not.
+        </p>
       </Aside>
       <Rule>The most you can lose is the cheque. What you can win is your share × the sale, with no ceiling.</Rule>
     </Section>

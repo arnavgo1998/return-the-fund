@@ -24,12 +24,10 @@ export function M2TenCheques() {
     <Section n={2} title="Ten cheques">
       <Prose>
         <p>
-          One cheque is a coin I wouldn't flip on purpose. So take the next step: a $10M fund, ten cheques of $1M,
-          each buying 10% of a different company.
+          One cheque is a single bet, and a fund makes many. Take a $10M fund that writes ten cheques of $1M, each buying 10% of a different company.
         </p>
         <p>
-          Kupor is blunt that most of them won't work. Here is a simplified version of the usual spread: five go to
-          zero, two give the money back, two return three times what went in. The tenth is the one I haven't decided yet.
+          Most of those companies will not work out. Kupor describes the usual spread, and a simplified version of it looks like this: five companies return nothing, two return the money, and two return three times the money. The tenth company's result is set with the slider.
         </p>
       </Prose>
       <Wide label="Ten cheques from a $10M fund">
@@ -67,15 +65,14 @@ export function M2TenCheques() {
       </Wide>
       <Prose>
         <p>
-          Push the winner to $2M and the fund gets its money back: $8M + $2M = $10M. Push it to $22M and the fund
-          triples: $8M + $22M = $30M.
+          With the winner at $2M, the fund gets its money back: $8M + $2M = $10M. At $22M the fund triples: $8M + $22M = $30M.
         </p>
         <p>
-          Now look at the other nine. If the two good ones had only given the money back, the total would drop by $4M.
-          The winner moves it by $20M. Peter Thiel puts it as a law in <em>Zero to One</em>: the best
-          investment in a good fund returns as much as all the others put together.
+          Compare how much each part of the portfolio moves the total. If the two 3× companies had only returned their money, the total would fall by $4M. Taking the winner from $2M to $22M adds $20M. Peter Thiel states this as a rule in <em>Zero to One</em>: in a good fund, the best investment returns as much as all the others combined.
         </p>
-        <p>This is where I first felt it. Nine of these ten decisions barely matter. One of them is the whole fund.</p>
+        <p>
+          So the fund's result depends almost entirely on one company, and the other nine make little difference.
+        </p>
       </Prose>
       <Rule>One company has to carry the fund. The rest barely matter.</Rule>
     </Section>

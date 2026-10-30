@@ -59,4 +59,11 @@ describe("Model 4: other investors arrive", () => {
     expect(t("cap-paid-a")).toBe("$5M");
     expect(screen.queryByTestId("cap-paid-b")).toBeNull();
   });
+
+  it("calls the round investors by name", () => {
+    render(<M4Rounds />);
+    fireEvent.click(screen.getByRole("button", { name: "Series B" }));
+    expect(screen.getByText("Alex (Series A)")).toBeTruthy();
+    expect(screen.getByText("Blake (Series B)")).toBeTruthy();
+  });
 });

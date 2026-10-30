@@ -12,14 +12,14 @@ describe("Model 3: the napkin sum", () => {
 
   it("states the rule", () => {
     render(<M3Napkin />);
-    expect(screen.getByText("Before you write the cheque, divide the fund by your share. If the company can't plausibly be worth that, the cheque can't matter.")).toBeTruthy();
+    expect(screen.getByText("Before you write the cheque, divide the fund by your share. If the company cannot plausibly sell for that much, it cannot return the fund.")).toBeTruthy();
   });
 
   it("writes the sum the same way round in words and in numbers", () => {
     render(<M3Napkin />);
-    expect(screen.getByTestId("napkin-words-1").textContent).toBe("my share × E = F");
+    expect(screen.getByTestId("napkin-words-1").textContent).toBe("your share × E = F");
     expect(screen.getByTestId("napkin-numbers-1").textContent).toBe("10% × E = $10M");
-    expect(screen.getByTestId("napkin-words-2").textContent).toBe("E = F ÷ my share");
+    expect(screen.getByTestId("napkin-words-2").textContent).toBe("E = F ÷ your share");
     expect(screen.getByTestId("napkin-numbers-2").textContent).toBe("E = $10M ÷ 10% = $100M");
   });
 

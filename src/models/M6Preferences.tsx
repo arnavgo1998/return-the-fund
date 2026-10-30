@@ -3,7 +3,7 @@ import { type HolderId, capTable } from "../model/company";
 import { formatMoney } from "../model/format";
 import { switchPoint, waterfall } from "../model/waterfall";
 import { Chip, Equation } from "../ui/Equation";
-import { COLOR, NAMES } from "../ui/players";
+import { COLOR, NAMES, SHORT } from "../ui/players";
 import { Aside, Prose, Rule, Section, Wide } from "../ui/Section";
 import { Slider } from "../ui/Slider";
 import { EXIT_STOPS } from "./stops";
@@ -73,24 +73,18 @@ export function M6Preferences() {
     <Section n={6} title="Who gets paid first">
       <Prose>
         <p>
-          There's one more thing other investors bring, and it only shows up when things go badly. Investors usually
-          don't buy plain squares. Their squares come with a promise: when the company sells, they can take their money
-          back first, <em>instead of</em> their share. Not both. Whichever is bigger.
+          Other investors also affect who gets paid when a company sells for less than hoped. They usually buy preferred squares, which come with a promise. In a sale, they can take their money back first <em>instead of</em> their share. They get one or the other, whichever is larger.
         </p>
         <p>
-          Which is bigger comes down to one comparison. Take what an investor paid for one square. Then take what one
-          square is worth in the sale. If a square is now worth more than they paid, they take their share. If it's
-          worth less, they take their money back.
+          Which is larger comes down to one comparison. Divide what an investor paid by the squares they bought to get the price of one square. Then work out what one square is worth in the sale. If a square is now worth more than they paid, they take their share. If it is worth less, they take their money back.
         </p>
         <p>
-          From Model 4, I paid $0.1M a square, Series A paid $0.2M and Series B paid $0.8M. Start with only Series B
-          holding the promise, then give it to everyone. Drag the sale, <Chip letter="E" />, and watch what a square
-          is worth move past each price.
+          The company is the one from Model 4. You hold 10 squares bought for $1M, at $0.1M each. Alex holds 25 bought for $5M, at $0.2M each. Blake holds 25 bought for $20M, at $0.8M each. The founders hold 90. Start with only Blake holding the promise, then give it to every investor, and move the sale <Chip letter="E" /> to see what a square is worth.
         </p>
       </Prose>
       <Wide label="Splitting the sale">
         <div className={styles.segmented} role="group" aria-label="Who holds the promise">
-          <button type="button" aria-pressed={!everyone} onClick={() => setEveryone(false)}>Only Series B</button>
+          <button type="button" aria-pressed={!everyone} onClick={() => setEveryone(false)}>Only Blake</button>
           <button type="button" aria-pressed={everyone} onClick={() => setEveryone(true)}>Every investor</button>
         </div>
         {!everyone ? (
@@ -117,7 +111,7 @@ export function M6Preferences() {
           </span>
           {investors.map((id) => (
             <span key={id} className={styles.sqTick} style={{ left: `${rulerAt(pricePaid(id))}%`, color: COLOR[id], borderColor: COLOR[id] }}>
-              {id === "you" ? "You" : NAMES[id].replace("Series ", "")}
+              {SHORT[id]}
             </span>
           ))}
           <span className={styles.sqEnd} data-edge="start">$0.01M</span>
@@ -138,7 +132,12 @@ export function M6Preferences() {
           <tbody>
             {ORDER.map((id) => (
               <tr key={id}>
-                <th scope="row"><span className={styles.swatchInline} style={{ background: COLOR[id] }} />{NAMES[id]}</th>
+                <th scope="row">
+                  <span className={styles.swatchInline} style={{ background: COLOR[id] }} />{NAMES[id]}
+                  <span className={styles.work} data-testid={`holds-${id}`}>
+                    {holder(id).shares} squares{holder(id).invested > 0 ? ` for ${formatMoney(holder(id).invested)}` : ""}
+                  </span>
+                </th>
                 <td className={styles.priceCell} data-testid={`price-${id}`}>{id === "founders" ? "—" : perSquare(pricePaid(id))}</td>
                 <td className={styles.how}>
                   <span data-testid={`how-${id}`}>{how(id)}</span>
@@ -155,40 +154,27 @@ export function M6Preferences() {
       </Wide>
       <Prose>
         <p>
-          With only B holding the promise, at $60M B takes its $20M back first. The other $40M is shared over the
-          remaining 125 squares: $0.32M a square, less than the $0.8M B paid, so B is right to take the money. B keeps
-          doing that until a square is worth $0.8M. That happens at $120M, which is exactly what B's price said the
-          whole company was worth.
+          With only Blake holding the promise, at $60M Blake takes $20M back first. The remaining $40M is shared across the other 125 squares at $0.32M each. That is less than the $0.8M Blake paid, so taking the money back is the better choice. It stays the better choice until a square is worth $0.8M, at a $120M sale, which is the value Blake's own price put on the company.
         </p>
         <p>
-          Now give every investor the promise. My squares were the cheapest, so I'm the first to switch. At $35M, B and
-          A take $25M back, and $10M is left for 100 squares: $0.1M each, my price. Series A switches at $45M, when a
-          square reaches its $0.2M. Series B switches last, at $120M.
+          With every investor holding the promise, your squares were the cheapest, so you switch first. At $35M, Blake and Alex take $25M back and $10M is left for 100 squares, which is $0.1M each, your price. Alex switches at $45M, when a square reaches $0.2M. Blake switches last, at $120M.
         </p>
         <p>
-          Drag the sale down to $30M, a company that raised $26M and sold for barely more. Every investor takes their
-          money back, and the founders, who spent years on it, share the $4M left. Below $26M there isn't enough to give
-          every investor their money back, so the investors split the sale in proportion to what they put in, and the
-          founders get nothing.
+          At $30M, for a company that raised $26M, every investor takes their money back and the founders' 90 squares share the $4M left. Below $26M there is not enough to repay every investor, so the investors split the sale in proportion to what they put in and the founders receive nothing.
         </p>
         <p>
-          Drag it past $120M and a square is worth more than anyone paid, so everyone takes their share. At $1.2B a
-          square is worth $8M, and my 10 squares get $80M for my $1M.
+          Above $120M a square is worth more than anyone paid, so everyone takes their share. At $1.2B a square is worth $8M, and your 10 squares return $80M on a $1M cheque.
         </p>
         <p>
-          So the promise protects me in the bad sales: it gets my $1M back. But Model 2 already told me the fund isn't
-          made in the bad sales. It's made in the one sale where the promise doesn't matter at all. My downside
-          protection is $1M. My upside is $80M. The promise has a name, by the way: a <em>liquidation preference</em>.
+          The promise protects investors in poor sales, and at best it returns your $1M. Model 2 showed that funds are not made in poor sales. They are made in the rare large sale, where the promise plays no part. The protection is worth $1M and the upside is $80M. This promise is called a <em>liquidation preference</em>.
         </p>
       </Prose>
       <Aside>
         <p>
-          I've used the simplest version: one times the money, take it or the share but not both, every investor equal
-          in line. Real terms can put later investors ahead of earlier ones, or let them take the money back and their
-          share. Kupor walks through those. The shape stays the same: they matter below the last price, not above it.
+          This is the simplest form: one times the money, the money or the share but not both, and every investor equal in line. Real terms can put later investors ahead of earlier ones, or let them take both the money and the share. Kupor covers these variations. They change the split below the last round's price, and make no difference above it.
         </p>
       </Aside>
-      <Rule>Below the last round's price, preferences decide who gets paid. Above it, only shares matter — and above it is where a fund is made.</Rule>
+      <Rule>Below the last round's price, preferences decide who gets paid. Above it, only squares count, and that is where a fund makes its money.</Rule>
     </Section>
   );
 }

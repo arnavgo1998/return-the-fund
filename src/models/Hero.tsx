@@ -5,24 +5,24 @@ import styles from "./models.module.css";
 export function Hero() {
   return (
     <header className={styles.hero}>
-      <p className={styles.kicker}>A notebook on <em>Secrets of Sand Hill Road</em></p>
+      <p className={styles.kicker}>Notes on <em>Secrets of Sand Hill Road</em></p>
       <h1 className={styles.title}>Return the Fund</h1>
       <p className={styles.dek}>Venture capital from the bare basics, one variable at a time.</p>
       <div className={styles.heroProse}>
         <p>
-          I knew the words. Ownership, dilution, follow-ons, preferences, the one company that returns the fund.
-          I could have told you each of them mattered. What I couldn't do was hold them together. Every time I tried,
-          the sum arrived with ten unknowns at once, and I fell back on the feel of it.
+          Venture investors talk about ownership, dilution, follow-on cheques, liquidation preferences and the one
+          company that returns the fund. Each idea is simple on its own. They are hard to hold together because they
+          all act on the same sum, and most explanations bring them in all at once.
         </p>
         <p>
-          Then I watched Chain Bear build a Formula 1 race strategy out of little coloured squares. Ten laps, two tyres,
-          count them. One new variable at a time, each step ending in a sum simple enough to say out loud. By the
-          end I could see why teams stop when they stop.
+          This page builds that sum one variable at a time, the way Chain Bear builds a Formula 1 race strategy in{" "}
+          <em>Building an F1 Strategy from the Bare Basics</em>: start with a model small enough to count, add one thing,
+          and end each step with a rule short enough to say out loud. The numbers follow Scott Kupor's{" "}
+          <em>Secrets of Sand Hill Road</em>, simplified so that every one of them can be checked by hand.
         </p>
         <p>
-          So this is me doing that with Scott Kupor's <em>Secrets of Sand Hill Road</em>. I sit in the investor's chair.
-          I start with one cheque into one company and add one thing at a time, until the sum every investor does on a
-          napkin makes sense.
+          You sit in the investor's seat, with a $10M fund. Later in the page two more investors join the same company:
+          Alex, who leads Series A, and Blake, who leads Series B.
         </p>
       </div>
       <dl className={styles.units}>

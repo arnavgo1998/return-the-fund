@@ -26,25 +26,21 @@ export function M5FollowOn() {
   const cross = followOnCrossover(SEED_PRICE, ROUND_B.price, survival);
   const verdict =
     Math.abs(followExpected - freshExpected) < 1e-9
-      ? `My guess, ${oneIn(h)}, is exactly break-even. Dead equal: either cheque buys ${round2(freshExpected)} squares on average.`
+      ? `Your guess, ${oneIn(h)}, is exactly break-even. Dead equal: either cheque buys ${round2(freshExpected)} squares on average.`
     : followExpected > freshExpected
-      ? `My guess, ${oneIn(h)}, is a longer shot than break-even, ${oneIn(cross)}. Follow on: ${round2(followExpected)} squares beats ${round2(freshExpected)} on average.`
-    : `My guess, ${oneIn(h)}, is better odds than break-even, ${oneIn(cross)}. Write the new cheque: ${round2(freshExpected)} squares beats ${round2(followExpected)} on average.`;
+      ? `Your guess, ${oneIn(h)}, is a longer shot than break-even, ${oneIn(cross)}. Follow on: ${round2(followExpected)} squares beats ${round2(freshExpected)} on average.`
+    : `Your guess, ${oneIn(h)}, is better odds than break-even, ${oneIn(cross)}. Write the new cheque: ${round2(freshExpected)} squares beats ${round2(followExpected)} on average.`;
   return (
     <Section n={5} title="More money into the winner, or a new bet?">
       <Prose>
         <p>
-          Here's a decision Kupor spends a lot of time on, and one I'd never thought of as a decision at all. The
-          company from Model 4 is raising its Series B. I have $1M left in the fund. Do I put it into Series B, or
-          into a brand-new company at the seed price?
+          Kupor spends a lot of time on a decision that comes after the first cheque. The company from Model 4 is raising its Series B, and the fund has $1M left. You can put it into Series B, or into a new company at the seed price.
         </p>
         <p>
-          At Series B a square costs $0.8M, so $1M buys 1.25 squares. At seed, a square costs $0.1M, so $1M buys 10,
-          but of a company that may never get this far. Call that chance <Chip letter="h" />.
+          At Series B a square costs $0.8M, so $1M buys 1.25 squares. At seed a square costs $0.1M, so $1M buys 10, but in a company that may never get this far. Call the chance that it does <Chip letter="h" />.
         </p>
         <p>
-          To keep it to one variable, I'll assume the new company, if it works, ends up exactly like this one: same
-          sale, same rounds after me. Then I'm only comparing squares.
+          To keep to one variable, assume the new company, if it succeeds, ends up exactly like this one, with the same sale and the same later rounds. Then the two choices can be compared in squares alone.
         </p>
       </Prose>
       <Wide label="Follow on, or a new bet">
@@ -65,14 +61,14 @@ export function M5FollowOn() {
             <p className={styles.versusSub}>× {oneIn(h)} comes good = {round2(freshExpected)} on average</p>
           </div>
         </div>
-        <Slider label="Chance a fresh bet gets this far: my guess" letter="h" value={h} stops={HIT_STOPS} format={oneIn} onChange={setH} />
+        <Slider label="Chance a fresh bet gets this far: your guess" letter="h" value={h} stops={HIT_STOPS} format={oneIn} onChange={setH} />
         {twoUnknowns && (
           <Slider label="Chance this company survives to a sale" letter="s" value={s} stops={SURVIVAL_STOPS} format={formatShare} onChange={setS} />
         )}
         <p className={styles.figLabel}>Break-even odds</p>
         <p className={styles.versusSub}>
           Where both cheques buy the same squares on average. The prices{twoUnknowns ? " and s" : ""} set it, so
-          moving my guess for <Chip letter="h" /> doesn't move it.
+          moving your guess for <Chip letter="h" /> doesn't move it.
         </p>
         <Equation>
           <span data-testid="m5-equation">
@@ -89,25 +85,21 @@ export function M5FollowOn() {
       </Wide>
       <Prose>
         <p>
-          So 1.25 = h × 10, which means h = 1 in 8. If I honestly expect fewer than one in eight of my new seed bets to
-          get as far as this company has, putting more money into this company buys more. And look at what 1 in 8 is:
-          $0.1M ÷ $0.8M. The old price over the new price. Nothing else went into it.
+          Setting 1.25 = h × 10 gives h = 1 in 8. If fewer than one in eight new seed bets reach this stage, the follow-on buys more. The break-even is just $0.1M ÷ $0.8M, the old price divided by the new one.
         </p>
         <p>
-          Then the second unknown. Reaching Series B isn't the same as selling well. If this company has only an even
-          chance of getting to a sale, the follow-on is worth half as much, and the break-even halves too: one in sixteen.
+          The second unknown is that reaching Series B does not guarantee a good sale. If this company has an even chance of getting to one, the follow-on is worth half as much, and the break-even halves as well, to one in sixteen.
         </p>
         <p>
-          This is the "prepare widely, then commit" idea, done as arithmetic. Early on, when I know very little, cheap
-          squares across many companies are the best odds I can buy. Once one company has shown me something the
-          others haven't, the sum starts pushing money towards it. Buying enough of each new round to keep my share has
-          a name: my <em>pro rata</em>.
+          Early on, when little is known, cheap squares spread across many companies give the best odds. Once one company has shown more than the others, the same sum starts to favour putting more money into it. Buying enough of each new round to keep your share is called taking your <em>pro rata</em>.
         </p>
       </Prose>
       <Aside>
-        <p>Funds plan for this. A large part of each fund is held back as reserves for follow-on cheques, rather than spent on first cheques.</p>
+        <p>
+          Funds plan for this by holding back a large part of each fund as reserves for follow-on cheques, instead of spending it all on first cheques.
+        </p>
       </Aside>
-      <Rule>Follow on when your odds on a fresh bet are worse than the old price ÷ the new price. Prepare widely, then concentrate on what's working.</Rule>
+      <Rule>Follow on when a fresh bet's chance of getting this far is lower than the old price ÷ the new price.</Rule>
     </Section>
   );
 }
