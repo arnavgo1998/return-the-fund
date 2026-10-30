@@ -16,9 +16,9 @@ export function Blocks({ count, color, perRow = 10, size = 14, label }: BlocksPr
   const whole = Math.floor(count + 1e-9);
   const fraction = Math.round((count - whole) * 100) / 100;
   const fill = color === "ghost" ? "transparent" : COLOR[color];
-  const style = { "--size": `${size}px`, "--per-row": perRow, "--fill": fill } as CSSProperties;
+  const style = { "--size": `${size}px`, "--per-row": Math.max(1, Math.min(perRow, Math.ceil(count))), "--fill": fill } as CSSProperties;
   return (
-    <span role="img" aria-label={label} className={styles.blocks} data-ghost={color === "ghost"} style={style}>
+    <span role={label ? "img" : undefined} aria-label={label || undefined} aria-hidden={label ? undefined : true} className={styles.blocks} data-ghost={color === "ghost"} style={style}>
       {Array.from({ length: whole }, (_, i) => <span key={i} data-square className={styles.square} />)}
       {fraction > 0 && (
         <span data-square data-fraction={String(fraction)} className={styles.square}

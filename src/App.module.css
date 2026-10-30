@@ -1,6 +1,1 @@
-.page { padding: 0 var(--gutter) 96px; }
-.hero { max-width: var(--column); margin: 0 auto; padding: 96px 0 24px; }
-.eyebrow { font: 500 13px/1.4 var(--font-sans); letter-spacing: 0.06em; text-transform: uppercase; color: var(--mute); margin-bottom: 20px; }
-.eyebrow em { text-transform: none; letter-spacing: 0; font-family: var(--font-body); font-size: 16px; }
-.title { font-size: clamp(44px, 9vw, 76px); margin: 0 0 16px; }
-.dek { font-size: 23px; line-height: 1.4; color: var(--mute); margin-bottom: 40px; }
+.page { padding: 0 var(--gutter) 120px; }

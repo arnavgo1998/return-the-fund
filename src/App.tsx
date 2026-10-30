@@ -1,13 +1,14 @@
+import { Hero } from "./models/Hero";
+import { M1OneCheque } from "./models/M1OneCheque";
+import { M2TenCheques } from "./models/M2TenCheques";
 import styles from "./App.module.css";
 
 export default function App() {
   return (
     <main className={styles.page}>
-      <header className={styles.hero}>
-        <p className={styles.eyebrow}>A notebook on <em>Secrets of Sand Hill Road</em></p>
-        <h1 className={styles.title}>Return the Fund</h1>
-        <p className={styles.dek}>Venture capital from the bare basics, one variable at a time.</p>
-      </header>
+      <Hero />
+      <M1OneCheque />
+      <M2TenCheques />
     </main>
   );
 }
